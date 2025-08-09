@@ -1,4 +1,134 @@
-<section class="voidless-tale">
-  <h2>Voidless Tale</h2>
-  <p>Discover the lore and stories that shape the Voidless universe.</p>
+<!-- VOIDLESS TALE — one-page section -->
+<section id="voidless-tale" class="vt">
+  <style>
+    .vt{--bg:#0c0f14;--panel:#151a22;--muted:#94a3b8;--text:#e6eef8;--accent:#9d74ff;--accent2:#4ee0c8;--ring:#2a3340;--max:1120px;--radius:16px}
+    .vt *{box-sizing:border-box}
+    .vt{font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;color:var(--text);background:radial-gradient(1200px 600px at 20% -10%,#1a2230 0%,#0c0f14 60%),var(--bg);padding:64px 20px 96px}
+    .vt .wrap{max-width:var(--max);margin:0 auto}
+    .vt a{color:var(--accent)}
+    .vt h1,.vt h2,.vt h3{line-height:1.1;margin:0 0 .5em}
+    .vt h1{font-size:clamp(32px,4.2vw,56px)}
+    .vt h2{font-size:clamp(22px,2.4vw,28px);margin-top:1.75rem}
+    .vt p{color:var(--text);opacity:.94;margin:.6rem 0 1rem}
+    .vt .muted{color:var(--muted)}
+    .vt .grid{display:grid;gap:24px}
+    .vt .two{grid-template-columns:1fr; }
+    @media (min-width:880px){ .vt .two{grid-template-columns:1.1fr .9fr} }
+    .vt .panel{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.00));border:1px solid var(--ring);border-radius:var(--radius);padding:20px}
+    .vt .hero{display:grid;gap:18px;margin-bottom:32px}
+    .vt .tag{display:inline-flex;align-items:center;gap:8px;background:rgba(157,116,255,.15);border:1px solid rgba(157,116,255,.35);color:#eae5ff;padding:8px 12px;border-radius:999px;font-weight:600;font-size:14px}
+    .vt .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+    .vt .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border-radius:12px;border:1px solid var(--ring);text-decoration:none;font-weight:700}
+    .vt .btn.primary{background:linear-gradient(180deg,var(--accent),#6e49e6);color:white;border:0}
+    .vt .btn.ghost{background:transparent;color:var(--text)}
+    .vt .heroart{aspect-ratio:16/9;background:linear-gradient(180deg,rgba(78,224,200,.08),rgba(157,116,255,.07));border:1px dashed var(--ring);border-radius:var(--radius);display:grid;place-items:center;color:var(--muted)}
+    .vt ul{margin:.2rem 0 .8rem 1.25rem}
+    .vt li{margin:.35rem 0}
+    .vt .kfs{display:grid;gap:16px}
+    .vt .kitem{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));border:1px solid var(--ring);border-radius:14px;padding:14px}
+    .vt .bossgrid{display:grid;gap:14px;grid-template-columns:repeat(1,minmax(0,1fr))}
+    @media (min-width:700px){.vt .bossgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (min-width:1060px){.vt .bossgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    .vt .boss{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));border:1px solid var(--ring);border-radius:14px;padding:14px}
+    .vt .boss small{display:block;color:var(--muted);margin-top:4px}
+    .vt .note{font-size:13px;color:var(--muted)}
+    .vt .hr{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);margin:18px 0}
+  </style>
+
+  <div class="wrap">
+    <!-- HERO -->
+    <div class="hero">
+      <span class="tag">VOIDLESS TALE</span>
+      <h1>A pixel-art action RPG of sin, power, and redemption</h1>
+      <p class="muted">Awaken beneath the World Tree in Purgatory. Hunt memory scraps tied to the seven sins across mirrored realms of Heaven and Hell, then choose: loot enemies for gear—or <b>absorb</b> their skills and rewrite your build.</p>
+      <div class="cta">
+        <a class="btn primary" href="#" target="_blank" rel="noopener">Wishlist on Steam</a>
+        <a class="btn ghost" href="#" target="_blank" rel="noopener">Follow on itch.io</a>
+        <a class="btn ghost" href="#features">See Features</a>
+      </div>
+      <div class="heroart panel">
+        <!-- Replace with your key art -->
+        <div>Hero image / key art (drop in as <code>&lt;img src="/assets/voidless/hero.png" alt="Voidless Tale key art"&gt;</code>)</div>
+      </div>
+    </div>
+
+    <div class="grid two">
+      <!-- LEFT: ABOUT -->
+      <div class="panel">
+        <h2>About the Game</h2>
+        <p><b>Voidless Tale</b> is a side-scrolling action RPG where every domain has two reflections: celestial and infernal. Track down memory scraps, craft keys to open domain gates, and confront each sin’s guardian in both its Heaven and Hell forms. After every fight, decide between classic loot or absorbing the boss’s signature skill into a Veinshard—assemble a bespoke kit and swap between up to three absorbed abilities on the fly. Climb from level 1 to 1000, unlock a late-game <b>Demigod</b> state, and choose the fate of both realms.</p>
+        <div class="hr"></div>
+        <h2 id="features">Key Features</h2>
+        <div class="kfs">
+          <div class="kitem"><b>Mirrored Domains:</b> Heaven &amp; Hell variants for each sin (SALIGIA), with distinct spaces, enemies, and bosses.</div>
+          <div class="kitem"><b>Loot or Absorb:</b> Equip drops or imprint enemy skills into Veinshards, then quick-swap and chain them in combat.</div>
+          <div class="kitem"><b>Deep Progression:</b> Level 1–1000 with stat allocation (STR, AGI, INT, VIT, LUCK) and build-defining milestones.</div>
+          <div class="kitem"><b>Crafting &amp; Keys:</b> Memory scraps → recipes → materials → crafted keys → boss domains and endgame “Sinful Duality”.</div>
+          <div class="kitem"><b>Mod-ready:</b> JSON-style configs, in-game loader, and the standalone <b>Voidless Smith</b> tool for weapon sprites/data.</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: FAST FACTS -->
+      <div class="panel">
+        <h2>Fast Facts</h2>
+        <ul>
+          <li><b>Genre:</b> 2D Action RPG / Platformer</li>
+          <li><b>Style:</b> High-fidelity pixel art</li>
+          <li><b>Core Loop:</b> Explore → gather memory scraps → craft keys → defeat mirrored bosses → loot/absorb → grow</li>
+          <li><b>Build:</b> Up to 3 absorbable skills (Veinshards) + equipment, essence upgrades, synergies</li>
+          <li><b>Platforms:</b> PC (Steam, itch.io)</li>
+        </ul>
+        <p class="note">Roadmap highlights: inventory/action bar polish, absorption synergies, mod packaging, editor sandbox.</p>
+      </div>
+    </div>
+
+    <!-- STORY -->
+    <div class="panel">
+      <h2>World &amp; Story</h2>
+      <p>You wake beneath the World Tree—Purgatory’s quiet heart. Scattered memory scraps expose your life’s transgressions: pride, greed, lust, envy, gluttony, wrath, and sloth. Each sin opens a gate with a radiant (Heaven) and profane (Hell) reflection. Defeat both to unlock <b>Sinful Duality</b>, the endgame realm where you decide: rule Heaven, rule Hell, or break the cycle and escape.</p>
+    </div>
+
+    <!-- COMBAT -->
+    <div class="panel">
+      <h2>Combat &amp; Builds</h2>
+      <p>Responsive 2D combat with melee chains, charged strikes, and ranged skills learned from foes. Absorb abilities into Veinshards, swap them mid-fight, and build synergies via essences, cooldown tweaks, and stat choices. Late-game Demigod form changes how you traverse and fight.</p>
+    </div>
+
+    <!-- BOSS LINEUP -->
+    <div class="panel">
+      <h2>Boss Lineup (Heaven / Hell)</h2>
+      <div class="bossgrid">
+        <div class="boss"><b>Pride:</b> Seraphiel / Vantagon<small>Mirrored arrogance—radiant decree vs. devouring ego.</small></div>
+        <div class="boss"><b>Greed:</b> Aurum / Gorevault<small>Golden hoarder vs. bottomless maw.</small></div>
+        <div class="boss"><b>Lust:</b> Celestara / Vermissa<small>Allure of light vs. crimson hunger.</small></div>
+        <div class="boss"><b>Envy:</b> Viridiel / Shadebinder<small>Covets perfection vs. steals your form.</small></div>
+        <div class="boss"><b>Gluttony:</b> Manna Lord / Maw of Ash<small>Sanctified feast vs. endless consumption.</small></div>
+        <div class="boss"><b>Wrath:</b> Halcyon Judge / Stormreaver<small>Cold justice vs. unchained fury.</small></div>
+        <div class="boss"><b>Sloth:</b> Stillheart / Drowseater<small>Timeless stasis vs. entropy made flesh.</small></div>
+        <div class="boss"><b>Finale:</b> Solagia / Malagia<small>Dual aspects—your reflection at full truth.</small></div>
+      </div>
+      <p class="note" style="margin-top:8px">Names/roles can be adjusted to match final in-game canon.</p>
+    </div>
+
+    <!-- MODDING -->
+    <div class="panel">
+      <h2>Modding &amp; Tools</h2>
+      <ul>
+        <li><b>Mods folder</b> for sprites, audio, scripts, and configs</li>
+        <li><b>In-game mod loader</b> with toggles and metadata</li>
+        <li><b>Voidless Smith</b> app: assemble weapon parts, export PNG+JSON, and (roadmap) one-click import</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <div class="panel" style="display:grid;gap:10px;text-align:center">
+      <h2>Follow Development</h2>
+      <p class="muted">Wishlist for updates, and join early modding contests once the first public demo lands.</p>
+      <div class="cta" style="justify-content:center">
+        <a class="btn primary" href="#" target="_blank" rel="noopener">Wishlist on Steam</a>
+        <a class="btn ghost" href="#" target="_blank" rel="noopener">Follow on itch.io</a>
+        <a class="btn ghost" href="#" target="_blank" rel="noopener">Join Discord</a>
+      </div>
+    </div>
+  </div>
 </section>
