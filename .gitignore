@@ -1,0 +1,10 @@
+# Ignore build output
+_site/
+.jekyll-cache/
+.sass-cache/
+.bundle/
+vendor/
+
+# OS files
+.DS_Store
+Thumbs.db
