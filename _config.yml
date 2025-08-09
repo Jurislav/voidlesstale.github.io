@@ -1,6 +1,6 @@
 title: "Voidless Game Project"
 description: "Official site for the Voidless game project."
-theme: minima
+theme: jekyll-theme-minimal
 
 # Build settings
 markdown: kramdown
