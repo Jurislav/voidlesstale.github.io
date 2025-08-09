@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  </head>
+  <body>
+    <nav>
+      <a href="{{ '/' | relative_url }}">Main</a>
+      <a href="{{ '/about/' | relative_url }}">About</a>
+      <a href="{{ '/voidless-tale/' | relative_url }}">Voidless Tale</a>
+      <a href="{{ '/voidless-smith/' | relative_url }}">Voidless Smith</a>
+    </nav>
+    <main>
+      {{ content }}
+    </main>
+  </body>
+</html>

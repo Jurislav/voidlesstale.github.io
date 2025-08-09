@@ -1,0 +1,6 @@
+title: "Voidless Game Project"
+description: "Official site for the Voidless game project."
+theme: minima
+
+# Build settings
+markdown: kramdown
