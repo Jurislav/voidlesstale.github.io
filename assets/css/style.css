@@ -24,3 +24,19 @@ main {
 a {
   color: #1e90ff;
 }
+
+/* Voidless Tale section */
+.voidless-tale {
+  background-color: #111;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.voidless-tale h2 {
+  color: #1e90ff;
+  margin-top: 0;
+}
+
+.voidless-tale p {
+  margin-bottom: 0;
+}
