@@ -5,15 +5,7 @@
 :root { color-scheme: dark; }
 html, body { background: theme(colors.bg); color: theme(colors.text); }
 
-.panel {
-  @apply rounded-xl2 bg-panel/90 border border-edge/60 shadow-panel backdrop-blur;
-}
-.btn {
-  @apply inline-flex items-center gap-2 rounded-xl2 px-4 py-2 border border-edge/60 bg-surface hover:bg-panel transition;
-}
-.btn-primary {
-  @apply btn border-primary/40 shadow-[0_0_0_1px_rgba(139,92,246,.3)_inset];
-}
-.badge {
-  @apply text-xs tracking-wide px-2 py-0.5 rounded border border-edge/60 bg-surface/60;
-}
+.panel { @apply rounded-xl2 bg-panel/90 border border-edge/60 shadow-panel backdrop-blur; }
+.btn { @apply inline-flex items-center gap-2 rounded-xl2 px-4 py-2 border border-edge/60 bg-surface hover:bg-panel transition; }
+.btn-primary { @apply btn border-primary/40 shadow-[0_0_0_1px_rgba(139,92,246,.3)_inset]; }
+.badge { @apply text-xs tracking-wide px-2 py-0.5 rounded border border-edge/60 bg-surface/60; }
