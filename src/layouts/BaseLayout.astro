@@ -1,0 +1,57 @@
+---
+const { title = 'Voidless Tale' } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <h1>Voidless Tale</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/voidless-tale">Voidless Tale</a>
+        <a href="/voidless-smith">Voidless Smith</a>
+        <a href="/about">About</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>&copy; {new Date().getFullYear()} Voidless Tale</p>
+    </footer>
+  </body>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+    }
+    header {
+      background-color: #2b2b2b;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 0.5rem;
+      color: #b19cd9;
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: #d1c4e9;
+    }
+    footer {
+      background-color: #2b2b2b;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+    a {
+      color: #b19cd9;
+    }
+  </style>
+</html>
