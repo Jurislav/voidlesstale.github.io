@@ -4,6 +4,7 @@ _A 2D pixel-art action RPG of sin, power, and redemption — traverse mirrored r
 
 **Website:** https://www.voidlesstale.com  
 **Wishlist / Follow:** **Steam (placeholder)** · **itch.io (placeholder)**
+**Wiki:** https://github.com/Jurislav/voidlesstale.github.io/wiki
 
 ---
 
