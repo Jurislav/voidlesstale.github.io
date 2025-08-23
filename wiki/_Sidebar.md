@@ -1,0 +1,12 @@
+- **[Home](Home)**
+- **Game**
+  - [Story](Story)
+  - [Domains & Bosses](Domains-and-Bosses)
+  - [Progression & Systems](Progression-and-Systems)
+- **Modding**
+  - [Modding & Voidless Smith](Modding-and-Voidless-Smith)
+- **Project**
+  - [Roadmap](Roadmap)
+  - [Presskit](Presskit)
+  - [FAQ](FAQ)
+  - [Licensing](Licensing)
