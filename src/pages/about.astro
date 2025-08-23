@@ -1,7 +1,14 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Base from "../layouts/Base.astro";
+import PanelCard from "../components/PanelCard.astro";
 ---
-<BaseLayout title="About">
-  <h2>About</h2>
-  <p>Voidless Tale is an indie project exploring redemption, power, and the thin line between Heaven and Hell. This site shares the vision and tools behind the game.</p>
-</BaseLayout>
+<Base title="About — Voidless Tale">
+  <div class="grid md:grid-cols-2 gap-4">
+    <PanelCard kicker="Vision" title="A tale of sin, power, and redemption">
+      Solo-developed pixel-art RPG inspired by classics; built for deep systems, replayability, and modding.
+    </PanelCard>
+    <PanelCard kicker="Community" title="Mods & Events">
+      Monthly spotlights, challenges, and a living modding wiki. Presskit and contact are in the footer.
+    </PanelCard>
+  </div>
+</Base>

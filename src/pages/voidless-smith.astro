@@ -1,16 +1,27 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Base from "../layouts/Base.astro";
+import PanelCard from "../components/PanelCard.astro";
+import Buttons from "../components/Buttons.astro";
 ---
-<BaseLayout title="Voidless Smith">
-  <h2>Voidless Smith</h2>
-  <p>The official mod-authoring tool for crafting custom weapons and mods.</p>
-  <section>
-    <h3>Features</h3>
-    <ul>
-      <li>Mix and match blades, guards, hilts, and pommels.</li>
-      <li>Tint parts with HSV or RGB sliders and save palettes.</li>
-      <li>Export sprite sheets and JSON configs for immediate use.</li>
-      <li>Future updates add one-click mod packaging and Steam Workshop support.</li>
-    </ul>
+<Base title="Voidless Smith — Modding Tool" description="Design, tint, export, and import weapon sprites & configs.">
+  <section class="grid lg:grid-cols-3 gap-4 mb-6">
+    <PanelCard kicker="What it is" title="Standalone mod-authoring tool">
+      Parts library (blade, guard, hilt, pomel), palette swaps, randomizer/manual builds, PNG+JSON export.
+    </PanelCard>
+    <PanelCard kicker="Export & Integrate" title="Mod-ready output">
+      One-click export to mod folder, JSON config generation, roadmap for .voidmod packaging & Workshop.
+    </PanelCard>
+    <PanelCard kicker="Roadmap" title="Future">
+      In-editor testing sandbox, auto-update, version history.
+    </PanelCard>
   </section>
-</BaseLayout>
+
+  <section class="panel p-6">
+    <h3 class="text-xl font-semibold mb-2">Follow for release</h3>
+    <p class="text-mute">Download links will appear here. For now, placeholders:</p>
+    <div class="mt-3 flex gap-3">
+      <Buttons label="GitHub Releases — Placeholder" href="#" />
+      <Buttons label="Workshop Page — Placeholder" href="#" />
+    </div>
+  </section>
+</Base>
