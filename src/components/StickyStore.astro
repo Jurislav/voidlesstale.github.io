@@ -1,0 +1,16 @@
+---
+const items = [
+  { label: 'Steam — Placeholder', href: '#' },
+  { label: 'itch.io — Placeholder', href: '#' },
+];
+---
+<div class="fixed bottom-3 left-0 right-0 z-40 px-4 md:hidden">
+  <div class="panel p-3 backdrop-blur bg-panel/80 border-primary/30">
+    <div class="flex items-center justify-between gap-2">
+      <span class="text-sm text-mute">Wishlist / Follow</span>
+      <div class="flex gap-2">
+        {items.slice(0,2).map(i => <a class="btn btn-primary px-3 py-1.5 text-sm" href={i.href}>{i.label}</a>)}
+      </div>
+    </div>
+  </div>
+</div>
