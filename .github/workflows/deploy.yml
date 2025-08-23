@@ -16,8 +16,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
-      - run: npm ci
+      - run: npm ci || npm i
       - run: npm run build
+      - name: Verify CNAME
+        run: |
+          echo "CNAME content:"
+          cat dist/CNAME || (echo "CNAME missing in dist" && exit 1)
       - uses: actions/upload-pages-artifact@v3
         with: { path: "./dist" }
   deploy:

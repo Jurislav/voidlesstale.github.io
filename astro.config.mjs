@@ -1,5 +1,9 @@
 import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
+
 export default defineConfig({
-  site: 'https://jurislav.github.io', // set to your custom domain once CNAME is live
+  site: 'https://www.voidlesstale.com',
+  trailingSlash: 'always',
   output: 'static',
+  integrations: [tailwind({ applyBaseStyles: false })],
 });
