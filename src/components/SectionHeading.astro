@@ -1,0 +1,10 @@
+---
+const { kicker, title, right = null } = Astro.props;
+---
+<header class="flex items-end justify-between mb-3">
+  <div>
+    {kicker && <div class="kicker mb-1">{kicker}</div>}
+    <h3 class="text-xl font-semibold">{title}</h3>
+  </div>
+  {right}
+</header>

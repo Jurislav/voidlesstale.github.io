@@ -1,0 +1,16 @@
+---
+const { title, subtitle, ctas = [] } = Astro.props;
+---
+<section class="panel relative overflow-hidden p-8 md:p-12">
+  <div class="absolute inset-0 pointer-events-none opacity-25"
+       style="background: radial-gradient(600px 200px at 20% 10%, rgba(139,92,246,.35), transparent 60%),
+                       radial-gradient(400px 160px at 90% 20%, rgba(167,139,250,.25), transparent 60%);">
+  </div>
+  <h1 class="relative text-3xl md:text-5xl font-extrabold mb-2">{title}</h1>
+  {subtitle && <p class="relative text-mute max-w-2xl text-lg">{subtitle}</p>}
+  {ctas.length > 0 && (
+    <div class="relative mt-5 flex flex-wrap gap-3">
+      {ctas.map(c => <a href={c.href ?? '#'} class={c.primary ? 'btn btn-primary' : 'btn'}>{c.label}</a>)}
+    </div>
+  )}
+</section>

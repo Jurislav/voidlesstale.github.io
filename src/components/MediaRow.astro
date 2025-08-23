@@ -1,0 +1,16 @@
+---
+/* Simple scroll-snap row for screenshots/GIFs. Drop images in /public/assets/screens */
+const { images = [] } = Astro.props;
+---
+<section class="panel p-4">
+  <div class="kicker mb-1">Screens</div>
+  <h3 class="text-xl font-semibold mb-3">First look</h3>
+  <div class="overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none]" style="-webkit-overflow-scrolling:touch;">
+    <div class="flex gap-3 snap-x snap-mandatory pr-2">
+      {images.map(src => (
+        <img src={src} alt="Screenshot" loading="lazy"
+             class="snap-start w-[360px] h-[202px] object-cover rounded-xl2 border border-edge/60 bg-surface" />
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,11 +1,14 @@
 ---
 import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
 import PanelCard from "../components/PanelCard.astro";
-import Buttons from "../components/Buttons.astro";
 ---
 <Base title="Voidless Smith — Modding Tool" description="Design, tint, export, and import weapon sprites & configs.">
-  <section class="grid lg:grid-cols-3 gap-4 mb-6">
-    <PanelCard kicker="What it is" title="Standalone mod-authoring tool">
+  <Hero title="Voidless Smith"
+        subtitle="Standalone mod-authoring tool for parts, palettes, randomizer, PNG+JSON export."
+        ctas={[{label:'GitHub Releases — Placeholder', href:'#', primary:true}]} />
+  <section class="grid lg:grid-cols-3 gap-4 mt-6">
+    <PanelCard kicker="What it is" title="Standalone tool">
       Parts library (blade, guard, hilt, pomel), palette swaps, randomizer/manual builds, PNG+JSON export.
     </PanelCard>
     <PanelCard kicker="Export & Integrate" title="Mod-ready output">
@@ -14,14 +17,5 @@ import Buttons from "../components/Buttons.astro";
     <PanelCard kicker="Roadmap" title="Future">
       In-editor testing sandbox, auto-update, version history.
     </PanelCard>
-  </section>
-
-  <section class="panel p-6">
-    <h3 class="text-xl font-semibold mb-2">Follow for release</h3>
-    <p class="text-mute">Download links will appear here. For now, placeholders:</p>
-    <div class="mt-3 flex gap-3">
-      <Buttons label="GitHub Releases — Placeholder" href="#" />
-      <Buttons label="Workshop Page — Placeholder" href="#" />
-    </div>
   </section>
 </Base>

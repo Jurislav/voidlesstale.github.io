@@ -1,0 +1,19 @@
+---
+/* Dead Cells shows a big "Where to buy?" CTA; here we mirror that UX with placeholders. */
+const items = [
+  { label: 'Steam — Placeholder', href: '#' },
+  { label: 'itch.io — Placeholder', href: '#' },
+];
+---
+<div class="panel p-5 md:p-6">
+  <div class="flex items-center justify-between gap-3 flex-wrap">
+    <div>
+      <div class="kicker">Wishlist / Follow</div>
+      <h3 class="text-xl font-semibold">Where to play</h3>
+      <p class="text-mute">Links are placeholders until pages are live.</p>
+    </div>
+    <div class="flex gap-2">
+      {items.map(i => <a class="btn btn-primary" href={i.href}>{i.label}</a>)}
+    </div>
+  </div>
+</div>

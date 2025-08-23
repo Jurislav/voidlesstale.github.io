@@ -1,18 +1,22 @@
 ---
-const nav = [
-  { href: "/", label: "Home" },
-  { href: "/voidless-tale/", label: "Voidless Tale" },
-  { href: "/voidless-smith/", label: "Voidless Smith" },
-  { href: "/about/", label: "About" },
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/voidless-tale/', label: 'Voidless Tale' },
+  { href: '/voidless-smith/', label: 'Voidless Smith' },
+  { href: '/about/', label: 'About' },
 ];
+const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
 ---
 <nav class="sticky top-0 z-50 backdrop-blur bg-bg/70 border-b border-edge/60">
   <div class="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
     <a href="/" class="font-semibold tracking-wide">VOIDLESS • TALE</a>
     <ul class="flex items-center gap-2">
-      {nav.map(i => (
-        <li><a class="btn" href={i.href}>{i.label}</a></li>
-      ))}
+      {links.map(i => {
+        const active = path === i.href;
+        return (
+          <li><a class={`btn ${active ? 'btn-primary ring-1 ring-primary/40' : ''}`} href={i.href}>{i.label}</a></li>
+        );
+      })}
     </ul>
   </div>
 </nav>
