@@ -1,0 +1,8 @@
+This repository uses split licensing:
+
+• Code: MIT (see LICENSE) — applies to website source and build/config files.
+• Story/Characters/Creative Assets: All Rights Reserved (see ASSETS_LICENSE.md).
+• Voidless Smith tool: All Rights Reserved (see TOOLS_LICENSE.md).
+• Trademarks: See TRADEMARKS.md.
+
+If a subfolder contains its own license file, that file governs the contents of that subfolder.
