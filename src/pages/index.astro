@@ -1,16 +1,29 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Base from "../layouts/Base.astro";
+import PanelCard from "../components/PanelCard.astro";
+import Buttons from "../components/Buttons.astro";
+import { features } from "../data/voidless";
 ---
-<BaseLayout>
-  <h2>Welcome to Voidless Tale</h2>
-  <p>A 2D pixel-art action RPG where Heaven and Hell collide. Absorb the powers of your foes or loot their treasures as you uncover your forgotten sins.</p>
-  <section>
-    <h3>Highlights</h3>
-    <ul>
-      <li>Dual realms of Heaven and Hell, each with eight unique domains.</li>
-      <li>Loot vs. Absorb mechanic for deep customization.</li>
-      <li>Level 1&ndash;1000 progression leading to Demigod transformation.</li>
-      <li>Full mod support and the Voidless Smith weapon editor.</li>
-    </ul>
+<Base title="Voidless Tale — Home" description="A slick hub for the game & tools.">
+  <section class="panel p-8 mb-6">
+    <div class="badge mb-2">Welcome</div>
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-3">Voidless Tale</h1>
+    <p class="text-mute max-w-2xl">
+      Explore mirrored realms, reclaim your memories, and forge weapons with Voidless Smith.
+    </p>
+    <div class="mt-5 flex gap-3">
+      <Buttons label="Explore the Game" href="/voidless-tale" />
+      <Buttons label="Voidless Smith" href="/voidless-smith" />
+    </div>
   </section>
-</BaseLayout>
+
+  <div class="grid md:grid-cols-3 gap-4">
+    {features.slice(0,3).map(f => <PanelCard title={f} />)}
+    <PanelCard title="Wishlist on Steam" kicker="CTA">
+      <div class="mt-3 flex gap-2">
+        <Buttons label="Steam — Placeholder" href="#" />
+        <Buttons label="itch.io — Placeholder" href="#" />
+      </div>
+    </PanelCard>
+  </div>
+</Base>

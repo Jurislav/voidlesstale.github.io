@@ -1,0 +1,5 @@
+---
+const { variant = "primary", href = "#", label } = Astro.props;
+const cls = variant === "primary" ? "btn btn-primary" : "btn";
+---
+<a href={href} class={cls} aria-disabled={href === "#"}>{label}</a>

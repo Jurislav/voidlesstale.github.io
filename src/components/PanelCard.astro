@@ -1,0 +1,8 @@
+---
+const { title, kicker, body } = Astro.props;
+---
+<section class="panel p-5 md:p-6">
+  {kicker && <div class="badge mb-2">{kicker}</div>}
+  <h3 class="text-xl font-semibold mb-2">{title}</h3>
+  <div class="text-mute leading-7"><slot>{body}</slot></div>
+</section>

@@ -1,0 +1,19 @@
+---
+const { sin, heaven, hell } = Astro.props;
+---
+<div class="panel p-4">
+  <div class="flex items-center justify-between mb-1">
+    <h4 class="font-semibold">{sin}</h4>
+    <span class="badge">Heaven vs Hell</span>
+  </div>
+  <div class="grid md:grid-cols-2 gap-3 text-sm">
+    <div class="p-3 rounded-lg bg-surface/60 border border-edge/60">
+      <div class="text-mute mb-1">Heaven</div>
+      <div class="font-medium">{heaven}</div>
+    </div>
+    <div class="p-3 rounded-lg bg-surface/60 border border-edge/60">
+      <div class="text-mute mb-1">Hell</div>
+      <div class="font-medium">{hell}</div>
+    </div>
+  </div>
+</div>
