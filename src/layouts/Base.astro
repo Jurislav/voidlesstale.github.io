@@ -10,10 +10,10 @@ const { title = "Voidless Tale", description = "A 2D pixel-art RPG of sin, power
     <title>{title}</title><meta name="description" content={description} />
     <meta property="og:title" content={title} /><meta property="og:description" content={description} />
   </head>
-  <body class="vt-gradient vt-noise">
+  <body class="vt-gradient vt-noise min-h-screen flex flex-col">
     <a href="#content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 badge">Skip to content</a>
     <Nav />
-    <main id="content" class="mx-auto max-w-6xl px-4 pt-8">
+    <main id="content" class="mx-auto max-w-6xl px-4 pt-8 flex-1 w-full">
       <slot />
     </main>
     <Footer />
