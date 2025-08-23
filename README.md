@@ -108,11 +108,9 @@ You’re dead. You awaken in a limbo forest beneath a colossal tree. Across the 
 ---
 
 ## License
-TBD
 
----
-
-### Credits
-Solo developer: **Juris** (Voidless Tale) • Pixel art, design, and systems. Tools: Godot, Aseprite, Astro, Tailwind, C#/WinForms (Voidless Smith).
-
-> _“Loot or absorb. Rise or fall.”_
+**Split licensing:**
+- Website code: MIT (see `LICENSE`).
+- Story/characters/art/audio/logos: All Rights Reserved (see `ASSETS_LICENSE.md`).
+- Tools (Voidless Smith): All Rights Reserved (see `TOOLS_LICENSE.md`).
+- Trademarks: see `TRADEMARKS.md`.

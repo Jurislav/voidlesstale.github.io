@@ -1,21 +1,41 @@
-MIT License
+MIT License (Code Only)
 
 Copyright (c) 2025 Juris
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
+of this software and associated documentation files (the "Website Code"), to deal
+in the Website Code without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
+copies of the Website Code, and to permit persons to whom the Website Code is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Website Code.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+THE WEBSITE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+OUT OF OR IN CONNECTION WITH THE WEBSITE CODE OR THE USE OR OTHER DEALINGS IN
+THE WEBSITE CODE.
+
+----------------------------------------------------------------------
+EXCLUSIONS (NOT COVERED BY THIS MIT LICENSE)
+
+The following assets and content are NOT licensed under MIT and remain
+the exclusive property of Juris (All Rights Reserved), unless an
+explicit license file in their directory states otherwise:
+
+• Narrative, story, characters, names, lore, domains, boss names, and all worldbuilding text
+  (e.g., SALIGIA; Superbia, Avaritia, Luxuria, Invidia, Gula, Ira, Acedia; Solagia; Malagia),
+  including but not limited to content in /src/data/ and any narrative markdown.
+
+• Visual/audio/branding assets: logos, wordmarks, icons, key art, screenshots, sprites,
+  videos, audio, fonts (unless a separate font license is included), and any files in /public/assets.
+
+• The "Voidless Smith" tool name, brand, binaries/source (if present here), and related documentation.
+
+• Trademarks: "Voidless Tale", "Voidless Smith", and associated logos/branding.
+
+If in doubt, assume creative content and brand assets are excluded from MIT.
