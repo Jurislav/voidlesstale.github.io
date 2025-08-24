@@ -9,9 +9,10 @@ const fmt = (iso) => new Date(iso).toLocaleDateString("en-GB", {
 ---
 
 <Base title="Devlog" description="Latest updates and progress logs for Voidless Tale.">
-  <div class="vt-backdrop" aria-hidden="true"></div>
+  <!-- REMOVE this if Base.astro already includes the backdrop -->
+  <!-- <div class="vt-backdrop" aria-hidden="true"></div> -->
 
-  <section class="container mx-auto px-4 py-16">
+  <section class="relative z-10 container mx-auto px-4 py-16">
     <h1 class="font-heading text-3xl md:text-4xl mb-6" data-reveal>Devlog</h1>
     <p class="opacity-90 mb-8 max-w-2xl" data-reveal>
       Changelogs, experiments, and behind-the-scenes notes.
