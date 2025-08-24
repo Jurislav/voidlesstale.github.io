@@ -27,13 +27,13 @@ const {
     <a href="#content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2">Skip to content</a>
     <Nav class="safenav" />
 
-    <!-- IMPORTANT: add vt-content class and use id="content" to match skip link -->
     <main id="content" class="vt-content mx-auto max-w-6xl px-4 pt-4 sm:pt-6 md:pt-8 flex-1 w-full flow-root">
       <slot />
     </main>
 
     <Footer />
 
+    <!-- Theme init + global toggle (unchanged) -->
     <script is:inline>
       (function () {
         const root = document.documentElement;

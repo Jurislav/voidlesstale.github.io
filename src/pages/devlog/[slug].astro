@@ -46,9 +46,7 @@ const desc  = meta.summary;
 const dateStr = date ? new Date(date).toLocaleDateString("en-GB", { year:"numeric", month:"long", day:"numeric" }) : "";
 ---
 
-<Base title={title} description={desc}>
-  <div class="vt-backdrop" aria-hidden="true"></div>
-
+<Base title={title} description={desc} pageClass="page-devlog">
   <section class="container mx-auto px-4 py-12">
     <a href="/devlog" class="btn btn-secondary mb-6">← Back to Devlog</a>
 
