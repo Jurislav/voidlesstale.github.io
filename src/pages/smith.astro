@@ -4,20 +4,20 @@ import RevealOnScroll from "../components/RevealOnScroll.tsx";
 const title = "Voidless Smith";
 const desc = "Create, tweak, and share items, skills, and cosmetics for Voidless Tale.";
 ---
-<Base title={title} description={desc}>
+<Base title={title} description={desc} theme="hell">
   <RevealOnScroll client:load>
-    <section class="container mx-auto px-4 py-16">
-      <header class="max-w-3xl" data-reveal>
-        <h1 class="text-4xl md:text-5xl font-bold">Voidless Smith</h1>
-        <p class="mt-4 opacity-90">
-          The modding workbench for items, skills, and looks—designed to match the game’s Hell theme.
-        </p>
-        <div class="mt-6 flex gap-3">
-          <a class="btn-primary" href="#features">Core Features</a>
-          <a class="btn" href="/devlog">Devlog</a>
-        </div>
-      </header>
-    </section>
+      <section class="container mx-auto px-4 py-16">
+        <header class="max-w-3xl" data-reveal>
+          <h1 class="font-heading text-4xl md:text-5xl">Voidless Smith</h1>
+          <p class="mt-4 text-lg max-w-prose opacity-90">
+            The modding workbench for items, skills, and looks—designed to match the game’s Hell theme.
+          </p>
+          <div class="mt-6 flex gap-3">
+            <a class="btn btn-primary" href="#features">Core Features</a>
+            <a class="btn" href="/devlog">Devlog</a>
+          </div>
+        </header>
+      </section>
 
     <section id="features" class="container mx-auto px-4 pb-12">
       <div class="grid gap-6 md:grid-cols-3">
@@ -53,9 +53,9 @@ const desc = "Create, tweak, and share items, skills, and cosmetics for Voidless
         <h3 class="text-2xl font-semibold">See it in Action</h3>
         <p class="mt-2">Short GIFs or screenshots revealing features as you scroll.</p>
       </article>
-      <div class="mt-8" data-reveal>
-        <a class="btn-primary" href="#">Download (soon)</a>
-      </div>
-    </section>
+        <div class="mt-8" data-reveal>
+          <a class="btn btn-primary" href="#">Download (soon)</a>
+        </div>
+      </section>
   </RevealOnScroll>
 </Base>
