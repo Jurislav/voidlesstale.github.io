@@ -1,34 +1,73 @@
 ---
-import { Image } from 'astro:assets';
+// src/components/Gallery.astro
 const images = [
-  { src: 'https://placehold.co/600x400/png', alt: 'Screenshot 1' },
-  { src: 'https://placehold.co/600x400/png?text=Scene+2', alt: 'Screenshot 2' },
-  { src: 'https://placehold.co/600x400/png?text=Scene+3', alt: 'Screenshot 3' }
+  { src: 'https://placehold.co/600x400/png',            alt: 'Screenshot 1' },
+  { src: 'https://placehold.co/600x400/png?text=2',     alt: 'Screenshot 2' },
+  { src: 'https://placehold.co/600x400/png?text=3',     alt: 'Screenshot 3' }
 ];
 ---
 <section class="py-16" id="gallery">
   <h2 class="font-heading text-2xl mb-8" data-reveal>Gallery</h2>
+
   <div class="grid gap-4 sm:grid-cols-3">
     {images.map((img, i) => (
-      <button type="button" class="group" aria-label={`Open screenshot ${i+1}`} data-image={img.src} data-reveal>
-        <Image src={img.src} alt={img.alt} width={600} height={400} class="w-full h-full rounded-2xl object-cover aspect-video" />
+      <button
+        type="button"
+        class="group"
+        aria-label={`Open screenshot ${i + 1}`}
+        data-image={img.src}
+        data-reveal
+      >
+        <img
+          src={img.src}
+          alt={img.alt}
+          width="600"
+          height="400"
+          loading="lazy"
+          class="w-full h-full rounded-2xl object-cover aspect-video"
+        />
       </button>
     ))}
   </div>
-  <dialog id="lightbox" class="fixed inset-0 bg-black/80 backdrop-blur flex items-center justify-center p-4">
-  </dialog>
+
+  <!-- Keep the dialog EMPTY: we’ll create the img element in JS -->
+  <dialog id="lightbox"></dialog>
+
   <script type="module">
     const dlg = document.getElementById('lightbox');
-    const img = document.createElement('img');
-    img.className = 'max-h-full rounded';
-    dlg.appendChild(img);
-    document.querySelectorAll('#gallery button').forEach(btn => {
+    let imgEl = null;
+
+    // open
+    document.querySelectorAll('#gallery [data-image]').forEach((btn) => {
       btn.addEventListener('click', () => {
-        img.src = btn.dataset.image;
-        img.alt = btn.getAttribute('aria-label');
-        dlg.showModal();
+        if (!imgEl) {
+          imgEl = new Image();
+          imgEl.className = 'max-h-[90vh] max-w-[90vw] rounded-2xl';
+          dlg.appendChild(imgEl);
+        }
+        imgEl.src = btn.dataset.image;
+        imgEl.alt = btn.getAttribute('aria-label') || 'Screenshot';
+        if (typeof dlg.showModal === 'function') dlg.showModal();
+        else dlg.setAttribute('open', ''); // fallback
       });
     });
-    dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+
+    // close on backdrop click
+    dlg.addEventListener('click', (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+
+    // close on Esc
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && dlg.hasAttribute('open')) dlg.close();
+    });
   </script>
+
+  <style>
+    /* Dialog defaults */
+    #lightbox { padding: 0; border: none; background: transparent; }
+    #lightbox:not([open]) { display: none; }
+    #lightbox[open] { display: flex; align-items: center; justify-content: center; }
+    #lightbox::backdrop { background: rgba(0,0,0,.8); backdrop-filter: blur(2px); }
+  </style>
 </section>
