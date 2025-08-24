@@ -2,7 +2,12 @@
 import "../styles/globals.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-const { title = "Voidless Tale", description = "A side-scrolling pixel RPG where every enemy is a choice." } = Astro.props;
+
+const {
+  title = "Voidless Tale",
+  description = "A side-scrolling pixel RPG where every enemy is a choice.",
+  pageClass = ""
+} = Astro.props;
 ---
 <html lang="en">
   <head>
@@ -16,31 +21,33 @@ const { title = "Voidless Tale", description = "A side-scrolling pixel RPG where
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;700&display=swap" />
   </head>
-  <body>
+  <body class={pageClass}>
     <div class="vt-backdrop" aria-hidden="true"></div>
+
     <a href="#content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2">Skip to content</a>
-    <Nav className="safenav" />
-    <main id="content" class="mx-auto max-w-6xl px-4 pt-4 sm:pt-6 md:pt-8 flex-1 w-full flow-root">
+    <Nav class="safenav" />
+
+    <!-- IMPORTANT: add vt-content class and use id="content" to match skip link -->
+    <main id="content" class="vt-content mx-auto max-w-6xl px-4 pt-4 sm:pt-6 md:pt-8 flex-1 w-full flow-root">
       <slot />
     </main>
-    <Footer />
-    <!-- Base.astro (keep this near </body>) -->
-  <script is:inline>
-  (function () {
-    const root = document.documentElement;
-    const saved = localStorage.getItem('vt-theme');
-    root.dataset.theme = (saved === 'heaven' || saved === 'hell') ? saved : 'hell';
 
-    // Global click handler: any element with data-action="toggle-theme" will work
-    document.addEventListener('click', (e) => {
-      const btn = e.target.closest?.('[data-action="toggle-theme"]');
-      if (!btn) return;
-      const next = root.dataset.theme === 'hell' ? 'heaven' : 'hell';
-      root.dataset.theme = next;
-      localStorage.setItem('vt-theme', next);
-      document.dispatchEvent(new CustomEvent('vt-theme-changed', { detail: next }));
-    });
-  })();
-</script>
+    <Footer />
+
+    <script is:inline>
+      (function () {
+        const root = document.documentElement;
+        const saved = localStorage.getItem('vt-theme');
+        root.dataset.theme = (saved === 'heaven' || saved === 'hell') ? saved : 'hell';
+        document.addEventListener('click', (e) => {
+          const btn = e.target.closest?.('[data-action="toggle-theme"]');
+          if (!btn) return;
+          const next = root.dataset.theme === 'hell' ? 'heaven' : 'hell';
+          root.dataset.theme = next;
+          localStorage.setItem('vt-theme', next);
+          document.dispatchEvent(new CustomEvent('vt-theme-changed', { detail: next }));
+        });
+      })();
+    </script>
   </body>
 </html>
