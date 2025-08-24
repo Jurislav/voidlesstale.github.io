@@ -2,9 +2,9 @@
 import "../styles/globals.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-const { title = "Voidless Tale", description = "A side-scrolling pixel RPG where every enemy is a choice.", theme = "hell" } = Astro.props;
+const { title = "Voidless Tale", description = "A side-scrolling pixel RPG where every enemy is a choice." } = Astro.props;
 ---
-<html lang="en" data-theme={theme}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -15,19 +15,35 @@ const { title = "Voidless Tale", description = "A side-scrolling pixel RPG where
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;700&display=swap" />
+    <script is:inline>
+      (function () {
+        const root = document.documentElement;
+        const saved = localStorage.getItem('vt-theme');
+        root.dataset.theme = (saved === 'heaven' || saved === 'hell') ? saved : 'hell';
+      })();
+    </script>
   </head>
-  <body class="min-h-screen flex flex-col overflow-x-clip">
+  <body>
     <div class="vt-backdrop" aria-hidden="true"></div>
     <a href="#content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2">Skip to content</a>
     <Nav className="safenav" />
-    <button data-action="toggle-theme" class="btn fixed z-50" style="top:150px; right:50px;">Switch Theme</button>
     <main id="content" class="mx-auto max-w-6xl px-4 pt-4 sm:pt-6 md:pt-8 flex-1 w-full flow-root">
       <slot />
     </main>
     <Footer />
+    <!-- Fixed theme toggle; must exist on all pages -->
+    <button id="vt-theme-toggle" class="btn-secondary fixed z-50" style="top:150px; right:50px;">
+      Switch Theme
+    </button>
     <script type="module">
-      import { initThemeSwitch } from "../components/ThemeSwitch.ts";
-      initThemeSwitch();
+      const root = document.documentElement;
+      const btn  = document.getElementById('vt-theme-toggle');
+      btn?.addEventListener('click', () => {
+        const next = (root.dataset.theme === 'hell') ? 'heaven' : 'hell';
+        root.dataset.theme = next;
+        localStorage.setItem('vt-theme', next);
+        document.dispatchEvent(new CustomEvent('vt-theme-changed', { detail: next }));
+      });
     </script>
   </body>
 </html>
