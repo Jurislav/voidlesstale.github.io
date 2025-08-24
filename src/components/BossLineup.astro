@@ -1,26 +1,11 @@
 ---
-const domains = [
-  { name: 'Superbia', flavor: 'Pride crowned in radiant spires.' },
-  { name: 'Avaritia', flavor: 'Greed hoards cursed treasure troves.' },
-  { name: 'Luxuria', flavor: 'Lust blooms in perfumed gardens.' },
-  { name: 'Invidia', flavor: 'Envy stalks gilded shadow corridors.' },
-  { name: 'Gula', flavor: 'Gluttony feasts beyond reason.' },
-  { name: 'Ira', flavor: 'Wrath burns in endless flame.' },
-  { name: 'Acedia', flavor: 'Sloth dreams in dim cathedrals.' },
-  { name: 'SALIGIA', flavor: 'Face yourself at the final gate.' }
-];
+const HELL = ["Superbia","Avaritia","Luxuria","Invidia","Gula","Ira","Acedia","SALIGIA"];
+const HEAVEN = ["Superbia (Heaven)","Avaritia (Heaven)","Luxuria (Heaven)","Invidia (Heaven)","Gula (Heaven)","Ira (Heaven)","Acedia (Heaven)","SALIGIA (Heaven)"];
 ---
-<section class="py-16">
-  <div class="flex items-center justify-between mb-8">
-    <h2 class="font-heading text-2xl">Domains of Sin</h2>
-  </div>
-  <p class="mb-8 text-sm text-muted" data-reveal>Eight domains—seven sins and SALIGIA—mirrored across Heaven and Hell. Two final paths. One truth.</p>
-  <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-    {domains.map(d => (
-      <div class="p-4 rounded-2xl bg-bg2 shadow-card" data-reveal>
-        <h3 class="font-heading">{d.name}</h3>
-        <p class="mt-2 text-sm text-muted">{d.flavor}</p>
-      </div>
-    ))}
-  </div>
+<section class="container mx-auto px-4 py-16">
+  <h2 class="text-3xl font-bold mb-6">Boss Lineup</h2>
+  <ul class="grid gap-4 md:grid-cols-4 list-none">
+    {HELL.map(n => <li class="card p-4 hell-only"><h3 class="font-semibold">{n}</h3></li>)}
+    {HEAVEN.map(n => <li class="card p-4 heaven-only"><h3 class="font-semibold">{n}</h3></li>)}
+  </ul>
 </section>
