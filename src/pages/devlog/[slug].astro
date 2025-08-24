@@ -2,6 +2,7 @@
 // src/pages/devlog/[slug].astro
 import Base from "../../layouts/Base.astro";
 import list from "../../data/devlog.json";
+import "../../styles/devlog.css";
 
 /** Generate static paths from the union of JSON + optional Markdown posts */
 export function getStaticPaths() {
@@ -47,20 +48,20 @@ const dateStr = date ? new Date(date).toLocaleDateString("en-GB", { year:"numeri
 ---
 
 <Base title={title} description={desc} pageClass="page-devlog">
-  <section class="container mx-auto px-4 py-12">
+  <section class="devlog-container">
     <a href="/devlog" class="btn btn-secondary mb-6">← Back to Devlog</a>
 
-    <h1 class="font-heading text-3xl md:text-4xl" data-reveal>{title}</h1>
-    {dateStr && <p class="opacity-80 text-sm mt-1">{dateStr}</p>}
+    <h1 class="devlog-heading" data-reveal>{title}</h1>
+    {dateStr && <p class="devlog-card-date">{dateStr}</p>}
 
     {Content ? (
-      <article class="mt-6 prose prose-invert max-w-none" data-reveal>
+      <article class="devlog-article" data-reveal>
         <Content />
       </article>
     ) : (
-      <article class="card p-6 mt-6" data-reveal>
-        <p class="opacity-90">{desc}</p>
-        <p class="mt-2 opacity-70 text-sm">Full post coming soon.</p>
+      <article class="devlog-card" data-reveal>
+        <p class="devlog-card-summary">{desc}</p>
+        <p class="devlog-card-date" style="margin-top:0.5rem;">Full post coming soon.</p>
       </article>
     )}
   </section>

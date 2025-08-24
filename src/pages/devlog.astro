@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import posts from "../data/devlog.json";
+import "../styles/devlog.css";
 
 const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
 const fmt = (iso) => new Date(iso).toLocaleDateString("en-GB", {
@@ -9,21 +10,19 @@ const fmt = (iso) => new Date(iso).toLocaleDateString("en-GB", {
 ---
 
 <Base title="Devlog" description="Latest updates and progress logs for Voidless Tale." pageClass="page-devlog">
-  <section class="container mx-auto px-4 py-16">
-    <h1 class="font-heading text-3xl md:text-4xl mb-6" data-reveal>Devlog</h1>
-    <p class="opacity-90 mb-8 max-w-2xl" data-reveal>
+  <section class="devlog-container">
+    <h1 class="devlog-heading" data-reveal>Devlog</h1>
+    <p class="devlog-lead" data-reveal>
       Changelogs, experiments, and behind-the-scenes notes.
     </p>
 
-    <ul class="grid gap-6 md:grid-cols-2">
+    <ul class="devlog-list">
       {sorted.map((p) => (
-        <li class="card p-6" data-reveal>
-          <h2 class="text-xl font-semibold">
-            <a href={`/devlog/${p.slug}`} class="hover:underline">{p.title}</a>
-          </h2>
-          <p class="text-sm opacity-80">{fmt(p.date)}</p>
-          <p class="mt-2">{p.summary}</p>
-          <div class="mt-4">
+        <li class="devlog-card" data-reveal>
+          <h2 class="devlog-card-title"><a href={`/devlog/${p.slug}`}>{p.title}</a></h2>
+          <p class="devlog-card-date">{fmt(p.date)}</p>
+          <p class="devlog-card-summary">{p.summary}</p>
+          <div style="margin-top:1rem;">
             <a class="btn btn-primary" href={`/devlog/${p.slug}`}>Read</a>
           </div>
         </li>
