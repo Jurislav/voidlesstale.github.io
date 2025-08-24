@@ -18,10 +18,10 @@
   --bg:#1a140b; --bg-grad-1:#0f0b06; --bg-grad-2:#2a1e0c;
   --accent:#DB9200;           /* primary gold */
   --accent-2:#FFA800;         /* highlight gold */
-  --panel:#FFA800;            /* panel fill */
-  --panel-border:#8A5C00;     /* panel border */
+  --panel:#8A5C00;            /* panel fill */
+  --panel-border:#D3AF37;     /* panel border */
   --ink:#FFF5E1;              /* cream text on dark backgrounds */
-  --ink-strong:#523600;       /* dark-brown text on light panels */
+  --ink-strong:#484848;       /* dark-brown text on light panels */
   --muted:#E9D9B9;
   --noise-opacity:.07;
   --bg-1: var(--bg);
