@@ -16,11 +16,12 @@ const images = [
     ))}
   </div>
   <dialog id="lightbox" class="fixed inset-0 bg-black/80 backdrop-blur flex items-center justify-center p-4">
-    <img src="" alt="" class="max-h-full rounded" />
   </dialog>
   <script type="module">
     const dlg = document.getElementById('lightbox');
-    const img = dlg.querySelector('img');
+    const img = document.createElement('img');
+    img.className = 'max-h-full rounded';
+    dlg.appendChild(img);
     document.querySelectorAll('#gallery button').forEach(btn => {
       btn.addEventListener('click', () => {
         img.src = btn.dataset.image;
