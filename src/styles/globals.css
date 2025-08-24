@@ -21,7 +21,7 @@
   --panel:#8A5C00;            /* panel fill */
   --panel-border:#D3AF37;     /* panel border */
   --ink:#FFF5E1;              /* cream text on dark backgrounds */
-  --ink-strong:#484848;       /* dark-brown text on light panels */
+  --ink-strong:#FFF5E1;       /* dark-brown text on light panels */
   --muted:#E9D9B9;
   --noise-opacity:.07;
   --bg-1: var(--bg);
