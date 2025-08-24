@@ -2,38 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-html[data-theme='hell'], html:not([data-theme]) {
-  --bg: #0b0b0f;
-  --bg-grad-1: #101016;
-  --bg-grad-2: #1a0f14;
-  --accent: #d72638;
-  --accent-2: #ff6b6b;
-  --panel: #17141b;
-  --panel-border: #3a2630;
-  --ink: #e8e8f0;
-  --muted: #b0b0c0;
-  --noise-opacity: .07;
+:root[data-theme="hell"]{
+  --bg:#0b0b0f; --bg-grad-1:#101016; --bg-grad-2:#1a0f14;
+  --accent:#d72638; --accent-2:#ff6b6b;
+  --panel:#17141b; --panel-border:#3a2630;
+  --ink:#e8e8f0; --ink-strong:#ffffff; --muted:#b0b0c0;
+  --noise-opacity:.07;
   --bg-1: var(--bg);
   --bg-2: var(--panel);
   --shadow: rgba(0,0,0,.35);
 }
-:root[data-theme='heaven']{
-  --bg: #1a140b;
-  --bg-grad-1: #0f0b06;
-  --bg-grad-2: #2a1e0c;
-  --accent: #CDA434;
-  --accent-2: #EADBA2;
-  --panel: #F1E6BE;
-  --panel-border: #8B6B23;
-  --ink: #FFF5E1;
-  --muted: #E9D9B9;
-  --noise-opacity: .07;
+:root[data-theme="heaven"]{
+  --bg:#1a140b; --bg-grad-1:#0f0b06; --bg-grad-2:#2a1e0c;
+  --accent:#CDA434; --accent-2:#EADBA2;
+  --panel:#F1E6BE; --panel-border:#8B6B23;
+  --ink:#FFF5E1; --ink-strong:#ffffff; --muted:#E9D9B9;
+  --noise-opacity:.07;
   --bg-1: var(--bg);
   --bg-2: var(--panel);
   --shadow: rgba(0,0,0,.35);
 }
 
-html { color-scheme: dark; background: var(--bg-1); }
+html { color-scheme: dark; background: var(--bg); }
 body { color: var(--ink); font-family: theme('fontFamily.body'); }
 
 /* Backdrop is fixed & empty – visuals live on ::before/::after */
@@ -64,14 +54,6 @@ body { color: var(--ink); font-family: theme('fontFamily.body'); }
   opacity: var(--noise-opacity, .07);
 }
 
-/* Prevent accidental markers or debug squares in hero/lead text */
-.hero p, .lead { list-style:none; }
-.hero p::before, .hero p::after, .lead::before, .lead::after { content:none !important; }
-
-/* Nuke any legacy debug square classes just in case */
-.debug, .vt-cube, .floating-cube, [data-debug]{ display:none !important; }
-.vt-backdrop > *{ display:none !important; }
-
 [data-reveal] {
   opacity: .01;
   transform: translateY(12px);
@@ -84,22 +66,24 @@ body { color: var(--ink); font-family: theme('fontFamily.body'); }
   border-color: var(--accent);
 }
 .btn:hover { background-color: color-mix(in srgb, var(--accent) 20%, transparent); }
-.btn-primary { @apply bg-accent text-bg1; }
+.btn-primary{
+  background:linear-gradient(180deg,var(--accent-2),var(--accent));
+  color:#1a1212; border:1px solid var(--panel-border);
+}
+.btn-secondary{
+  background:transparent; color:var(--ink);
+  border:1px solid var(--accent);
+}
 
 /* Heaven theme – warm gold on deep umber, less glare */
 .card{
-  background: var(--panel);
+  background:var(--panel);
   border:1px solid var(--panel-border);
+  color:var(--ink-strong);
   box-shadow:0 10px 30px -10px rgba(0,0,0,.35);
 }
-[data-theme="heaven"] .card{ color:#2a220f; }
-[data-theme="heaven"] .card h3{ color:#3b2f10; }
-[data-theme="heaven"] .btn-primary{
-  background: linear-gradient(180deg, var(--accent-2), var(--accent));
-  color: #241b0a;
-  border: 1px solid var(--panel-border);
-}
-[data-theme="heaven"] .btn-primary:hover{ filter: brightness(0.95); }
+:root[data-theme="heaven"] .card{ color:#2a220f; }
+:root[data-theme="heaven"] .card h3{ color:#3b2f10; }
 
 :root[data-theme="hell"]   .heaven-only{ display:none !important; }
 :root[data-theme="heaven"] .hell-only  { display:none !important; }
@@ -114,4 +98,17 @@ body { color: var(--ink); font-family: theme('fontFamily.body'); }
   text-shadow: 0 1px 0 #ffffffaa;
 }
 [data-theme="heaven"] .theme-chip.is-active{ outline: 3px solid var(--accent); }
+
+/* Remove stray pseudo-element squares near hero text */
+.hero :where(p,h1,h2,h3,li,a)::before,
+.hero :where(p,h1,h2,h3,li,a)::after,
+.lead::before, .lead::after{ content:none !important; display:none !important; }
+
+/* Hero lists must not show markers */
+.hero ul, .hero ol{ list-style:none; padding-left:0; }
+
+/* If any debug elems slipped in, hide them */
+.debug, .vt-cube, .floating-cube, [data-debug]{ display:none !important; }
+/* Backdrop must be empty: if anything got appended, hide it */
+.vt-backdrop > *{ display:none !important; }
 

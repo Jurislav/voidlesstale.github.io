@@ -1,11 +1,59 @@
 ---
-const HELL = ["Superbia","Avaritia","Luxuria","Invidia","Gula","Ira","Acedia","SALIGIA"];
-const HEAVEN = ["Superbia (Heaven)","Avaritia (Heaven)","Luxuria (Heaven)","Invidia (Heaven)","Gula (Heaven)","Ira (Heaven)","Acedia (Heaven)","SALIGIA (Heaven)"];
+const HELL = [
+  {name:"Superbia (Pride)", blurb:"Punishes overbuffing. Reflect windows force patience.", loot:"Crit & mirror shards", absorb:"Counter-guard / reflect tap"},
+  {name:"Avaritia (Greed)", blurb:"Hoarder boss. Extra drops with weight curses.", loot:"Gold hoards, extra rolls", absorb:"Greed Mark (bonus on last-hit)"},
+  {name:"Luxuria (Lust)", blurb:"Charm debuffs; pet control checks.", loot:"Charm-ward trinkets", absorb:"Allure (brief confuse)"},
+  {name:"Invidia (Envy)", blurb:"Mirror match that copies stats.", loot:"Clone-slayer relics", absorb:"Stat Echo (copy buff)"},
+  {name:"Gula (Gluttony)", blurb:"Eats projectiles; AoE bile zones.", loot:"Acid/poison kits", absorb:"Devour (ammo/bolt convert)"},
+  {name:"Ira (Wrath)", blurb:"Rage meter spikes at 50% HP.", loot:"Berserk mitigators", absorb:"Rage Vent (burst on hit taken)"},
+  {name:"Acedia (Sloth)", blurb:"Time-slow fields with heavy windows.", loot:"Slow resist charms", absorb:"Dilation (brief time skew)"},
+  {name:"SALIGIA (Hell)", blurb:"Two-phase devourer; loot vs absorb ultimatum.", loot:"Relic fusions", absorb:"Sin Engine (limit break)"}
+];
+const HEAVEN = [
+  {name:"Superbia (Heaven)", blurb:"Trials of humility; reward clean play.", loot:"Boons on no-hit", absorb:"Aegis Thread (parry widen)"},
+  {name:"Avaritia (Heaven)", blurb:"Tithe mechanic—share to gain.", loot:"Shared-drop buffs", absorb:"Tithe Sigil (party gain)"},
+  {name:"Luxuria (Heaven)", blurb:"Purity checks vs charm.", loot:"Sanctified wards", absorb:"Clarity Pulse (cleanse)"},
+  {name:"Invidia (Heaven)", blurb:"Copies your *last* build only.", loot:"Mirrorbreaker tools", absorb:"Virtue Copy (one skill)"},
+  {name:"Gula (Heaven)", blurb:"Feast/Fast rhythm; manage stacks.", loot:"Feast buffs on cadence", absorb:"Manna (sustain tap)"},
+  {name:"Ira (Heaven)", blurb:"Wrath transformed to resolve.", loot:"Guarded strike sets", absorb:"Temper (stabilize recoil)"},
+  {name:"Acedia (Heaven)", blurb:"Serenity fields; punish greed.", loot:"Patience procs", absorb:"Stillness (cooldown cut)"},
+  {name:"SALIGIA (Heaven)", blurb:"Dual-judgment; choose mercy or truth.", loot:"Relic ascensions", absorb:"Judicium (stance swap)"}
+];
 ---
+
 <section class="container mx-auto px-4 py-16">
   <h2 class="text-3xl font-bold mb-6">Boss Lineup</h2>
-  <ul class="grid gap-4 md:grid-cols-4 list-none">
-    {HELL.map(n => <li class="card p-4 hell-only"><h3 class="font-semibold">{n}</h3></li>)}
-    {HEAVEN.map(n => <li class="card p-4 heaven-only"><h3 class="font-semibold">{n}</h3></li>)}
+
+  <!-- Hell cards -->
+  <ul class="grid gap-4 md:grid-cols-4 hell-only">
+    {HELL.map((b) => (
+      <li class="card p-4">
+        <h3 class="text-lg font-semibold">{b.name}</h3>
+        <p class="mt-1 text-sm opacity-90">{b.blurb}</p>
+        <ul class="mt-3 text-sm opacity-90">
+          <li><strong>Loot:</strong> {b.loot}</li>
+          <li><strong>Absorb:</strong> {b.absorb}</li>
+        </ul>
+      </li>
+    ))}
+  </ul>
+
+  <!-- Heaven cards -->
+  <ul class="grid gap-4 md:grid-cols-4 heaven-only">
+    {HEAVEN.map((b) => (
+      <li class="card p-4">
+        <h3 class="text-lg font-semibold">{b.name}</h3>
+        <p class="mt-1 text-sm">{b.blurb}</p>
+        <ul class="mt-3 text-sm">
+          <li><strong>Loot:</strong> {b.loot}</li>
+          <li><strong>Absorb:</strong> {b.absorb}</li>
+        </ul>
+      </li>
+    ))}
   </ul>
 </section>
+
+<style>
+:root[data-theme="hell"]   .heaven-only{ display:none !important; }
+:root[data-theme="heaven"] .hell-only  { display:none !important; }
+</style>
