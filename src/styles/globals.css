@@ -12,11 +12,17 @@
   --bg-2: var(--panel);
   --shadow: rgba(0,0,0,.35);
 }
+
+/* HEAVEN — gold panels/borders + dark-brown text on light panels, cream on dark bg */
 :root[data-theme="heaven"]{
   --bg:#1a140b; --bg-grad-1:#0f0b06; --bg-grad-2:#2a1e0c;
-  --accent:#CDA434; --accent-2:#EADBA2;
-  --panel:#FFA800; --panel-border:#8B6B23;
-  --ink:#FFF5E1; --ink-strong:#ffffff; --muted:#E9D9B9;
+  --accent:#DB9200;           /* primary gold */
+  --accent-2:#FFA800;         /* highlight gold */
+  --panel:#FFA800;            /* panel fill */
+  --panel-border:#8A5C00;     /* panel border */
+  --ink:#FFF5E1;              /* cream text on dark backgrounds */
+  --ink-strong:#523600;       /* dark-brown text on light panels */
+  --muted:#E9D9B9;
   --noise-opacity:.07;
   --bg-1: var(--bg);
   --bg-2: var(--panel);
@@ -70,31 +76,36 @@ body { color: var(--ink); font-family: theme('fontFamily.body'); }
   background:linear-gradient(180deg,var(--accent-2),var(--accent));
   color:#1a1212; border:1px solid var(--panel-border);
 }
+/* Heaven-only readable primary button text/border */
+:root[data-theme="heaven"] .btn-primary{
+  color:#523600;
+  border-color:#8A5C00;
+}
 .btn-secondary{
   background:transparent; color:var(--ink);
   border:1px solid var(--accent);
 }
 
-/* Heaven theme – warm gold on deep umber, less glare */
 .card{
   background:var(--panel);
   border:1px solid var(--panel-border);
   color:var(--ink-strong);
   box-shadow:0 10px 30px -10px rgba(0,0,0,.35);
 }
-:root[data-theme="heaven"] .card{ color:#2a220f; }
-:root[data-theme="heaven"] .card h3{ color:#3b2f10; }
+/* Heaven cards: dark-brown text on light gold; headings slightly darker */
+:root[data-theme="heaven"] .card{ color:#523600; }
+:root[data-theme="heaven"] .card h3{ color:#8A5C00; }
 
 :root[data-theme="hell"]   .heaven-only{ display:none !important; }
 :root[data-theme="heaven"] .hell-only  { display:none !important; }
 
-/* Improve readability of any theme/color chooser chips on Heaven */
+/* Theme/color chips on Heaven */
 [data-theme="heaven"] .theme-chip{
   border: 2px solid var(--panel-border);
   box-shadow: 0 0 0 2px #00000044 inset;
 }
 [data-theme="heaven"] .theme-chip label{
-  color: #241b0a; /* readable on light gold */
+  color:#523600; /* readable on light gold */
   text-shadow: 0 1px 0 #ffffffaa;
 }
 [data-theme="heaven"] .theme-chip.is-active{ outline: 3px solid var(--accent); }
@@ -111,4 +122,3 @@ body { color: var(--ink); font-family: theme('fontFamily.body'); }
 .debug, .vt-cube, .floating-cube, [data-debug]{ display:none !important; }
 /* Backdrop must be empty: if anything got appended, hide it */
 .vt-backdrop > *{ display:none !important; }
-
