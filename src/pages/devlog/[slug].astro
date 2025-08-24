@@ -1,0 +1,42 @@
+---
+import Base from "../../layouts/Base.astro";
+import list from "../../data/devlog.json";
+
+const slug = Astro.params.slug;
+const meta = list.find(p => p.slug === slug) ?? { title: slug, summary: "Devlog post", date: "" };
+
+let Content, frontmatter = {};
+try {
+  const mod = await import(`../../content/devlog/${slug}.md`);
+  Content = mod.default;
+  frontmatter = mod.frontmatter ?? {};
+} catch (_) {
+  // No MD file yet; fallback to JSON
+}
+
+const title = frontmatter.title ?? meta.title;
+const date  = frontmatter.date  ?? meta.date;
+const desc  = frontmatter.summary ?? meta.summary;
+const dateStr = date ? new Date(date).toLocaleDateString("en-GB",{year:"numeric",month:"long",day:"numeric"}) : "";
+---
+
+<Base title={title} description={desc}>
+  <div class="vt-backdrop" aria-hidden="true"></div>
+
+  <section class="container mx-auto px-4 py-12">
+    <a href="/devlog" class="btn btn-secondary mb-6">← Back to Devlog</a>
+    <h1 class="font-heading text-3xl md:text-4xl" data-reveal>{title}</h1>
+    {dateStr && <p class="opacity-80 text-sm mt-1">{dateStr}</p>}
+
+    {Content ? (
+      <article class="mt-6 prose prose-invert max-w-none" data-reveal>
+        <Content />
+      </article>
+    ) : (
+      <article class="card p-6 mt-6" data-reveal>
+        <p class="opacity-90">{desc}</p>
+        <p class="mt-2 opacity-70 text-sm">Full post coming soon.</p>
+      </article>
+    )}
+  </section>
+</Base>
