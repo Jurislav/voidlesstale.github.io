@@ -10,4 +10,39 @@ const { className = "" } = Astro.props;
       <li><a href="/smith" class="hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent">Voidless Smith</a></li>
     </ul>
   </div>
+  <!-- Theme switch on the right -->
+  <div class="ml-auto flex items-center">
+    <button
+      id="nav-theme-toggle"
+      data-action="toggle-theme"
+      class="btn btn-secondary"
+      aria-pressed="false"
+      aria-label="Switch theme"
+      title="Switch theme"
+    >
+      <!-- tiny icon-like dot -->
+      <span aria-hidden="true" class="mr-2 inline-block h-2 w-2 rounded-full"
+            style="background: var(--accent);"></span>
+      <span data-theme-label>Hell</span>
+    </button>
+  </div>
+
+  <!-- inline updater for the label/aria-pressed -->
+  <script is:inline>
+    (function(){
+      const root = document.documentElement;
+      const btn  = document.getElementById('nav-theme-toggle');
+      const lab  = btn?.querySelector('[data-theme-label]');
+      function applyLabel(t){
+        if (!lab || !btn) return;
+        const isHeaven = t === 'heaven';
+        lab.textContent = isHeaven ? 'Heaven' : 'Hell';
+        btn.setAttribute('aria-pressed', String(isHeaven));
+      }
+      // initial
+      applyLabel(root.dataset.theme || 'hell');
+      // react to global events
+      document.addEventListener('vt-theme-changed', e => applyLabel(e.detail));
+    })();
+  </script>
 </nav>
