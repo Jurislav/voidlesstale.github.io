@@ -1,23 +1,52 @@
 ---
+// src/pages/devlog/[slug].astro
 import Base from "../../layouts/Base.astro";
 import list from "../../data/devlog.json";
 
-const slug = Astro.params.slug;
-const meta = list.find(p => p.slug === slug) ?? { title: slug, summary: "Devlog post", date: "" };
+// Eager-load optional Markdown posts so Astro can include them at build time
+// Each md file should live at: src/content/devlog/<slug>.md
+const mdModules = import.meta.glob("../../content/devlog/*.md", { eager: true });
 
-let Content, frontmatter = {};
-try {
-  const mod = await import(`../../content/devlog/${slug}.md`);
-  Content = mod.default;
-  frontmatter = mod.frontmatter ?? {};
-} catch (_) {
-  // No MD file yet; fallback to JSON
+// Build an index: { [slug]: { default: Component, frontmatter: {...} } }
+const mdIndex = Object.fromEntries(
+  Object.entries(mdModules).map(([path, mod]) => {
+    const slug = path.split("/").pop().replace(/\.md$/,"");
+    // @ts-ignore - frontmatter shape depends on your md
+    return [slug, mod];
+  })
+);
+
+// Generate static paths from union of JSON + MD slugs
+export function getStaticPaths() {
+  const slugsFromJson = list.map(p => p.slug);
+  const slugsFromMd   = Object.keys(mdIndex);
+  const slugs = Array.from(new Set([...slugsFromJson, ...slugsFromMd]));
+
+  return slugs.map((slug) => {
+    const jsonMeta = list.find(p => p.slug === slug);
+    // @ts-ignore
+    const fm = mdIndex[slug]?.frontmatter ?? {};
+    const meta = {
+      title: fm.title   ?? jsonMeta?.title   ?? slug,
+      date:  fm.date    ?? jsonMeta?.date    ?? "",
+      summary: fm.summary ?? jsonMeta?.summary ?? "Devlog post"
+    };
+    return { params: { slug }, props: { meta } };
+  });
 }
 
-const title = frontmatter.title ?? meta.title;
-const date  = frontmatter.date  ?? meta.date;
-const desc  = frontmatter.summary ?? meta.summary;
-const dateStr = date ? new Date(date).toLocaleDateString("en-GB",{year:"numeric",month:"long",day:"numeric"}) : "";
+// Props from getStaticPaths
+const { meta } = Astro.props;
+const slug = Astro.params.slug;
+
+// Optional markdown content for this slug
+// @ts-ignore
+const Content = mdIndex[slug]?.default;
+
+const title = meta.title;
+const date  = meta.date;
+const desc  = meta.summary;
+const dateStr = date ? new Date(date).toLocaleDateString("en-GB", { year:"numeric", month:"long", day:"numeric" }) : "";
 ---
 
 <Base title={title} description={desc}>
@@ -25,6 +54,7 @@ const dateStr = date ? new Date(date).toLocaleDateString("en-GB",{year:"numeric"
 
   <section class="container mx-auto px-4 py-12">
     <a href="/devlog" class="btn btn-secondary mb-6">← Back to Devlog</a>
+
     <h1 class="font-heading text-3xl md:text-4xl" data-reveal>{title}</h1>
     {dateStr && <p class="opacity-80 text-sm mt-1">{dateStr}</p>}
 
