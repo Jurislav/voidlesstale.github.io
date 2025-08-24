@@ -13,16 +13,21 @@
   --shadow: rgba(0,0,0,.35);
 }
 
-/* HEAVEN — gold panels/borders + dark-brown text on light panels, cream on dark bg */
+/* HEAVEN — gold palette with readable text & matching radius */
 :root[data-theme="heaven"]{
   --bg:#1a140b; --bg-grad-1:#0f0b06; --bg-grad-2:#2a1e0c;
+
+  /* Golds */
   --accent:#DB9200;           /* primary gold */
   --accent-2:#FFA800;         /* highlight gold */
-  --panel:#8A5C00;            /* panel fill */
-  --panel-border:#D3AF37;     /* panel border */
-  --ink:#FFF5E1;              /* cream text on dark backgrounds */
-  --ink-strong:#FFF5E1;       /* dark-brown text on light panels */
+  --panel:#8A5C00;            /* panel fill (deep gold-brown) */
+  --panel-border:#523600;     /* dark gold-brown border */
+
+  /* Text */
+  --ink:#FFF5E1;              /* cream (for dark bg/panels) */
+  --ink-strong:#FFF5E1;       /* keep cream as strong on panels for readability */
   --muted:#E9D9B9;
+
   --noise-opacity:.07;
   --bg-1: var(--bg);
   --bg-2: var(--panel);
@@ -76,10 +81,10 @@ body { color: var(--ink); font-family: theme('fontFamily.body'); }
   background:linear-gradient(180deg,var(--accent-2),var(--accent));
   color:#1a1212; border:1px solid var(--panel-border);
 }
-/* Heaven-only readable primary button text/border */
+/* Heaven-only: readable primary button text/border on gold */
 :root[data-theme="heaven"] .btn-primary{
-  color:#523600;
-  border-color:#8A5C00;
+  color:#2a1b0a;            /* dark readable text on gold gradient */
+  border-color:#523600;
 }
 .btn-secondary{
   background:transparent; color:var(--ink);
@@ -90,11 +95,12 @@ body { color: var(--ink); font-family: theme('fontFamily.body'); }
   background:var(--panel);
   border:1px solid var(--panel-border);
   color:var(--ink-strong);
+  border-radius: theme('borderRadius.2xl'); /* match Hell’s rounded look */
   box-shadow:0 10px 30px -10px rgba(0,0,0,.35);
 }
-/* Heaven cards: dark-brown text on light gold; headings slightly darker */
-:root[data-theme="heaven"] .card{ color:#523600; }
-:root[data-theme="heaven"] .card h3{ color:#8A5C00; }
+/* Heaven cards: cream body text; lighter, gold headings for contrast */
+:root[data-theme="heaven"] .card{ color:#FFF5E1; }
+:root[data-theme="heaven"] .card h3{ color:#DB9200; }
 
 :root[data-theme="hell"]   .heaven-only{ display:none !important; }
 :root[data-theme="heaven"] .hell-only  { display:none !important; }
@@ -105,7 +111,7 @@ body { color: var(--ink); font-family: theme('fontFamily.body'); }
   box-shadow: 0 0 0 2px #00000044 inset;
 }
 [data-theme="heaven"] .theme-chip label{
-  color:#523600; /* readable on light gold */
+  color:#2a1b0a; /* readable on light golds */
   text-shadow: 0 1px 0 #ffffffaa;
 }
 [data-theme="heaven"] .theme-chip.is-active{ outline: 3px solid var(--accent); }
