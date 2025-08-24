@@ -1,16 +1,20 @@
 ---
-const { title, subtitle, ctas = [] } = Astro.props;
+const tagline = "Between Heaven and Hell, your choices echo.";
+const blurb = "A side-scrolling pixel RPG where every enemy is a choice: loot their relics or absorb their skills. Climb from LVL 1 to Demigod, face the seven sins, and confront SALIGIA—the reflection of yourself.";
 ---
-<section class="panel relative overflow-hidden p-8 md:p-12">
-  <div class="absolute inset-0 pointer-events-none opacity-25"
-       style="background: radial-gradient(600px 200px at 20% 10%, rgba(139,92,246,.35), transparent 60%),
-                       radial-gradient(400px 160px at 90% 20%, rgba(167,139,250,.25), transparent 60%);">
-  </div>
-  <h1 class="relative text-3xl md:text-5xl font-extrabold mb-2">{title}</h1>
-  {subtitle && <p class="relative text-mute max-w-2xl text-lg">{subtitle}</p>}
-  {ctas.length > 0 && (
-    <div class="relative mt-5 flex flex-wrap gap-3">
-      {ctas.map(c => <a href={c.href ?? '#'} class={c.primary ? 'btn btn-primary' : 'btn'}>{c.label}</a>)}
+<section class="pt-24 pb-20 md:pb-32 grid md:grid-cols-2 gap-8 items-center">
+  <div class="space-y-6" data-reveal>
+    <h1 class="font-heading text-4xl md:text-5xl">
+      {tagline}
+    </h1>
+    <p class="text-lg max-w-prose">{blurb}</p>
+    <div class="flex flex-wrap gap-4">
+      <a href="#" class="btn btn-primary">Play Test Build</a>
+      <a href="#devlog" class="btn">Follow the Devlog</a>
+      <a href="#" class="btn">Join Discord</a>
     </div>
-  )}
+  </div>
+  <div class="" data-reveal>
+    <img src="/assets/screens/s1.jpg" alt="Hero art placeholder" class="w-full aspect-square object-cover rounded-2xl" />
+  </div>
 </section>

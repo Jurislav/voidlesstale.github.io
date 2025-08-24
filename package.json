@@ -14,7 +14,10 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "astro": "^5.13.3"
+    "@astrojs/react": "^4.3.0",
+    "astro": "^5.13.3",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",

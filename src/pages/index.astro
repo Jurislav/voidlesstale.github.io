@@ -1,44 +1,30 @@
 ---
-import Base from "../layouts/Base.astro";
-import Hero from "../components/Hero.astro";
-import PanelCard from "../components/PanelCard.astro";
-import StoreBar from "../components/StoreBar.astro";
-import StickyStore from "../components/StickyStore.astro";
-import MediaRow from "../components/MediaRow.astro";
-import PressRibbon from "../components/PressRibbon.astro";
-import { features } from "../data/voidless";
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Pillars from '../components/Pillars.astro';
+import BossLineup from '../components/BossLineup.astro';
+import Gallery from '../components/Gallery.astro';
+import DevlogList from '../components/DevlogList.tsx';
+import RevealOnScroll from '../components/RevealOnScroll.tsx';
 ---
-<Base title="Voidless Tale — Home" description="A slick hub for the game & tools.">
-  <Hero title="Voidless Tale"
-        subtitle="Explore mirrored realms, reclaim memories, and forge weapons with Voidless Smith."
-        ctas={[{label:'Explore the Game', href:'/voidless-tale/', primary:true},
-               {label:'Voidless Smith', href:'/voidless-smith/'}]} />
-
-  <div class="mt-6 grid md:grid-cols-3 gap-4">
-    {features.slice(0,3).map(f => <PanelCard title={f} />)}
-  </div>
-
-  <div class="mt-6 grid md:grid-cols-3 gap-4">
-    <PanelCard kicker="CTA" title="Wishlist on Steam">
-      <div class="mt-3 flex gap-2 flex-wrap">
-        <a class="btn btn-primary" href="#">Steam — Placeholder</a>
-        <a class="btn" href="#">itch.io — Placeholder</a>
+<Base title="Voidless Tale">
+  <RevealOnScroll client:load>
+    <Hero />
+    <Pillars />
+    <BossLineup />
+    <Gallery />
+    <section id="devlog" class="py-16">
+      <h2 class="font-heading text-2xl mb-8" data-reveal>Devlog</h2>
+      <DevlogList client:load />
+    </section>
+    <section class="py-16" data-reveal>
+      <div class="p-8 rounded-2xl bg-bg2 text-center space-y-4">
+        <h2 class="font-heading text-2xl">Stay in the Loop</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="#" class="btn btn-primary">Join Discord</a>
+          <a href="#" class="btn">Newsletter</a>
+        </div>
       </div>
-    </PanelCard>
-    <PressRibbon />
-    <PanelCard kicker="News" title="Devlog">
-      <p class="text-mute">Devlog feed coming soon. For now, follow socials and GitHub.</p>
-    </PanelCard>
-  </div>
-
-  <div class="mt-6">
-    <MediaRow images={[
-      '/assets/screens/s1.jpg',
-      '/assets/screens/s2.jpg',
-      '/assets/screens/s3.jpg'
-    ]}/>
-  </div>
-
-  <div class="mt-6"><StoreBar /></div>
-  <StickyStore />
+    </section>
+  </RevealOnScroll>
 </Base>
