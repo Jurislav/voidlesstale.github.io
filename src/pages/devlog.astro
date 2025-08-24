@@ -10,7 +10,8 @@ const fmt = (iso) => new Date(iso).toLocaleDateString("en-GB", {
 ---
 
 <Base title="Devlog" description="Latest updates and progress logs for Voidless Tale." pageClass="page-devlog">
-  <section class="devlog-container">
+  <div>
+  <section id="devlog-id" class="devlog-container">
     <h1 class="devlog-heading" data-reveal>Devlog</h1>
     <p class="devlog-lead" data-reveal>
       Changelogs, experiments, and behind-the-scenes notes.
@@ -29,5 +30,6 @@ const fmt = (iso) => new Date(iso).toLocaleDateString("en-GB", {
       ))}
     </ul>
   </section>
+  </div>
 </Base>
 
