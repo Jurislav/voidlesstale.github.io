@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+const images = [
+  { src: 'https://placehold.co/600x400/png', alt: 'Screenshot 1' },
+  { src: 'https://placehold.co/600x400/png?text=Scene+2', alt: 'Screenshot 2' },
+  { src: 'https://placehold.co/600x400/png?text=Scene+3', alt: 'Screenshot 3' }
+];
+---
+<section class="py-16" id="gallery">
+  <h2 class="font-heading text-2xl mb-8" data-reveal>Gallery</h2>
+  <div class="grid gap-4 sm:grid-cols-3">
+    {images.map((img, i) => (
+      <button type="button" class="group" aria-label={`Open screenshot ${i+1}`} data-image={img.src} data-reveal>
+        <Image src={img.src} alt={img.alt} width={600} height={400} class="w-full h-full rounded-2xl object-cover aspect-video" />
+      </button>
+    ))}
+  </div>
+  <dialog id="lightbox" class="fixed inset-0 bg-black/80 backdrop-blur flex items-center justify-center p-4">
+    <img src="" alt="" class="max-h-full rounded" />
+  </dialog>
+  <script type="module">
+    const dlg = document.getElementById('lightbox');
+    const img = dlg.querySelector('img');
+    document.querySelectorAll('#gallery button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        img.src = btn.dataset.image;
+        img.alt = btn.getAttribute('aria-label');
+        dlg.showModal();
+      });
+    });
+    dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  </script>
+</section>

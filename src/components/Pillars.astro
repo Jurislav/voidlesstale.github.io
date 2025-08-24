@@ -1,0 +1,17 @@
+---
+const pillars = [
+  { title: 'Loot vs Absorb', body: 'Forge builds from drops or steal skills to reshape your kit in seconds.' },
+  { title: 'Ascend to Demigod', body: '1–1000 leveling, then float beyond mortality with new movement flair.' },
+  { title: 'Made to Mod', body: 'Voidless Smith lets you craft and share items, skills, and looks.' }
+];
+---
+<section class="py-16">
+  <div class="grid gap-6 md:grid-cols-3">
+    {pillars.map(p => (
+      <div class="p-6 rounded-2xl bg-bg2 shadow-card" data-reveal>
+        <h3 class="font-heading text-xl text-accent">{p.title}</h3>
+        <p class="mt-2 text-sm text-muted">{p.body}</p>
+      </div>
+    ))}
+  </div>
+</section>

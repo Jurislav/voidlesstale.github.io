@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const modules = import.meta.glob('../../content/devlog/*.md', { eager: true });
+const slugParam = Astro.params.slug;
+const post = modules[`../../content/devlog/${slugParam}.md`];
+if (!post) {
+  throw new Error('Post not found');
+}
+const { Content, frontmatter } = post;
+
+export async function getStaticPaths() {
+  const modules = import.meta.glob('../../content/devlog/*.md');
+  return Object.keys(modules).map(path => ({ params: { slug: path.split('/').pop().replace('.md','') } }));
+}
+---
+<Base title={`${frontmatter?.title || 'Devlog'} — Voidless Tale`}>
+  <article class="py-16 max-w-3xl mx-auto space-y-4">
+    <h1 class="font-heading text-3xl">{frontmatter?.title}</h1>
+    <Content />
+  </article>
+</Base>
