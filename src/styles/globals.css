@@ -39,8 +39,10 @@ body { color: var(--ink); font-family: theme('fontFamily.body'); }
 
 /* Backdrop is fixed & empty – visuals live on ::before/::after */
 .vt-backdrop{
-  position: fixed; inset: 0; min-height: 100dvh;
-  z-index: 0;                 /* <- background layer (changed from -1) */
+  position: fixed;
+  inset: 0;
+  min-height: 100dvh;
+  z-index: -1;              /* background layer */
   pointer-events: none;
 }
 .vt-backdrop::before{
@@ -66,16 +68,19 @@ body { color: var(--ink); font-family: theme('fontFamily.body'); }
   opacity: var(--noise-opacity, .07);
 }
 
-/* Foreground/content layer — always above backdrop */
+/* Foreground/content layer — always above backdrop and protected from blend */
 .vt-content,
 #content,
-#vt-content {
+#vt-content{
   position: relative;
-  z-index: 1;          /* <- above .vt-backdrop */
-  isolation: isolate;  /* <- prevents blend overlay from washing content */
+  z-index: 1;          /* above .vt-backdrop */
+  isolation: isolate;  /* prevent overlay from washing content */
 }
 
-/* (Optional) On devlog page, disable overlay blending for extra clarity */
+/* Optional: keep nav above content if needed */
+.safenav{ position: relative; z-index: 2; }
+
+/* Optional: on Devlog only, neutralize blend for extra clarity */
 .page-devlog .vt-backdrop::after { mix-blend-mode: normal; }
 
 [data-reveal] {

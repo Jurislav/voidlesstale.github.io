@@ -1,40 +1,34 @@
 ---
-// src/pages/devlog.astro
 import Base from "../layouts/Base.astro";
 import posts from "../data/devlog.json";
 
 const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
-const fmt = (iso) =>
-  new Date(iso).toLocaleDateString("en-GB", {
-    year: "numeric",
-    month: "short",
-    day: "2-digit",
-  });
+const fmt = (iso) => new Date(iso).toLocaleDateString("en-GB", {
+  year: "numeric", month: "short", day: "2-digit"
+});
 ---
 
-<Base title="Devlog" description="Latest updates and progress logs for Voidless Tale.">
-  {/* Force content above backdrop even if blend is on */}
-  <div style="position:relative; z-index:10; isolation:isolate;">
-    <section class="container mx-auto px-4 py-16">
-      <h1 class="font-heading text-3xl md:text-4xl mb-6" data-reveal>Devlog</h1>
-      <p class="opacity-90 mb-8 max-w-2xl" data-reveal>
-        Changelogs, experiments, and behind-the-scenes notes.
-      </p>
+<Base title="Devlog" description="Latest updates and progress logs for Voidless Tale." pageClass="page-devlog">
+  <section class="container mx-auto px-4 py-16">
+    <h1 class="font-heading text-3xl md:text-4xl mb-6" data-reveal>Devlog</h1>
+    <p class="opacity-90 mb-8 max-w-2xl" data-reveal>
+      Changelogs, experiments, and behind-the-scenes notes.
+    </p>
 
-      <ul class="grid gap-6 md:grid-cols-2">
-        {sorted.map((p) => (
-          <li class="card p-6" data-reveal>
-            <h2 class="text-xl font-semibold">
-              <a href={`/devlog/${p.slug}`} class="hover:underline">{p.title}</a>
-            </h2>
-            <p class="text-sm opacity-80">{fmt(p.date)}</p>
-            <p class="mt-2">{p.summary}</p>
-            <div class="mt-4">
-              <a class="btn btn-primary" href={`/devlog/${p.slug}`}>Read</a>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
-  </div>
+    <ul class="grid gap-6 md:grid-cols-2">
+      {sorted.map((p) => (
+        <li class="card p-6" data-reveal>
+          <h2 class="text-xl font-semibold">
+            <a href={`/devlog/${p.slug}`} class="hover:underline">{p.title}</a>
+          </h2>
+          <p class="text-sm opacity-80">{fmt(p.date)}</p>
+          <p class="mt-2">{p.summary}</p>
+          <div class="mt-4">
+            <a class="btn btn-primary" href={`/devlog/${p.slug}`}>Read</a>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
 </Base>
+
