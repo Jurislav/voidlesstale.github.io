@@ -1,0 +1,17 @@
+---
+---
+<div class="vt-theme-toggle fixed z-50" style="top:150px; right:50px;">
+  <button id="theme-toggle" class="btn text-sm" aria-label="Toggle Heaven or Hell">Switch to Heaven</button>
+</div>
+<script type="module">
+  const btn = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+  function label(){
+    return root.dataset.theme === 'hell' ? 'Switch to Heaven' : 'Switch to Hell';
+  }
+  btn.textContent = label();
+  btn.addEventListener('click', () => {
+    root.dataset.theme = root.dataset.theme === 'hell' ? 'heaven' : 'hell';
+    btn.textContent = label();
+  });
+</script>
