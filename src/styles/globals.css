@@ -42,7 +42,7 @@ body { color: var(--ink); font-family: theme('fontFamily.body'); }
   position: fixed;
   inset: 0;
   min-height: 100dvh;
-  z-index: -1;              /* background layer */
+  z-index: -1 !important;        /* background layer (force behind) */
   pointer-events: none;
 }
 .vt-backdrop::before{
@@ -68,19 +68,19 @@ body { color: var(--ink); font-family: theme('fontFamily.body'); }
   opacity: var(--noise-opacity, .07);
 }
 
-/* Foreground/content layer — always above backdrop and protected from blend */
+/* Foreground/content layer — always above backdrop */
 .vt-content,
 #content,
 #vt-content{
-  position: relative;
-  z-index: 1;          /* above .vt-backdrop */
-  isolation: isolate;  /* prevent overlay from washing content */
+  position: relative !important;
+  z-index: 1 !important;          /* above backdrop */
+  isolation: isolate !important;  /* protect from blend wash */
 }
 
-/* Optional: keep nav above content if needed */
+/* Lift nav if needed */
 .safenav{ position: relative; z-index: 2; }
 
-/* Optional: on Devlog only, neutralize blend for extra clarity */
+/* Devlog-only: neutralize blend for extra clarity (optional but recommended) */
 .page-devlog .vt-backdrop::after { mix-blend-mode: normal; }
 
 [data-reveal] {
