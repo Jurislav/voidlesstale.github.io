@@ -1,35 +1,26 @@
 ---
-import Base from "../layouts/Base.astro";
+import DevlogBase from "../layouts/DevlogBase.astro";
 import posts from "../data/devlog.json";
-import "../styles/devlog.css";
 
 const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
-const fmt = (iso) => new Date(iso).toLocaleDateString("en-GB", {
-  year: "numeric", month: "short", day: "2-digit"
-});
+const fmt = (iso) => new Date(iso).toLocaleDateString("en-GB", { year:"numeric", month:"short", day:"2-digit" });
 ---
+<DevlogBase title="Devlog • Voidless Tale" description="Latest updates and progress logs.">
+  <section class="dl-container">
+    <h1 class="dl-h1">Devlog</h1>
+    <p class="dl-lead">Changelogs, experiments, and behind-the-scenes notes.</p>
 
-<Base title="Devlog" description="Latest updates and progress logs for Voidless Tale." pageClass="page-devlog">
-  <div>
-  <section id="devlog-id" class="devlog-container">
-    <h1 class="devlog-heading" data-reveal>Devlog</h1>
-    <p class="devlog-lead" data-reveal>
-      Changelogs, experiments, and behind-the-scenes notes.
-    </p>
-
-    <ul class="devlog-list">
+    <ul class="dl-grid">
       {sorted.map((p) => (
-        <li class="devlog-card" data-reveal>
-          <h2 class="devlog-card-title"><a href={`/devlog/${p.slug}`}>{p.title}</a></h2>
-          <p class="devlog-card-date">{fmt(p.date)}</p>
-          <p class="devlog-card-summary">{p.summary}</p>
-          <div style="margin-top:1rem;">
-            <a class="btn btn-primary" href={`/devlog/${p.slug}`}>Read</a>
+        <li class="dl-card">
+          <h2><a href={`/devlog/${p.slug}`} style="color:inherit; text-decoration:none;">{p.title}</a></h2>
+          <time datetime={p.date}>{fmt(p.date)}</time>
+          <p>{p.summary}</p>
+          <div class="dl-actions">
+            <a class="dl-btn dl-btn-primary" href={`/devlog/${p.slug}`}>Read</a>
           </div>
         </li>
       ))}
     </ul>
   </section>
-  </div>
-</Base>
-
+</DevlogBase>

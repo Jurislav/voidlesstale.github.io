@@ -1,8 +1,7 @@
 ---
 // src/pages/devlog/[slug].astro
-import Base from "../../layouts/Base.astro";
+import DevlogBase from "../../layouts/DevlogBase.astro";
 import list from "../../data/devlog.json";
-import "../../styles/devlog.css";
 
 /** Generate static paths from the union of JSON + optional Markdown posts */
 export function getStaticPaths() {
@@ -46,23 +45,21 @@ const date  = meta.date;
 const desc  = meta.summary;
 const dateStr = date ? new Date(date).toLocaleDateString("en-GB", { year:"numeric", month:"long", day:"numeric" }) : "";
 ---
-
-<Base title={title} description={desc} pageClass="page-devlog">
-  <section class="devlog-container">
-    <a href="/devlog" class="btn btn-secondary mb-6">← Back to Devlog</a>
-
-    <h1 class="devlog-heading" data-reveal>{title}</h1>
-    {dateStr && <p class="devlog-card-date">{dateStr}</p>}
+<DevlogBase title={`${title} • Devlog`} description={desc}>
+  <section class="dl-container">
+    <p><a href="/devlog" class="dl-btn dl-btn-secondary">← Back to Devlog</a></p>
+    <h1 class="dl-h1">{title}</h1>
+    {dateStr && <p class="dl-lead" style="opacity:.8; margin-top:.25rem;">{dateStr}</p>}
 
     {Content ? (
-      <article class="devlog-article" data-reveal>
+      <article style="margin-top:1rem;">
         <Content />
       </article>
     ) : (
-      <article class="devlog-card" data-reveal>
-        <p class="devlog-card-summary">{desc}</p>
-        <p class="devlog-card-date" style="margin-top:0.5rem;">Full post coming soon.</p>
+      <article class="dl-card" style="margin-top:1rem;">
+        <p>{desc}</p>
+        <p style="opacity:.7; font-size:.95rem; margin-top:.5rem;">Full post coming soon.</p>
       </article>
     )}
   </section>
-</Base>
+</DevlogBase>
