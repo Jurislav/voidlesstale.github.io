@@ -1,0 +1,61 @@
+---
+import Base from "../layouts/Base.astro";
+import RevealOnScroll from "../components/RevealOnScroll.tsx";
+const title = "Voidless Smith";
+const desc = "Create, tweak, and share items, skills, and cosmetics for Voidless Tale.";
+---
+<Base title={title} description={desc}>
+  <RevealOnScroll client:load>
+    <section class="container mx-auto px-4 py-16">
+      <header class="max-w-3xl" data-reveal>
+        <h1 class="text-4xl md:text-5xl font-bold">Voidless Smith</h1>
+        <p class="mt-4 opacity-90">
+          The modding workbench for items, skills, and looks—designed to match the game’s Hell theme.
+        </p>
+        <div class="mt-6 flex gap-3">
+          <a class="btn-primary" href="#features">Core Features</a>
+          <a class="btn" href="/devlog">Devlog</a>
+        </div>
+      </header>
+    </section>
+
+    <section id="features" class="container mx-auto px-4 pb-12">
+      <div class="grid gap-6 md:grid-cols-3">
+        <article class="card p-6" data-reveal>
+          <h3 class="text-xl font-semibold">Parts Library</h3>
+          <p class="mt-2">Swap blades, guards, hilts, and pommels. Import your own art sets.</p>
+        </article>
+        <article class="card p-6" data-reveal>
+          <h3 class="text-xl font-semibold">Tint & Palette Swaps</h3>
+          <p class="mt-2">HSV/RGB sliders, named palettes, and a quick randomize for inspiration.</p>
+        </article>
+        <article class="card p-6" data-reveal>
+          <h3 class="text-xl font-semibold">Randomizer & Manual Build</h3>
+          <p class="mt-2">Roll a full sword or fine‑tune every part by hand.</p>
+        </article>
+        <article class="card p-6" data-reveal>
+          <h3 class="text-xl font-semibold">Export & Mod Integration</h3>
+          <p class="mt-2">Output sprite sheets and JSON ready for your mod folders.</p>
+        </article>
+        <article class="card p-6" data-reveal>
+          <h3 class="text-xl font-semibold">Weapon Config Generation</h3>
+          <p class="mt-2">Creates template configs with stats and skill hooks.</p>
+        </article>
+        <article class="card p-6" data-reveal>
+          <h3 class="text-xl font-semibold">Auto‑Update & Versioning</h3>
+          <p class="mt-2">Built‑in updater keeps your tool current and logs changes.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container mx-auto px-4 pb-20">
+      <article class="card p-8" data-reveal>
+        <h3 class="text-2xl font-semibold">See it in Action</h3>
+        <p class="mt-2">Short GIFs or screenshots revealing features as you scroll.</p>
+      </article>
+      <div class="mt-8" data-reveal>
+        <a class="btn-primary" href="#">Download (soon)</a>
+      </div>
+    </section>
+  </RevealOnScroll>
+</Base>

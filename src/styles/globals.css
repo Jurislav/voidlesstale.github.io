@@ -3,45 +3,81 @@
 @tailwind utilities;
 
 :root {
-  --heaven-1: #eaf2ff;
-  --heaven-2: #bfdcff;
-  --heaven-accent: #a6e3ff;
+  --heaven-1: #1a140b;
+  --heaven-2: #2a1e0c;
+  --heaven-accent: #CDA434;
   --hell-1: #0b0b0f;
   --hell-2: #1a1a22;
   --hell-accent: #d72638;
-  --ink: #e8e8f0;
-  --muted: #b0b0c0;
 }
 
-html[data-theme='heaven'] {
-  --bg-1: var(--heaven-1);
-  --bg-2: var(--heaven-2);
-  --accent: var(--heaven-accent);
-}
 html[data-theme='hell'], html:not([data-theme]) {
   --bg-1: var(--hell-1);
   --bg-2: var(--hell-2);
+  --bg: var(--hell-1);
+  --bg-grad-1: var(--hell-1);
+  --bg-grad-2: var(--hell-2);
   --accent: var(--hell-accent);
+  --accent-2: #ff5f6d;
+  --panel: var(--hell-2);
+  --panel-border: #53171d;
+  --ink: #e8e8f0;
+  --ink-strong: #ffffff;
+  --muted: #b0b0c0;
+  --link: #ff5f6d;
+  --focus: #ff5f6d;
+  --shadow: rgba(0,0,0,.5);
+  --noise-opacity: .06;
+}
+:root[data-theme='heaven']{
+  --bg-1: var(--heaven-1);
+  --bg-2: var(--heaven-2);
+  --bg: #1a140b;
+  --bg-grad-1: #0f0b06;
+  --bg-grad-2: #2a1e0c;
+  --accent: #CDA434;
+  --accent-2: #EADBA2;
+  --panel: #F1E6BE;
+  --panel-border: #8B6B23;
+  --ink: #FFF5E1;
+  --ink-strong: #ffffff;
+  --muted: #E9D9B9;
+  --link: #FFD272;
+  --focus: #EADBA2;
+  --shadow: rgba(0,0,0,.35);
+  --noise-opacity: .07;
 }
 
 html { color-scheme: dark; background: var(--bg-1); }
 body { color: var(--ink); font-family: theme('fontFamily.body'); }
 
-.vt-backdrop {
-  position: fixed;
-  inset: 0;
-  min-height: 100dvh;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(circle at 50% 0%, var(--accent) 0%, transparent 70%), linear-gradient(var(--bg-1), var(--bg-2));
+/* Backdrop is fixed & empty – visuals live on ::before/::after */
+.vt-backdrop{
+  position: fixed; inset: 0; min-height: 100dvh;
+  z-index: -1; pointer-events: none;
 }
-.vt-backdrop::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: .15;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+.vt-backdrop::before{
+  content:"";
+  position:absolute; inset:0;
+  background: radial-gradient(120% 100% at 50% 0%,
+    var(--bg-grad-2) 0%,
+    var(--bg-grad-1) 50%,
+    var(--bg) 100%);
 }
+.vt-backdrop::after{
+  content:"";
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(180deg, rgba(234,219,162,0.06), rgba(205,164,52,0.06)),
+    repeating-conic-gradient(rgba(205,164,52,0.04) 0 1deg, transparent 1deg 2deg);
+  background-size: cover, 256px 256px; /* gold film grain */
+  mix-blend-mode: overlay;
+  opacity: var(--noise-opacity, .07);
+}
+
+/* Safety: if any debug/test square slipped inside, hide it */
+.vt-backdrop > *{ display:none !important; }
+.debug, .vt-cube, .floating-cube, .noise-test, [data-debug]{ display:none !important; }
 
 [data-reveal] {
   opacity: .01;
@@ -56,6 +92,42 @@ body { color: var(--ink); font-family: theme('fontFamily.body'); }
 }
 .btn:hover { background-color: color-mix(in srgb, var(--accent) 20%, transparent); }
 .btn-primary { @apply bg-accent text-bg1; }
+
+/* Heaven theme – warm gold on deep umber, less glare */
+.card{
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  color: #2a220f; /* dark ink for light panels */
+  box-shadow: 0 10px 30px -10px var(--shadow);
+}
+[data-theme="heaven"] .card h3{ color:#3b2f10; }
+[data-theme="heaven"] .btn-primary{
+  background: linear-gradient(180deg, var(--accent-2), var(--accent));
+  color: #241b0a;
+  border: 1px solid var(--panel-border);
+}
+[data-theme="heaven"] .btn-primary:hover{ filter: brightness(0.95); }
+
+/* Improve readability of any theme/color chooser chips on Heaven */
+[data-theme="heaven"] .theme-chip{
+  border: 2px solid var(--panel-border);
+  box-shadow: 0 0 0 2px #00000044 inset;
+}
+[data-theme="heaven"] .theme-chip label{
+  color: #241b0a; /* readable on light gold */
+  text-shadow: 0 1px 0 #ffffffaa;
+}
+[data-theme="heaven"] .theme-chip.is-active{ outline: 3px solid var(--accent); }
+
+.vt-theme-toggle{
+  pointer-events: auto;
+}
+.vt-theme-toggle button:focus-visible{
+  outline: 2px solid var(--focus);
+}
+@media (max-width: 640px){
+  .vt-theme-toggle{ top: 110px; right: 16px; }
+}
 
 .enter { animation: fade-in .3s both; }
 @keyframes fade-in { from { opacity:0; transform:translateY(4px);} to { opacity:1; transform:none;} }
