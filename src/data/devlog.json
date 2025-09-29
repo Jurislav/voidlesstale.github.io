@@ -5,10 +5,16 @@
     "slug": "first-steps",
     "summary": "Basic level build"
   },
-  {
-    "title": "Core Mechanics",
-    "date": "2025-09-22",
-    "slug": "core-mechanics",
-    "summary": "Added few core mechanics"
-  }
+      {
+        "title": "Core Mechanics",
+        "date": "2025-09-22",
+        "slug": "core-mechanics",
+        "summary": "Added few core mechanics"
+      },
+      {
+        "title": "Website & Visual Overhaul",
+        "date": "2025-09-29",
+        "slug": "website-overhaul",
+        "summary": "Site overhaul with dark gradient, hero billboards, wiki and licensing updates"
+      }
 ]
