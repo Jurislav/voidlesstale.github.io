@@ -9,6 +9,20 @@
   --accent-2: #f0cb77;
   --shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
   --max-width: 1120px;
+  --page-bg-start: #16090e;
+  --page-bg-end: #0d070a;
+  --glow-left: rgba(255, 138, 91, 0.5);
+  --glow-right: rgba(240, 203, 119, 0.22);
+  --card-radius: 28px;
+  --card-padding: 1.35rem;
+  --panel-padding: 2rem;
+  --hero-columns: 1.4fr 1fr;
+  --feature-columns: 3;
+  --latest-columns: 3;
+  --card-min-height: 15rem;
+  --hero-section-bg: rgba(255, 255, 255, 0.01);
+  --latest-section-bg: transparent;
+  --feature-card-bg: var(--bg-elevated);
   font-family: Georgia, "Times New Roman", serif;
 }
 
@@ -18,9 +32,9 @@
 
 html {
   background:
-    radial-gradient(circle at top left, rgba(255, 138, 91, 0.22), transparent 35%),
-    radial-gradient(circle at right 20%, rgba(240, 203, 119, 0.12), transparent 30%),
-    linear-gradient(180deg, #16090e 0%, #0d070a 100%);
+    radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 22%, transparent), transparent 35%),
+    radial-gradient(circle at right 20%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 30%),
+    linear-gradient(180deg, var(--page-bg-start) 0%, var(--page-bg-end) 100%);
   color: var(--text);
 }
 
@@ -60,13 +74,13 @@ a {
 .page-glow--left {
   top: -8rem;
   left: -10rem;
-  background: rgba(255, 138, 91, 0.5);
+  background: var(--glow-left);
 }
 
 .page-glow--right {
   top: 16rem;
   right: -8rem;
-  background: rgba(240, 203, 119, 0.22);
+  background: var(--glow-right);
 }
 
 .site-nav,
@@ -112,7 +126,7 @@ a {
 .button-link:hover,
 .card:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 190, 154, 0.35);
+  border-color: color-mix(in srgb, var(--accent) 35%, white 5%);
   background: rgba(255, 255, 255, 0.06);
 }
 
@@ -126,23 +140,26 @@ a {
 
 .hero {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: var(--hero-columns);
   gap: 1.5rem;
   align-items: stretch;
+  padding: 1rem;
+  border-radius: calc(var(--card-radius) + 6px);
+  background: var(--hero-section-bg);
 }
 
 .hero__panel,
 .card,
 .cms-note {
   border: 1px solid var(--line);
-  border-radius: 28px;
+  border-radius: var(--card-radius);
   background: var(--bg-elevated);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
 }
 
 .hero__panel {
-  padding: 2rem;
+  padding: var(--panel-padding);
 }
 
 .eyebrow {
@@ -183,7 +200,7 @@ p {
 }
 
 .button-link--primary {
-  background: linear-gradient(135deg, var(--accent), #ffb26b);
+  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent-2) 55%, white 10%));
   color: #22100d;
   border-color: transparent;
 }
@@ -191,12 +208,20 @@ p {
 .stats-grid,
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 
+.stats-grid {
+  grid-template-columns: repeat(var(--feature-columns), minmax(0, 1fr));
+}
+
+.card-grid {
+  grid-template-columns: repeat(var(--latest-columns), minmax(0, 1fr));
+}
+
 .card {
-  padding: 1.35rem;
+  padding: var(--card-padding);
+  min-height: var(--card-min-height);
 }
 
 .card time {
@@ -213,7 +238,7 @@ p {
 
 .prose article,
 .cms-note {
-  padding: 2rem;
+  padding: var(--panel-padding);
 }
 
 .prose h1 {
@@ -228,6 +253,16 @@ p {
 
 .prose ul {
   padding-left: 1.25rem;
+}
+
+.section-surface {
+  padding: 1rem;
+  border-radius: calc(var(--card-radius) + 6px);
+  background: var(--latest-section-bg);
+}
+
+.feature-card {
+  background: var(--feature-card-bg);
 }
 
 .site-footer {
