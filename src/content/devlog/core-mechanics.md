@@ -1,3 +1,10 @@
+---
+title: Core Mechanics
+description: Core Mechanics update.
+pubDate: 2026-05-04
+draft: false
+---
+
 ✔ Placeholder tiles & Test_World_01 finished with collisions.
 
 ✔ Designed Veinshard Ore in Limbo.

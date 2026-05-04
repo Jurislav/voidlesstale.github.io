@@ -1,30 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
-import Hero from '../components/Hero.astro';
-import Pillars from '../components/Pillars.astro';
-import BossLineup from '../components/BossLineup.astro';
-import Gallery from '../components/Gallery.astro';
-import DevlogList from '../components/DevlogList.tsx';
-import RevealOnScroll from '../components/RevealOnScroll.tsx';
 ---
-<Base title="Voidless Tale">
-  <RevealOnScroll client:load>
-    <Hero />
-    <Pillars />
-    <BossLineup />
-    <Gallery />
-    <section id="devlog" class="py-16">
-      <h2 class="font-heading text-2xl mb-8" data-reveal>Devlog</h2>
-      <DevlogList client:load />
-    </section>
-    <section class="py-16" data-reveal>
-      <div class="p-8 rounded-2xl bg-bg2 text-center space-y-4">
-        <h2 class="font-heading text-2xl">Stay in the Loop</h2>
-        <div class="flex flex-wrap justify-center gap-4">
-          <a href="#" class="btn btn-primary">Join Discord</a>
-          <a href="#" class="btn">Newsletter</a>
-        </div>
-      </div>
-    </section>
-  </RevealOnScroll>
+<Base title="Voidless Tale" description="Between Heaven and Hell, your choices echo.">
+  <section class="py-20 text-center space-y-6">
+    <p class="uppercase tracking-[0.2em] text-[#d4af37]">Dark Fantasy Pixel RPG</p>
+    <h1 class="font-heading text-5xl md:text-6xl">Voidless Tale</h1>
+    <p class="max-w-3xl mx-auto text-lg">Between Heaven and Hell, your choices echo.</p>
+    <div class="flex gap-3 justify-center flex-wrap">
+      <a class="btn btn-primary" href="/devlog/">View Devlog</a>
+      <a class="btn" href="/smith/">Voidless Smith</a>
+    </div>
+  </section>
+
+  <section class="panel p-6 mb-8">
+    <p>
+      Voidless Tale is a 2D pixel RPG inspired by MapleStory/Ragnarok-like progression, Heaven vs Hell,
+      seven deadly sins, skill absorption, loot, crafting, and Voidless Smith tooling.
+    </p>
+  </section>
 </Base>
