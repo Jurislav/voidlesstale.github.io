@@ -9,15 +9,14 @@ public_folder: /uploads
 collections:
   - name: devlog
     label: Devlog
-    folder: src/content/devlog
+    folder: src/pages/devlog
     create: true
     slug: "{{slug}}"
-    extension: md
+    extension: astro
     format: frontmatter
     fields:
       - { label: Title, name: title, widget: string }
-      - { label: Description, name: description, widget: text }
+      - { label: Description, name: description, widget: text, required: false }
       - { label: Publish Date, name: pubDate, widget: datetime }
-      - { label: Hero Image, name: heroImage, widget: image, required: false }
-      - { label: Draft, name: draft, widget: boolean, default: false }
+      - { label: Draft, name: draft, widget: boolean, default: false, required: false }
       - { label: Body, name: body, widget: markdown }

@@ -1,21 +1,9 @@
 ---
-import Base from '../layouts/Base.astro';
-import { getCollection } from 'astro:content';
-
-const posts = (await getCollection('devlog')).filter((p) => !p.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<Base title="Devlog — Voidless Tale">
-  <section class="py-16">
-    <h1 class="font-heading text-4xl mb-4">Devlog</h1>
-    <div class="grid gap-4">
-      {posts.map((post) => (
-        <article class="panel p-5">
-          <h2 class="text-2xl"><a href={`/devlog/${post.slug}/`}>{post.data.title}</a></h2>
-          <p class="text-sm opacity-75">{post.data.pubDate.toISOString().slice(0,10)}</p>
-          <p>{post.data.description}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-</Base>
+<BaseLayout title="Devlog | Voidless Tale">
+  <h1>Devlog</h1>
+  <ul>
+    <li><a href="/devlog/first-post/">Fresh rebuild</a></li>
+  </ul>
+</BaseLayout>
