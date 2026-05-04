@@ -17,11 +17,10 @@ const latestPosts = (await getCollection('devlog', ({ data }) => !data.draft))
       <h1>Voidless Tale now has a clean Astro foundation.</h1>
       <p>
         This rebuild gives you a static site that is easy to ship on Cloudflare Pages and easy
-        to update through Sveltia CMS without dragging a custom backend into the project.
+        to update through a Git-backed workflow without dragging a custom backend into the project.
       </p>
       <div class="hero__actions">
-        <a class="button-link button-link--primary" href="/cms/">Open CMS</a>
-        <a class="button-link" href="/devlog/">Read the devlog</a>
+        <a class="button-link button-link--primary" href="/devlog/">Read the devlog</a>
       </div>
     </div>
 
@@ -33,12 +32,12 @@ const latestPosts = (await getCollection('devlog', ({ data }) => !data.draft))
           <p>Astro builds plain HTML output that Cloudflare Pages can host directly.</p>
         </article>
         <article class="card">
-          <h3>Git-backed CMS</h3>
-          <p>Sveltia edits Markdown content in your repository instead of relying on a database.</p>
+          <h3>Git-backed content</h3>
+          <p>Updates live in your repository as Markdown, which keeps the content workflow portable.</p>
         </article>
         <article class="card">
-          <h3>Editor-ready</h3>
-          <p>The `/cms/` route is wired to your devlog collection and media uploads folder.</p>
+          <h3>Fast deploys</h3>
+          <p>Publishing stays lightweight because the site rebuilds straight from the repo on push.</p>
         </article>
       </div>
     </div>
