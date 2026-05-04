@@ -3,7 +3,7 @@ title: About Voidless Tale
 description: About the Voidless Tale project.
 navLabel: About
 eyebrow: About the project
-template: narrow
+template: default
 draft: false
 ---
 
