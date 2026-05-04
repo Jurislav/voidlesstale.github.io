@@ -27,7 +27,8 @@
   --asset-bg: url('/uploads/site_bg.png');
   --asset-nav-bg: url('/uploads/site_nav_bg.png');
   --asset-divider: url('/uploads/site_divider_img.png');
-  --asset-frame: url('/uploads/site_image_frame.png');
+  --asset-hero-frame: url('/uploads/site_hero_img_frame.png');
+  --asset-hero-image: url('/uploads/hero_img.png');
   --asset-corner-top: url('/uploads/site_devlog_post_right_top_corner_img.png');
   --asset-corner-bottom: url('/uploads/site_devlog_post_left_bottom_corner_img.png');
   font-family: Georgia, 'Times New Roman', serif;
@@ -187,25 +188,36 @@ a {
 .hero {
   position: relative;
   display: grid;
-  grid-template-columns: var(--hero-columns);
-  gap: 1.5rem;
-  align-items: stretch;
-  padding: 3.5rem 3rem 2.75rem;
-  min-height: 38rem;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  align-items: start;
+  padding: 1rem 0 0;
   background: var(--hero-section-bg);
 }
 
-.hero--framed {
-  overflow: clip;
+.hero__media {
+  position: relative;
+  min-height: 38rem;
 }
 
-.hero__frame {
+.hero__media-frame,
+.hero__media-image {
   position: absolute;
   inset: 0;
-  background: var(--asset-frame) center / 100% 100% no-repeat;
-  opacity: 0.98;
+  background-repeat: no-repeat;
   pointer-events: none;
-  z-index: 0;
+}
+
+.hero__media-image {
+  inset: 2.2rem 2.9rem 2.2rem 2.9rem;
+  background: var(--asset-hero-image) center / cover no-repeat;
+  border-radius: 0.6rem;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.hero__media-frame {
+  background: var(--asset-hero-frame) center / 100% 100% no-repeat;
+  z-index: 1;
 }
 
 .hero__panel,
@@ -222,16 +234,14 @@ a {
 
 .hero__panel {
   z-index: 1;
-  align-self: end;
-  max-width: 52rem;
+  width: min(100%, 56rem);
   padding: var(--panel-padding);
-  background: linear-gradient(180deg, rgba(17, 7, 8, 0.28), rgba(17, 7, 8, 0.64));
-  border-color: rgba(191, 59, 41, 0.16);
-  box-shadow: none;
+  background: linear-gradient(180deg, rgba(17, 7, 8, 0.82), rgba(12, 5, 7, 0.9));
+  border-color: rgba(191, 59, 41, 0.2);
 }
 
 .hero__panel--main h1 {
-  max-width: 11ch;
+  max-width: 12ch;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
 }
 
@@ -452,9 +462,12 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .hero {
-    min-height: 30rem;
-    padding: 2.4rem 1.7rem 1.8rem;
+  .hero__media {
+    min-height: 22rem;
+  }
+
+  .hero__media-image {
+    inset: 1.35rem 1.45rem 1.35rem 1.45rem;
   }
 
   .site-nav__shell {
