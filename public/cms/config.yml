@@ -6,8 +6,8 @@ backend:
   branch: main
   # For Cloudflare-hosted production, either:
   # 1. sign in with a GitHub personal access token, or
-  # 2. deploy Sveltia CMS Authenticator to Cloudflare Workers and set base_url below.
-  # base_url: https://your-sveltia-auth.workers.dev
+  # 2. deploy the Worker in cloudflare/sveltia-cms-auth and set base_url below.
+  # base_url: https://sveltia-cms-auth.<your-subdomain>.workers.dev
 
 media_folder: public/uploads
 public_folder: /uploads
