@@ -10,6 +10,63 @@ media_folder: public/uploads
 public_folder: /uploads
 
 collections:
+  - name: site
+    label: Site Content
+    files:
+      - name: settings
+        label: Site Settings
+        file: src/content/settings/settings.yml
+        fields:
+          - { label: Site Title, name: site_title, widget: string }
+          - { label: Site Tagline, name: site_tagline, widget: string }
+          - { label: Footer Text, name: footer_text, widget: text }
+          - label: Navigation
+            name: navigation
+            widget: list
+            summary: "{{fields.label}} -> {{fields.href}}"
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Link, name: href, widget: string }
+      - name: home
+        label: Homepage
+        file: src/content/home/home.yml
+        fields:
+          - { label: SEO Title, name: seo_title, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Eyebrow, name: eyebrow, widget: string }
+          - { label: Headline, name: headline, widget: string }
+          - { label: Intro, name: intro, widget: text }
+          - { label: Primary CTA Label, name: primary_cta_label, widget: string }
+          - { label: Primary CTA Link, name: primary_cta_href, widget: string }
+          - { label: Secondary CTA Label, name: secondary_cta_label, widget: string }
+          - { label: Secondary CTA Link, name: secondary_cta_href, widget: string }
+          - { label: Feature Section Eyebrow, name: feature_section_eyebrow, widget: string }
+          - label: Feature Cards
+            name: feature_cards
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Text, name: text, widget: text }
+          - { label: Latest Section Eyebrow, name: latest_section_eyebrow, widget: string }
+          - { label: Latest Section Title, name: latest_section_title, widget: string }
+
+  - name: pages
+    label: Pages
+    label_singular: Page
+    folder: src/content/pages
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    summary: "{{title}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - { label: Navigation Label, name: navLabel, widget: string, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false }
+      - { label: Body, name: body, widget: markdown }
+
   - name: devlog
     label: Devlog
     label_singular: Post
