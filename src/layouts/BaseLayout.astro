@@ -1,4 +1,5 @@
 ---
+import { getEntry } from 'astro:content';
 import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
 import '../styles/global.css';
@@ -9,6 +10,27 @@ interface Props {
 }
 
 const { title, description = 'Voidless Tale official site and devlog.' } = Astro.props;
+const settings = await getEntry('settings', 'settings');
+const design = settings?.data.design;
+const themeVars = design
+  ? [
+      `--text:${design.text}`,
+      `--muted:${design.muted}`,
+      `--accent:${design.accent}`,
+      `--accent-2:${design.accent_soft}`,
+      `--bg-elevated:${design.panel_bg}`,
+      `--panel:${design.panel_strong_bg}`,
+      `--line:${design.border}`,
+      `--page-bg-start:${design.page_bg_start}`,
+      `--page-bg-end:${design.page_bg_end}`,
+      `--glow-left:${design.glow_left}`,
+      `--glow-right:${design.glow_right}`,
+      `--max-width:${design.max_width}`,
+      `--card-radius:${design.card_radius}`,
+      `--card-padding:${design.card_padding}`,
+      `--panel-padding:${design.panel_padding}`,
+    ].join(';')
+  : undefined;
 ---
 
 <!doctype html>
@@ -23,7 +45,7 @@ const { title, description = 'Voidless Tale official site and devlog.' } = Astro
     <title>{title}</title>
   </head>
   <body>
-    <div class="page-shell">
+    <div class="page-shell" style={themeVars}>
       <div class="page-glow page-glow--left"></div>
       <div class="page-glow page-glow--right"></div>
       <Nav />
