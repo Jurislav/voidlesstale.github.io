@@ -1,6 +1,6 @@
 ---
-import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -8,22 +8,29 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Voidless Tale — Between Heaven and Hell, your choices echo.' } = Astro.props;
+const { title, description = 'Voidless Tale official site and devlog.' } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <title>{title} | Voidless Tale</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{title}</title>
   </head>
   <body>
-    <Nav />
-    <main class="page-shell">
-      <slot />
-    </main>
-    <Footer />
+    <div class="page-shell">
+      <div class="page-glow page-glow--left"></div>
+      <div class="page-glow page-glow--right"></div>
+      <Nav />
+      <main class="page-main">
+        <slot />
+      </main>
+      <Footer />
+    </div>
   </body>
 </html>
