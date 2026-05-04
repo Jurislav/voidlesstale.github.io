@@ -23,10 +23,18 @@ collections:
           - label: Navigation
             name: navigation
             widget: list
-            summary: "{{fields.label}} -> {{fields.href}}"
+            summary: "{{fields.label}}"
             fields:
               - { label: Label, name: label, widget: string }
-              - { label: Link, name: href, widget: string }
+              - { label: Direct Link, name: href, widget: string, required: false }
+              - label: Linked Page
+                name: page
+                widget: relation
+                collection: pages
+                search_fields: [title, navLabel]
+                value_field: "{{slug}}"
+                display_fields: [title]
+                required: false
           - label: Design
             name: design
             widget: object
@@ -52,6 +60,16 @@ collections:
         fields:
           - { label: SEO Title, name: seo_title, widget: string }
           - { label: Description, name: description, widget: text }
+          - label: Section Order
+            name: section_order
+            widget: list
+            allow_add: false
+            summary: "{{fields.section}}"
+            field:
+              label: Section
+              name: section
+              widget: select
+              options: [hero, features, latest]
           - { label: Eyebrow, name: eyebrow, widget: string }
           - { label: Headline, name: headline, widget: string }
           - { label: Intro, name: intro, widget: text }
@@ -60,6 +78,7 @@ collections:
           - { label: Secondary CTA Label, name: secondary_cta_label, widget: string }
           - { label: Secondary CTA Link, name: secondary_cta_href, widget: string }
           - { label: Feature Section Eyebrow, name: feature_section_eyebrow, widget: string }
+          - { label: Feature Section Title, name: feature_section_title, widget: string }
           - label: Feature Cards
             name: feature_cards
             widget: list
@@ -82,6 +101,7 @@ collections:
             widget: object
             fields:
               - { label: Hero Section Background, name: hero_section, widget: string }
+              - { label: Features Section Background, name: features_section, widget: string }
               - { label: Latest Section Background, name: latest_section, widget: string }
               - { label: Feature Card Background, name: feature_cards, widget: string }
 
@@ -98,6 +118,12 @@ collections:
       - { label: Title, name: title, widget: string }
       - { label: Description, name: description, widget: text }
       - { label: Navigation Label, name: navLabel, widget: string, required: false }
+      - { label: Eyebrow, name: eyebrow, widget: string, required: false }
+      - label: Template
+        name: template
+        widget: select
+        default: default
+        options: [default, feature, narrow]
       - { label: Draft, name: draft, widget: boolean, default: false }
       - { label: Body, name: body, widget: markdown }
 
