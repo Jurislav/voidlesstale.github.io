@@ -27,7 +27,7 @@
       }
 
       .status {
-        width: min(36rem, calc(100vw - 3rem));
+        width: min(32rem, calc(100vw - 3rem));
         padding: 1.25rem 1.5rem;
         border: 1px solid rgba(246, 237, 228, 0.16);
         border-radius: 1rem;
@@ -48,29 +48,25 @@
       a {
         color: #ff9c63;
       }
-
-      code {
-        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-      }
     </style>
   </head>
   <body>
     <main class="status" id="cms-status">
       <h1>Loading CMS…</h1>
-      <p id="cms-message">Checking config and loading the editor bundle.</p>
+      <p id="cms-message">Starting the editor.</p>
     </main>
     <noscript>Sveltia CMS requires JavaScript.</noscript>
     <script>
       const status = document.getElementById('cms-status');
-      const message = document.getElementById('cms-message');
       const configUrl = '/cms/config.yml';
 
-      const setMessage = (text) => {
-        if (message) message.textContent = text;
-      };
-
-      const setHtml = (html) => {
-        if (status) status.innerHTML = html;
+      const showError = (title, text) => {
+        if (!status) return;
+        status.innerHTML = `
+          <h1>${title}</h1>
+          <p>${text}</p>
+          <p><a href="${configUrl}">Open config.yml</a></p>
+        `;
       };
 
       const loadScript = (src) =>
@@ -83,80 +79,25 @@
           document.body.appendChild(script);
         });
 
-      window.addEventListener('error', (event) => {
-        setHtml(`
-          <h1>CMS hit an error</h1>
-          <p>${event.message || 'Unknown script error.'}</p>
-          <p><a href="${configUrl}">Open config.yml</a></p>
-        `);
-      });
-
-      window.addEventListener('unhandledrejection', (event) => {
-        const reason = event.reason?.message || String(event.reason || 'Unknown promise rejection.');
-        setHtml(`
-          <h1>CMS failed to initialize</h1>
-          <p>${reason}</p>
-          <p><a href="${configUrl}">Open config.yml</a></p>
-        `);
-      });
-
       (async () => {
-        try {
-          const configResponse = await fetch(configUrl, { cache: 'no-store' });
-          if (!configResponse.ok) {
-            throw new Error(`Config request failed with ${configResponse.status}.`);
-          }
-        } catch (error) {
-          setHtml(`
-            <h1>CMS config not reachable</h1>
-            <p>${error.message}</p>
-            <p><a href="${configUrl}">Open config.yml</a></p>
-          `);
-          return;
-        }
-
-        setMessage('Config loaded. Loading CMS bundle…');
-
         try {
           await loadScript('https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js');
         } catch {
-          setMessage('Primary CDN failed. Trying fallback…');
           try {
             await loadScript('https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js');
           } catch {
-            setHtml(`
-              <h1>CMS bundle failed to load</h1>
-              <p>The browser could not reach the Sveltia CDN bundle from jsDelivr or unpkg.</p>
-              <p><a href="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js">Open jsDelivr bundle</a></p>
-            `);
+            showError('CMS bundle failed to load', 'The browser could not reach the Sveltia CMS script from either CDN.');
             return;
           }
         }
-
-        setMessage('CMS bundle loaded. Starting editor…');
 
         try {
           if (window.CMS?.init) {
             await window.CMS.init();
           }
         } catch (error) {
-          setHtml(`
-            <h1>CMS init failed</h1>
-            <p>${error.message || 'Unknown initialization error.'}</p>
-            <p><a href="${configUrl}">Open config.yml</a></p>
-          `);
-          return;
+          showError('CMS init failed', error?.message || 'Unknown initialization error.');
         }
-
-        setTimeout(() => {
-          if (document.getElementById('cms-status')) {
-            setHtml(`
-              <h1>CMS is taking longer than expected</h1>
-              <p>The bundle loaded, but the editor did not replace this loader yet. This usually means popup auth, storage access, or browser script policies are blocking it.</p>
-              <p><a href="${configUrl}">Open config.yml</a></p>
-            `);
-          }
-        }, 4000);
       })();
     </script>
   </body>
