@@ -33,7 +33,10 @@ const remainingPosts = latestPosts.slice(1);
     {sectionOrder.map((section) =>
       section === 'hero' ? (
         <section class="page-section hero hero--framed">
-          <div class="hero__frame" aria-hidden="true"></div>
+          <div class="hero__media ornate-corners">
+            <div class="hero__media-frame" aria-hidden="true"></div>
+            <div class="hero__media-image" aria-hidden="true"></div>
+          </div>
           <div class="hero__panel hero__panel--main">
             <span class="eyebrow">{home?.data.eyebrow}</span>
             <h1>{home?.data.headline}</h1>
