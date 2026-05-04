@@ -2,6 +2,8 @@
 title: About Voidless Tale
 description: About the Voidless Tale project.
 navLabel: About
+eyebrow: About the project
+template: feature
 draft: false
 ---
 
