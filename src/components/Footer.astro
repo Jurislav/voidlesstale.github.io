@@ -1,6 +1,10 @@
 ---
+import { getEntry } from 'astro:content';
+
+const settings = await getEntry('settings', 'settings');
+const footerText = settings?.data.footer_text ?? 'Built with Astro and Sveltia CMS.';
 ---
 
 <footer class="site-footer">
-  <p>Built with Astro, edited through Sveltia CMS, and ready for Cloudflare Pages.</p>
+  <p>{footerText}</p>
 </footer>
