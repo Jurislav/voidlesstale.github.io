@@ -8,3 +8,19 @@ navigation:
     href: /devlog/
   - label: About
     href: /about/
+design:
+  accent: '#ff8a5b'
+  accent_soft: '#f0cb77'
+  text: '#f6ede6'
+  muted: '#d0b8a8'
+  page_bg_start: '#16090e'
+  page_bg_end: '#0d070a'
+  panel_bg: 'rgba(35, 17, 24, 0.78)'
+  panel_strong_bg: 'rgba(26, 12, 18, 0.92)'
+  border: 'rgba(255, 190, 154, 0.16)'
+  glow_left: 'rgba(255, 138, 91, 0.5)'
+  glow_right: 'rgba(240, 203, 119, 0.22)'
+  max_width: '1120px'
+  card_radius: '28px'
+  card_padding: '1.35rem'
+  panel_padding: '2rem'
