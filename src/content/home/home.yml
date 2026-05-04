@@ -1,5 +1,9 @@
 seo_title: Voidless Tale
 description: Official site and devlog for Voidless Tale, rebuilt with Astro and Sveltia CMS.
+section_order:
+  - hero
+  - features
+  - latest
 eyebrow: Dark fantasy action RPG
 headline: Voidless Tale now has a clean Astro foundation.
 intro: >-
@@ -11,6 +15,7 @@ primary_cta_href: /devlog/
 secondary_cta_label: About the project
 secondary_cta_href: /about/
 feature_section_eyebrow: What is included
+feature_section_title: Core strengths
 feature_cards:
   - title: Static-first
     text: Astro builds plain HTML output that Cloudflare Pages can host directly.
@@ -27,5 +32,6 @@ layout:
   card_min_height: '15rem'
 backgrounds:
   hero_section: 'rgba(255, 255, 255, 0.01)'
+  features_section: 'rgba(255, 255, 255, 0.02)'
   latest_section: 'transparent'
   feature_cards: 'rgba(35, 17, 24, 0.78)'
