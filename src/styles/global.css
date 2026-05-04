@@ -21,6 +21,7 @@
   --latest-columns: 3;
   --card-min-height: 15rem;
   --hero-section-bg: rgba(255, 255, 255, 0.01);
+  --features-section-bg: rgba(255, 255, 255, 0.02);
   --latest-section-bg: transparent;
   --feature-card-bg: var(--bg-elevated);
   font-family: Georgia, "Times New Roman", serif;
@@ -255,10 +256,26 @@ p {
   padding-left: 1.25rem;
 }
 
+.prose--feature {
+  width: min(calc(100% - 2rem), 960px);
+}
+
+.prose--narrow {
+  width: min(calc(100% - 2rem), 640px);
+}
+
+.page-panel {
+  background: var(--panel);
+}
+
 .section-surface {
   padding: 1rem;
   border-radius: calc(var(--card-radius) + 6px);
   background: var(--latest-section-bg);
+}
+
+.section-surface--features {
+  background: var(--features-section-bg);
 }
 
 .feature-card {
