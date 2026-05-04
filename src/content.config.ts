@@ -33,6 +33,23 @@ const settings = defineCollection({
         href: z.string(),
       }),
     ),
+    design: z.object({
+      accent: z.string(),
+      accent_soft: z.string(),
+      text: z.string(),
+      muted: z.string(),
+      page_bg_start: z.string(),
+      page_bg_end: z.string(),
+      panel_bg: z.string(),
+      panel_strong_bg: z.string(),
+      border: z.string(),
+      glow_left: z.string(),
+      glow_right: z.string(),
+      max_width: z.string(),
+      card_radius: z.string(),
+      card_padding: z.string(),
+      panel_padding: z.string(),
+    }),
   }),
 });
 
@@ -57,6 +74,17 @@ const home = defineCollection({
     ),
     latest_section_eyebrow: z.string(),
     latest_section_title: z.string(),
+    layout: z.object({
+      hero_columns: z.string(),
+      feature_columns: z.number().int().min(1).max(4),
+      latest_columns: z.number().int().min(1).max(4),
+      card_min_height: z.string(),
+    }),
+    backgrounds: z.object({
+      hero_section: z.string(),
+      latest_section: z.string(),
+      feature_cards: z.string(),
+    }),
   }),
 });
 
