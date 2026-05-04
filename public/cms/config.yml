@@ -27,6 +27,25 @@ collections:
             fields:
               - { label: Label, name: label, widget: string }
               - { label: Link, name: href, widget: string }
+          - label: Design
+            name: design
+            widget: object
+            fields:
+              - { label: Accent Color, name: accent, widget: color }
+              - { label: Secondary Accent, name: accent_soft, widget: color }
+              - { label: Text Color, name: text, widget: color }
+              - { label: Muted Text Color, name: muted, widget: color }
+              - { label: Page Background Start, name: page_bg_start, widget: color }
+              - { label: Page Background End, name: page_bg_end, widget: color }
+              - { label: Panel Background, name: panel_bg, widget: string }
+              - { label: Strong Panel Background, name: panel_strong_bg, widget: string }
+              - { label: Border Color, name: border, widget: string }
+              - { label: Left Glow Color, name: glow_left, widget: string }
+              - { label: Right Glow Color, name: glow_right, widget: string }
+              - { label: Max Width, name: max_width, widget: string }
+              - { label: Card Radius, name: card_radius, widget: string }
+              - { label: Card Padding, name: card_padding, widget: string }
+              - { label: Panel Padding, name: panel_padding, widget: string }
       - name: home
         label: Homepage
         file: src/content/home/home.yml
@@ -50,6 +69,21 @@ collections:
               - { label: Text, name: text, widget: text }
           - { label: Latest Section Eyebrow, name: latest_section_eyebrow, widget: string }
           - { label: Latest Section Title, name: latest_section_title, widget: string }
+          - label: Layout
+            name: layout
+            widget: object
+            fields:
+              - { label: Hero Columns, name: hero_columns, widget: string }
+              - { label: Feature Columns, name: feature_columns, widget: number, min: 1, max: 4, value_type: int }
+              - { label: Latest Columns, name: latest_columns, widget: number, min: 1, max: 4, value_type: int }
+              - { label: Card Minimum Height, name: card_min_height, widget: string }
+          - label: Backgrounds
+            name: backgrounds
+            widget: object
+            fields:
+              - { label: Hero Section Background, name: hero_section, widget: string }
+              - { label: Latest Section Background, name: latest_section, widget: string }
+              - { label: Feature Card Background, name: feature_cards, widget: string }
 
   - name: pages
     label: Pages
