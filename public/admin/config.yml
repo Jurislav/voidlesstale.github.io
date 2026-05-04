@@ -1,0 +1,23 @@
+backend:
+  name: github
+  repo: Jurislav/voidlesstale.github.io
+  branch: main
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: devlog
+    label: Devlog
+    folder: src/content/devlog
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text }
+      - { name: pubDate, label: Publication Date, widget: datetime }
+      - { name: heroImage, label: Hero Image, widget: image, required: false }
+      - { name: draft, label: Draft, widget: boolean, default: false }
+      - { name: body, label: Body, widget: markdown }
