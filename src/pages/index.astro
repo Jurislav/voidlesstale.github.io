@@ -1,17 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionCard from '../components/SectionCard.astro';
 ---
-<BaseLayout title="Voidless Tale">
+<BaseLayout title="Voidless Tale" description="Between Heaven and Hell, your choices echo.">
   <section class="hero">
     <h1>Voidless Tale</h1>
     <p>Between Heaven and Hell, your choices echo.</p>
     <div class="button-row">
-      <a class="btn" href="/devlog/">Devlog</a>
-      <a class="btn" href="/smith/">Voidless Smith</a>
+      <a class="button" href="/devlog/">View Devlog</a>
+      <a class="button secondary" href="/smith/">Voidless Smith</a>
     </div>
   </section>
-  <section class="card"><h2>Heaven vs Hell</h2><p>Walk a fractured path where devotion and rebellion both demand a cost.</p></section>
-  <section class="card"><h2>Seven Deadly Sins</h2><p>Each sin changes combat, dialogue, and the world that answers your presence.</p></section>
-  <section class="card"><h2>Loot, crafting, skill absorption</h2><p>Harvest relics, forge upgrades, and absorb defeated skills to alter your build.</p></section>
-  <section class="card"><h2>Voidless Smith tooling</h2><p>Our internal tooling is evolving into a creator-focused pixel weapon generator.</p></section>
+  <section class="grid">
+    <SectionCard title="About the game" text="Voidless Tale is a 2D pixel RPG inspired by MapleStory-style side-scrolling movement, Ragnarok-like progression, Heaven vs Hell themes, the seven deadly sins, loot, crafting, boss doors, skill absorption, and solo/co-op RPG progression." />
+    <SectionCard title="Heaven vs Hell" text="Two mirrored realms pull the player toward different endings, bosses, and choices." />
+    <SectionCard title="Seven Deadly Sins" text="Each sin becomes a domain, a memory, and a boss encounter." />
+    <SectionCard title="Loot, Crafting, Skill Absorption" text="Every enemy can become a source of items, progression, or absorbed power." />
+    <SectionCard title="Voidless Smith" text="Voidless Smith supports the tool side of the project, starting with pixel weapon generation and growing toward SDK/modding workflows." />
+  </section>
 </BaseLayout>
