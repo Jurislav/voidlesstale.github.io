@@ -1,0 +1,10 @@
+site_title: Voidless Tale
+site_tagline: Dark fantasy action RPG
+footer_text: Built with Astro, edited through Sveltia CMS, and ready for Cloudflare Pages.
+navigation:
+  - label: Home
+    href: /
+  - label: Devlog
+    href: /devlog/
+  - label: About
+    href: /about/
