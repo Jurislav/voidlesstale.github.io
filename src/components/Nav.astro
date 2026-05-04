@@ -2,8 +2,13 @@
 import { getEntry } from 'astro:content';
 
 const settings = await getEntry('settings', 'settings');
-const navLinks = settings?.data.navigation ?? [];
+const rawLinks = settings?.data.navigation ?? [];
 const siteTitle = settings?.data.site_title ?? 'Voidless Tale';
+
+const navLinks = rawLinks.map((link) => ({
+  label: link.label,
+  href: link.page ? `/${link.page}/` : link.href ?? '/',
+}));
 ---
 
 <nav class="site-nav" aria-label="Primary">
