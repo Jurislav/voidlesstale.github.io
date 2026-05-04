@@ -8,8 +8,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
     <title>Voidless Tale CMS</title>
+    <link href="/cms/config.yml" type="application/yaml" rel="cms-config-url" />
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at top, rgba(179, 90, 58, 0.24), transparent 32%),
+          #16070d;
+        color: #f6ede4;
+      }
+
+      .status {
+        width: min(32rem, calc(100vw - 3rem));
+        padding: 1.25rem 1.5rem;
+        border: 1px solid rgba(246, 237, 228, 0.16);
+        border-radius: 1rem;
+        background: rgba(35, 11, 19, 0.88);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      }
+
+      h1 {
+        margin: 0 0 0.5rem;
+        font-size: 1.5rem;
+      }
+
+      p {
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      }
+    </style>
   </head>
   <body>
+    <main class="status">
+      <h1>Loading CMS…</h1>
+      <p>If this screen stays here, the browser likely blocked the CMS script or popup auth flow.</p>
+    </main>
     <noscript>Sveltia CMS requires JavaScript.</noscript>
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
   </body>
