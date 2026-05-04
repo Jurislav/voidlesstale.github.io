@@ -14,10 +14,13 @@ const homeStyle = home
       `--latest-columns:${home.data.layout.latest_columns}`,
       `--card-min-height:${home.data.layout.card_min_height}`,
       `--hero-section-bg:${home.data.backgrounds.hero_section}`,
+      `--features-section-bg:${home.data.backgrounds.features_section}`,
       `--latest-section-bg:${home.data.backgrounds.latest_section}`,
       `--feature-card-bg:${home.data.backgrounds.feature_cards}`,
     ].join(';')
   : undefined;
+
+const sectionOrder = home?.data.section_order ?? ['hero', 'features', 'latest'];
 ---
 
 <BaseLayout
@@ -25,52 +28,57 @@ const homeStyle = home
   description={home?.data.description ?? 'Official site and devlog for Voidless Tale.'}
 >
   <div style={homeStyle}>
-    <section class="page-section hero">
-      <div class="hero__panel">
-        <span class="eyebrow">{home?.data.eyebrow}</span>
-        <h1>{home?.data.headline}</h1>
-        <p>{home?.data.intro}</p>
-        <div class="hero__actions">
-          <a class="button-link button-link--primary" href={home?.data.primary_cta_href}>
-            {home?.data.primary_cta_label}
-          </a>
-          <a class="button-link" href={home?.data.secondary_cta_href}>
-            {home?.data.secondary_cta_label}
-          </a>
-        </div>
-      </div>
-
-      <div class="hero__panel">
-        <span class="eyebrow">{home?.data.feature_section_eyebrow}</span>
-        <div class="stats-grid">
-          {home?.data.feature_cards.map((card) => (
-            <article class="card feature-card">
-              <h3>{card.title}</h3>
-              <p>{card.text}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="page-section section-surface">
-      <span class="eyebrow">{home?.data.latest_section_eyebrow}</span>
-      <h2>{home?.data.latest_section_title}</h2>
-      <div class="card-grid">
-        {latestPosts.map((post) => (
-          <a class="card" href={`/devlog/${post.id}/`}>
-            <time datetime={post.data.pubDate.toISOString()}>
-              {post.data.pubDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </time>
-            <h3>{post.data.title}</h3>
-            <p>{post.data.description}</p>
-          </a>
-        ))}
-      </div>
-    </section>
+    {sectionOrder.map((section) =>
+      section === 'hero' ? (
+        <section class="page-section hero">
+          <div class="hero__panel">
+            <span class="eyebrow">{home?.data.eyebrow}</span>
+            <h1>{home?.data.headline}</h1>
+            <p>{home?.data.intro}</p>
+            <div class="hero__actions">
+              <a class="button-link button-link--primary" href={home?.data.primary_cta_href}>
+                {home?.data.primary_cta_label}
+              </a>
+              <a class="button-link" href={home?.data.secondary_cta_href}>
+                {home?.data.secondary_cta_label}
+              </a>
+            </div>
+          </div>
+        </section>
+      ) : section === 'features' ? (
+        <section class="page-section section-surface section-surface--features">
+          <span class="eyebrow">{home?.data.feature_section_eyebrow}</span>
+          <h2>{home?.data.feature_section_title}</h2>
+          <div class="stats-grid">
+            {home?.data.feature_cards.map((card) => (
+              <article class="card feature-card">
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <section class="page-section section-surface">
+          <span class="eyebrow">{home?.data.latest_section_eyebrow}</span>
+          <h2>{home?.data.latest_section_title}</h2>
+          <div class="card-grid">
+            {latestPosts.map((post) => (
+              <a class="card" href={`/devlog/${post.id}/`}>
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      ),
+    )}
   </div>
 </BaseLayout>
