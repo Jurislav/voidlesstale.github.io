@@ -1,15 +1,15 @@
 ---
-const links = [
-  { href: '/', label: 'Home' },
-  { href: '/devlog/', label: 'Devlog' },
-  { href: '/about/', label: 'About' },
-];
+import { getEntry } from 'astro:content';
+
+const settings = await getEntry('settings', 'settings');
+const navLinks = settings?.data.navigation ?? [];
+const siteTitle = settings?.data.site_title ?? 'Voidless Tale';
 ---
 
 <nav class="site-nav" aria-label="Primary">
-  <a class="site-nav__brand" href="/">Voidless Tale</a>
+  <a class="site-nav__brand" href="/">{siteTitle}</a>
   <div class="site-nav__links">
-    {links.map((link) => (
+    {navLinks.map((link) => (
       <a href={link.href}>{link.label}</a>
     ))}
   </div>
