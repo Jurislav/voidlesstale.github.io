@@ -27,11 +27,11 @@
       }
 
       .status {
-        width: min(32rem, calc(100vw - 3rem));
+        width: min(36rem, calc(100vw - 3rem));
         padding: 1.25rem 1.5rem;
         border: 1px solid rgba(246, 237, 228, 0.16);
         border-radius: 1rem;
-        background: rgba(35, 11, 19, 0.88);
+        background: rgba(35, 11, 19, 0.92);
         box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
       }
 
@@ -41,8 +41,12 @@
       }
 
       p {
-        margin: 0;
+        margin: 0.5rem 0 0;
         line-height: 1.6;
+      }
+
+      a {
+        color: #ff9c63;
       }
 
       code {
@@ -51,11 +55,109 @@
     </style>
   </head>
   <body>
-    <main class="status">
+    <main class="status" id="cms-status">
       <h1>Loading CMS…</h1>
-      <p>If this screen stays here, the browser likely blocked the CMS script or popup auth flow.</p>
+      <p id="cms-message">Checking config and loading the editor bundle.</p>
     </main>
     <noscript>Sveltia CMS requires JavaScript.</noscript>
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <script>
+      const status = document.getElementById('cms-status');
+      const message = document.getElementById('cms-message');
+      const configUrl = '/cms/config.yml';
+
+      const setMessage = (text) => {
+        if (message) message.textContent = text;
+      };
+
+      const setHtml = (html) => {
+        if (status) status.innerHTML = html;
+      };
+
+      const loadScript = (src) =>
+        new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = src;
+          script.async = true;
+          script.onload = resolve;
+          script.onerror = reject;
+          document.body.appendChild(script);
+        });
+
+      window.addEventListener('error', (event) => {
+        setHtml(`
+          <h1>CMS hit an error</h1>
+          <p>${event.message || 'Unknown script error.'}</p>
+          <p><a href="${configUrl}">Open config.yml</a></p>
+        `);
+      });
+
+      window.addEventListener('unhandledrejection', (event) => {
+        const reason = event.reason?.message || String(event.reason || 'Unknown promise rejection.');
+        setHtml(`
+          <h1>CMS failed to initialize</h1>
+          <p>${reason}</p>
+          <p><a href="${configUrl}">Open config.yml</a></p>
+        `);
+      });
+
+      (async () => {
+        try {
+          const configResponse = await fetch(configUrl, { cache: 'no-store' });
+          if (!configResponse.ok) {
+            throw new Error(`Config request failed with ${configResponse.status}.`);
+          }
+        } catch (error) {
+          setHtml(`
+            <h1>CMS config not reachable</h1>
+            <p>${error.message}</p>
+            <p><a href="${configUrl}">Open config.yml</a></p>
+          `);
+          return;
+        }
+
+        setMessage('Config loaded. Loading CMS bundle…');
+
+        try {
+          await loadScript('https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js');
+        } catch {
+          setMessage('Primary CDN failed. Trying fallback…');
+          try {
+            await loadScript('https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js');
+          } catch {
+            setHtml(`
+              <h1>CMS bundle failed to load</h1>
+              <p>The browser could not reach the Sveltia CDN bundle from jsDelivr or unpkg.</p>
+              <p><a href="https://cdn.jsdelivr.net/npm/@sveltia/cms/dist/sveltia-cms.js">Open jsDelivr bundle</a></p>
+            `);
+            return;
+          }
+        }
+
+        setMessage('CMS bundle loaded. Starting editor…');
+
+        try {
+          if (window.CMS?.init) {
+            await window.CMS.init();
+          }
+        } catch (error) {
+          setHtml(`
+            <h1>CMS init failed</h1>
+            <p>${error.message || 'Unknown initialization error.'}</p>
+            <p><a href="${configUrl}">Open config.yml</a></p>
+          `);
+          return;
+        }
+
+        setTimeout(() => {
+          if (document.getElementById('cms-status')) {
+            setHtml(`
+              <h1>CMS is taking longer than expected</h1>
+              <p>The bundle loaded, but the editor did not replace this loader yet. This usually means popup auth, storage access, or browser script policies are blocking it.</p>
+              <p><a href="${configUrl}">Open config.yml</a></p>
+            `);
+          }
+        }, 4000);
+      })();
+    </script>
   </body>
 </html>
