@@ -1,51 +1,48 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const home = await getEntry('home', 'home');
 const latestPosts = (await getCollection('devlog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 ---
 
 <BaseLayout
-  title="Voidless Tale"
-  description="Official site and devlog for Voidless Tale, rebuilt with Astro and Sveltia CMS."
+  title={home?.data.seo_title ?? 'Voidless Tale'}
+  description={home?.data.description ?? 'Official site and devlog for Voidless Tale.'}
 >
   <section class="page-section hero">
     <div class="hero__panel">
-      <span class="eyebrow">Dark fantasy action RPG</span>
-      <h1>Voidless Tale now has a clean Astro foundation.</h1>
-      <p>
-        This rebuild gives you a static site that is easy to ship on Cloudflare Pages and easy
-        to update through a Git-backed workflow without dragging a custom backend into the project.
-      </p>
+      <span class="eyebrow">{home?.data.eyebrow}</span>
+      <h1>{home?.data.headline}</h1>
+      <p>{home?.data.intro}</p>
       <div class="hero__actions">
-        <a class="button-link button-link--primary" href="/devlog/">Read the devlog</a>
+        <a class="button-link button-link--primary" href={home?.data.primary_cta_href}>
+          {home?.data.primary_cta_label}
+        </a>
+        <a class="button-link" href={home?.data.secondary_cta_href}>
+          {home?.data.secondary_cta_label}
+        </a>
       </div>
     </div>
 
     <div class="hero__panel">
-      <span class="eyebrow">What is included</span>
+      <span class="eyebrow">{home?.data.feature_section_eyebrow}</span>
       <div class="stats-grid">
-        <article class="card">
-          <h3>Static-first</h3>
-          <p>Astro builds plain HTML output that Cloudflare Pages can host directly.</p>
-        </article>
-        <article class="card">
-          <h3>Git-backed content</h3>
-          <p>Updates live in your repository as Markdown, which keeps the content workflow portable.</p>
-        </article>
-        <article class="card">
-          <h3>Fast deploys</h3>
-          <p>Publishing stays lightweight because the site rebuilds straight from the repo on push.</p>
-        </article>
+        {home?.data.feature_cards.map((card) => (
+          <article class="card">
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>
 
   <section class="page-section">
-    <span class="eyebrow">Latest updates</span>
-    <h2>Recent devlog posts</h2>
+    <span class="eyebrow">{home?.data.latest_section_eyebrow}</span>
+    <h2>{home?.data.latest_section_title}</h2>
     <div class="card-grid">
       {latestPosts.map((post) => (
         <a class="card" href={`/devlog/${post.id}/`}>
