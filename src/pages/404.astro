@@ -1,10 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="Not Found">
-  <section class="section">
-    <h1>404 — Lost Between Realms</h1>
-    <p>The page you seek is missing in the void.</p>
-    <a class="button" href="/">Return Home</a>
+
+<BaseLayout title="Page not found | Voidless Tale" description="The requested page could not be found.">
+  <section class="page-section prose">
+    <article class="hero__panel">
+      <span class="eyebrow">404</span>
+      <h1>The page fell into the void.</h1>
+      <p>The link may be old, or the page may not exist yet.</p>
+      <div class="inline-links">
+        <a class="button-link button-link--primary" href="/">Return home</a>
+        <a class="button-link" href="/devlog/">Open devlog</a>
+      </div>
+    </article>
   </section>
 </BaseLayout>
