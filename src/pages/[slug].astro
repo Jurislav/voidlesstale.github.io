@@ -13,12 +13,19 @@ export async function getStaticPaths() {
 
 const { page } = Astro.props;
 const { Content } = await render(page);
+const pageTemplate = page.data.template ?? 'default';
+const wrapperClass =
+  pageTemplate === 'narrow'
+    ? 'prose prose--narrow'
+    : pageTemplate === 'feature'
+      ? 'prose prose--feature'
+      : 'prose';
 ---
 
 <BaseLayout title={`${page.data.title} | Voidless Tale`} description={page.data.description}>
-  <section class="page-section prose">
-    <article class="hero__panel">
-      <span class="eyebrow">{page.data.navLabel ?? 'Page'}</span>
+  <section class={`page-section ${wrapperClass}`}>
+    <article class="hero__panel page-panel">
+      <span class="eyebrow">{page.data.eyebrow ?? page.data.navLabel ?? 'Page'}</span>
       <h1>{page.data.title}</h1>
       <Content />
     </article>
