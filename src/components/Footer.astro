@@ -6,5 +6,8 @@ const footerText = settings?.data.footer_text ?? 'Built with Astro and Sveltia C
 ---
 
 <footer class="site-footer">
-  <p>{footerText}</p>
+  <div class="site-footer__divider" aria-hidden="true"></div>
+  <div class="site-footer__shell">
+    <p>{footerText}</p>
+  </div>
 </footer>
