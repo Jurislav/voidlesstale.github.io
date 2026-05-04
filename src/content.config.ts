@@ -17,6 +17,8 @@ const pages = defineCollection({
     title: z.string(),
     description: z.string(),
     navLabel: z.string().optional(),
+    eyebrow: z.string().optional(),
+    template: z.enum(['default', 'feature', 'narrow']).default('default'),
     draft: z.boolean().default(false),
   }),
 });
@@ -30,7 +32,8 @@ const settings = defineCollection({
     navigation: z.array(
       z.object({
         label: z.string(),
-        href: z.string(),
+        href: z.string().optional(),
+        page: z.string().optional(),
       }),
     ),
     design: z.object({
@@ -58,6 +61,7 @@ const home = defineCollection({
   schema: z.object({
     seo_title: z.string(),
     description: z.string(),
+    section_order: z.array(z.enum(['hero', 'features', 'latest'])).default(['hero', 'features', 'latest']),
     eyebrow: z.string(),
     headline: z.string(),
     intro: z.string(),
@@ -66,6 +70,7 @@ const home = defineCollection({
     secondary_cta_label: z.string(),
     secondary_cta_href: z.string(),
     feature_section_eyebrow: z.string(),
+    feature_section_title: z.string(),
     feature_cards: z.array(
       z.object({
         title: z.string(),
@@ -82,6 +87,7 @@ const home = defineCollection({
     }),
     backgrounds: z.object({
       hero_section: z.string(),
+      features_section: z.string(),
       latest_section: z.string(),
       feature_cards: z.string(),
     }),
