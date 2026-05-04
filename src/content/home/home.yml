@@ -1,0 +1,22 @@
+seo_title: Voidless Tale
+description: Official site and devlog for Voidless Tale, rebuilt with Astro and Sveltia CMS.
+eyebrow: Dark fantasy action RPG
+headline: Voidless Tale now has a clean Astro foundation.
+intro: >-
+  This rebuild gives you a static site that is easy to ship on Cloudflare Pages
+  and easy to update through a Git-backed workflow without dragging a custom
+  backend into the project.
+primary_cta_label: Read the devlog
+primary_cta_href: /devlog/
+secondary_cta_label: About the project
+secondary_cta_href: /about/
+feature_section_eyebrow: What is included
+feature_cards:
+  - title: Static-first
+    text: Astro builds plain HTML output that Cloudflare Pages can host directly.
+  - title: Git-backed content
+    text: Updates live in your repository as Markdown, which keeps the content workflow portable.
+  - title: Fast deploys
+    text: Publishing stays lightweight because the site rebuilds straight from the repo on push.
+latest_section_eyebrow: Latest updates
+latest_section_title: Recent devlog posts
