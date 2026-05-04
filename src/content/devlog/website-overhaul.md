@@ -1,3 +1,10 @@
+---
+title: Website Overhaul
+description: Website Overhaul update.
+pubDate: 2026-05-04
+draft: false
+---
+
 # Website & Visual Overhaul
 
 29 September 2025

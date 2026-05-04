@@ -1,3 +1,10 @@
+---
+title: Core Stats Progression
+description: Core Stats Progression update.
+pubDate: 2026-05-04
+draft: false
+---
+
 # Core stats & progression
 
 22 October 2025

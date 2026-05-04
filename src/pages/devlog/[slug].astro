@@ -1,65 +1,24 @@
 ---
-// src/pages/devlog/[slug].astro
-import DevlogBase from "../../layouts/DevlogBase.astro";
-import list from "../../data/devlog.json";
+import Base from '../../layouts/Base.astro';
+import { getCollection, getEntry, render } from 'astro:content';
 
-/** Generate static paths from the union of JSON + optional Markdown posts */
-export function getStaticPaths() {
-  // Eager-load all markdown modules at build time
-  const mdModules = import.meta.glob("../../content/devlog/*.md", { eager: true });
-
-  // Extract slugs from file paths like ".../content/devlog/<slug>.md"
-  const slugsFromMd = Object.keys(mdModules).map((p) => p.split("/").pop().replace(/\.md$/, ""));
-  const slugsFromJson = list.map((p) => p.slug);
-
-  const allSlugs = Array.from(new Set([...slugsFromJson, ...slugsFromMd]));
-
-  return allSlugs.map((slug) => {
-    const jsonMeta = list.find((p) => p.slug === slug) || {};
-    // @ts-ignore frontmatter depends on your md files
-    const fm = mdModules[`../../content/devlog/${slug}.md`]?.frontmatter ?? {};
-    const meta = {
-      title:   fm.title   ?? jsonMeta.title   ?? slug,
-      date:    fm.date    ?? jsonMeta.date    ?? "",
-      summary: fm.summary ?? jsonMeta.summary ?? "Devlog post",
-    };
-    // Pass a flag so the page knows whether MD exists
-    const hasMd = Boolean(mdModules[`../../content/devlog/${slug}.md`]);
-    return { params: { slug }, props: { meta, hasMd } };
-  });
+export async function getStaticPaths() {
+  const posts = await getCollection('devlog');
+  return posts.map((post) => ({ params: { slug: post.slug } }));
 }
 
-// Props injected by getStaticPaths
-const { meta, hasMd } = Astro.props;
-const slug = Astro.params.slug;
-
-// If we have a Markdown file for this slug, grab its compiled component
-let Content;
-if (hasMd) {
-  const mod = await import(`../../content/devlog/${slug}.md`);
-  Content = mod.default;
+const { slug } = Astro.params;
+const post = await getEntry('devlog', slug!);
+if (!post || post.data.draft) {
+  return Astro.redirect('/404');
 }
-
-const title = meta.title;
-const date  = meta.date;
-const desc  = meta.summary;
-const dateStr = date ? new Date(date).toLocaleDateString("en-GB", { year:"numeric", month:"long", day:"numeric" }) : "";
+const { Content } = await render(post);
 ---
-<DevlogBase title={`${title} • Devlog`} description={desc}>
-  <section class="dl-container">
-    <p><a href="/devlog" class="dl-btn dl-btn-secondary">← Back to Devlog</a></p>
-    <h1 class="dl-h1">{title}</h1>
-    {dateStr && <p class="dl-lead" style="opacity:.8; margin-top:.25rem;">{dateStr}</p>}
-
-    {Content ? (
-      <article style="margin-top:1rem;">
-        <Content />
-      </article>
-    ) : (
-      <article class="dl-card" style="margin-top:1rem;">
-        <p>{desc}</p>
-        <p style="opacity:.7; font-size:.95rem; margin-top:.5rem;">Full post coming soon.</p>
-      </article>
-    )}
-  </section>
-</DevlogBase>
+<Base title={`${post.data.title} — Devlog`}>
+  <article class="py-16 prose prose-invert max-w-3xl">
+    <p><a href="/devlog/">← Back to Devlog</a></p>
+    <h1>{post.data.title}</h1>
+    <p>{post.data.pubDate.toISOString().slice(0,10)}</p>
+    <Content />
+  </article>
+</Base>
