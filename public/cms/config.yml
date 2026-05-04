@@ -1,7 +1,10 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
 backend:
   name: github
   repo: Jurislav/voidlesstale.github.io
   branch: main
+  base_url: https://sveltia-cms-auth.voidlesstale.workers.dev
 
 media_folder: public/uploads
 public_folder: /uploads
@@ -9,14 +12,16 @@ public_folder: /uploads
 collections:
   - name: devlog
     label: Devlog
-    folder: src/pages/devlog
+    label_singular: Post
+    folder: src/content/devlog
     create: true
     slug: "{{slug}}"
-    extension: astro
+    extension: md
     format: frontmatter
+    summary: "{{title}}"
     fields:
       - { label: Title, name: title, widget: string }
-      - { label: Description, name: description, widget: text, required: false }
+      - { label: Description, name: description, widget: text }
       - { label: Publish Date, name: pubDate, widget: datetime }
-      - { label: Draft, name: draft, widget: boolean, default: false, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false }
       - { label: Body, name: body, widget: markdown }

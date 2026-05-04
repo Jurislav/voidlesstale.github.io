@@ -1,0 +1,34 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('devlog', ({ data }) => !data.draft);
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={`${post.data.title} | Voidless Tale`} description={post.data.description}>
+  <section class="page-section prose">
+    <article class="hero__panel">
+      <span class="eyebrow">Devlog entry</span>
+      <h1>{post.data.title}</h1>
+      <p>
+        Published on
+        {post.data.pubDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}
+      </p>
+      <Content />
+    </article>
+  </section>
+</BaseLayout>

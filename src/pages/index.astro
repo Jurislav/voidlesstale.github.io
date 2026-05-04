@@ -1,21 +1,66 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionCard from '../components/SectionCard.astro';
+
+const latestPosts = (await getCollection('devlog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
-<BaseLayout title="Voidless Tale" description="Between Heaven and Hell, your choices echo.">
-  <section class="hero">
-    <h1>Voidless Tale</h1>
-    <p>Between Heaven and Hell, your choices echo.</p>
-    <div class="button-row">
-      <a class="button" href="/devlog/">View Devlog</a>
-      <a class="button secondary" href="/smith/">Voidless Smith</a>
+
+<BaseLayout
+  title="Voidless Tale"
+  description="Official site and devlog for Voidless Tale, rebuilt with Astro and Sveltia CMS."
+>
+  <section class="page-section hero">
+    <div class="hero__panel">
+      <span class="eyebrow">Dark fantasy action RPG</span>
+      <h1>Voidless Tale now has a clean Astro foundation.</h1>
+      <p>
+        This rebuild gives you a static site that is easy to ship on Cloudflare Pages and easy
+        to update through Sveltia CMS without dragging a custom backend into the project.
+      </p>
+      <div class="hero__actions">
+        <a class="button-link button-link--primary" href="/cms/">Open CMS</a>
+        <a class="button-link" href="/devlog/">Read the devlog</a>
+      </div>
+    </div>
+
+    <div class="hero__panel">
+      <span class="eyebrow">What is included</span>
+      <div class="stats-grid">
+        <article class="card">
+          <h3>Static-first</h3>
+          <p>Astro builds plain HTML output that Cloudflare Pages can host directly.</p>
+        </article>
+        <article class="card">
+          <h3>Git-backed CMS</h3>
+          <p>Sveltia edits Markdown content in your repository instead of relying on a database.</p>
+        </article>
+        <article class="card">
+          <h3>Editor-ready</h3>
+          <p>The `/cms/` route is wired to your devlog collection and media uploads folder.</p>
+        </article>
+      </div>
     </div>
   </section>
-  <section class="grid">
-    <SectionCard title="About the game" text="Voidless Tale is a 2D pixel RPG inspired by MapleStory-style side-scrolling movement, Ragnarok-like progression, Heaven vs Hell themes, the seven deadly sins, loot, crafting, boss doors, skill absorption, and solo/co-op RPG progression." />
-    <SectionCard title="Heaven vs Hell" text="Two mirrored realms pull the player toward different endings, bosses, and choices." />
-    <SectionCard title="Seven Deadly Sins" text="Each sin becomes a domain, a memory, and a boss encounter." />
-    <SectionCard title="Loot, Crafting, Skill Absorption" text="Every enemy can become a source of items, progression, or absorbed power." />
-    <SectionCard title="Voidless Smith" text="Voidless Smith supports the tool side of the project, starting with pixel weapon generation and growing toward SDK/modding workflows." />
+
+  <section class="page-section">
+    <span class="eyebrow">Latest updates</span>
+    <h2>Recent devlog posts</h2>
+    <div class="card-grid">
+      {latestPosts.map((post) => (
+        <a class="card" href={`/devlog/${post.id}/`}>
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+          <h3>{post.data.title}</h3>
+          <p>{post.data.description}</p>
+        </a>
+      ))}
+    </div>
   </section>
 </BaseLayout>
