@@ -1,21 +1,17 @@
 ---
-import Base from '../layouts/Base.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<Base title="Voidless Tale" description="Between Heaven and Hell, your choices echo.">
-  <section class="py-20 text-center space-y-6">
-    <p class="uppercase tracking-[0.2em] text-[#d4af37]">Dark Fantasy Pixel RPG</p>
-    <h1 class="font-heading text-5xl md:text-6xl">Voidless Tale</h1>
-    <p class="max-w-3xl mx-auto text-lg">Between Heaven and Hell, your choices echo.</p>
-    <div class="flex gap-3 justify-center flex-wrap">
-      <a class="btn btn-primary" href="/devlog/">View Devlog</a>
+<BaseLayout title="Voidless Tale">
+  <section class="hero">
+    <h1>Voidless Tale</h1>
+    <p>Between Heaven and Hell, your choices echo.</p>
+    <div class="button-row">
+      <a class="btn" href="/devlog/">Devlog</a>
       <a class="btn" href="/smith/">Voidless Smith</a>
     </div>
   </section>
-
-  <section class="panel p-6 mb-8">
-    <p>
-      Voidless Tale is a 2D pixel RPG inspired by MapleStory/Ragnarok-like progression, Heaven vs Hell,
-      seven deadly sins, skill absorption, loot, crafting, and Voidless Smith tooling.
-    </p>
-  </section>
-</Base>
+  <section class="card"><h2>Heaven vs Hell</h2><p>Walk a fractured path where devotion and rebellion both demand a cost.</p></section>
+  <section class="card"><h2>Seven Deadly Sins</h2><p>Each sin changes combat, dialogue, and the world that answers your presence.</p></section>
+  <section class="card"><h2>Loot, crafting, skill absorption</h2><p>Harvest relics, forge upgrades, and absorb defeated skills to alter your build.</p></section>
+  <section class="card"><h2>Voidless Smith tooling</h2><p>Our internal tooling is evolving into a creator-focused pixel weapon generator.</p></section>
+</BaseLayout>
