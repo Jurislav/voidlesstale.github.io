@@ -7,7 +7,7 @@ navigation:
   - label: Devlog
     href: /devlog/
   - label: About
-    href: /about/
+    page: about
 design:
   accent: '#ff8a5b'
   accent_soft: '#f0cb77'
