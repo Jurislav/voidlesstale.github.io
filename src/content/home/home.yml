@@ -20,3 +20,12 @@ feature_cards:
     text: Publishing stays lightweight because the site rebuilds straight from the repo on push.
 latest_section_eyebrow: Latest updates
 latest_section_title: Recent devlog posts
+layout:
+  hero_columns: '1.4fr 1fr'
+  feature_columns: 3
+  latest_columns: 3
+  card_min_height: '15rem'
+backgrounds:
+  hero_section: 'rgba(255, 255, 255, 0.01)'
+  latest_section: 'transparent'
+  feature_cards: 'rgba(35, 17, 24, 0.78)'
