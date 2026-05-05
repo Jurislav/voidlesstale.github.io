@@ -30,78 +30,85 @@ const remainingPosts = latestPosts.slice(1);
   description={home?.data.description ?? 'Official site and devlog for Voidless Tale.'}
 >
   <div style={homeStyle}>
-    {sectionOrder.map((section) =>
-      section === 'hero' ? (
-        <section class="page-section hero hero--framed">
-          <div class="hero__media">
-            <div class="hero__media-frame" aria-hidden="true"></div>
-            <div class="hero__media-image" aria-hidden="true"></div>
+    {sectionOrder.map((section, index) => (
+      <>
+        {index > 0 ? (
+          <div class="page-section section-break" aria-hidden="true">
+            <div class="section-break__divider"></div>
+            <div class="section-break__gap"></div>
+            <div class="section-break__divider"></div>
           </div>
-          <div class="hero__panel hero__panel--main">
-            <span class="eyebrow">{home?.data.eyebrow}</span>
-            <h1>{home?.data.headline}</h1>
-            <p>{home?.data.intro}</p>
-            <div class="hero__actions">
-              <a class="button-link button-link--primary" href={home?.data.primary_cta_href}>
-                {home?.data.primary_cta_label}
-              </a>
-              <a class="button-link" href={home?.data.secondary_cta_href}>
-                {home?.data.secondary_cta_label}
-              </a>
+        ) : null}
+        {section === 'hero' ? (
+          <section class="page-section hero hero--framed">
+            <div class="hero__media">
+              <div class="hero__media-frame" aria-hidden="true"></div>
+              <div class="hero__media-image" aria-hidden="true"></div>
             </div>
-          </div>
-        </section>
-      ) : section === 'features' ? (
-        <section class="page-section section-surface section-surface--features ornate-panel">
-          <div class="section-divider" aria-hidden="true"></div>
-          <span class="eyebrow">{home?.data.feature_section_eyebrow}</span>
-          <h2>{home?.data.feature_section_title}</h2>
-          <div class="stats-grid">
-            {home?.data.feature_cards.map((card) => (
-              <article class="card feature-card ornate-corners">
-                <h3>{card.title}</h3>
-                <p>{card.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-      ) : (
-        <section class="page-section section-surface ornate-panel">
-          <div class="section-divider" aria-hidden="true"></div>
-          <span class="eyebrow">{home?.data.latest_section_eyebrow}</span>
-          <h2>{home?.data.latest_section_title}</h2>
-          {featuredPost ? (
-            <a class="feature-post ornate-corners" href={`/devlog/${featuredPost.id}/`}>
-              <time datetime={featuredPost.data.pubDate.toISOString()}>
-                {featuredPost.data.pubDate.toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </time>
-              <h3>{featuredPost.data.title}</h3>
-              <p>{featuredPost.data.description}</p>
-            </a>
-          ) : null}
-          {remainingPosts.length > 0 ? (
-            <div class="card-grid card-grid--secondary">
-              {remainingPosts.map((post) => (
-                <a class="card ornate-corners" href={`/devlog/${post.id}/`}>
-                  <time datetime={post.data.pubDate.toISOString()}>
-                    {post.data.pubDate.toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </time>
-                  <h3>{post.data.title}</h3>
-                  <p>{post.data.description}</p>
+            <div class="hero__panel hero__panel--main">
+              <span class="eyebrow">{home?.data.eyebrow}</span>
+              <h1>{home?.data.headline}</h1>
+              <p>{home?.data.intro}</p>
+              <div class="hero__actions">
+                <a class="button-link button-link--primary" href={home?.data.primary_cta_href}>
+                  {home?.data.primary_cta_label}
                 </a>
+                <a class="button-link" href={home?.data.secondary_cta_href}>
+                  {home?.data.secondary_cta_label}
+                </a>
+              </div>
+            </div>
+          </section>
+        ) : section === 'features' ? (
+          <section class="page-section section-surface section-surface--features ornate-panel">
+            <span class="eyebrow">{home?.data.feature_section_eyebrow}</span>
+            <h2>{home?.data.feature_section_title}</h2>
+            <div class="stats-grid">
+              {home?.data.feature_cards.map((card) => (
+                <article class="card feature-card ornate-corners">
+                  <h3>{card.title}</h3>
+                  <p>{card.text}</p>
+                </article>
               ))}
             </div>
-          ) : null}
-        </section>
-      ),
-    )}
+          </section>
+        ) : (
+          <section class="page-section section-surface ornate-panel">
+            <span class="eyebrow">{home?.data.latest_section_eyebrow}</span>
+            <h2>{home?.data.latest_section_title}</h2>
+            {featuredPost ? (
+              <a class="feature-post ornate-corners" href={`/devlog/${featuredPost.id}/`}>
+                <time datetime={featuredPost.data.pubDate.toISOString()}>
+                  {featuredPost.data.pubDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+                <h3>{featuredPost.data.title}</h3>
+                <p>{featuredPost.data.description}</p>
+              </a>
+            ) : null}
+            {remainingPosts.length > 0 ? (
+              <div class="card-grid card-grid--secondary">
+                {remainingPosts.map((post) => (
+                  <a class="card ornate-corners" href={`/devlog/${post.id}/`}>
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </time>
+                    <h3>{post.data.title}</h3>
+                    <p>{post.data.description}</p>
+                  </a>
+                ))}
+              </div>
+            ) : null}
+          </section>
+        )}
+      </>
+    ))}
   </div>
 </BaseLayout>
