@@ -112,7 +112,7 @@ a {
 }
 
 .site-nav {
-  padding: 1rem 0 0.25rem;
+  padding: 1rem 0 0.4rem;
 }
 
 .site-nav__shell {
@@ -121,8 +121,8 @@ a {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  min-height: 4.4rem;
-  padding: 0.8rem 1.3rem 1rem;
+  min-height: 5.4rem;
+  padding: 1.25rem 1.5rem 1.35rem;
 }
 
 .site-nav__shell::before {
@@ -473,8 +473,9 @@ p {
   .site-nav__shell {
     align-items: flex-start;
     flex-direction: column;
+    min-height: 4.6rem;
     padding-top: 1rem;
-    padding-bottom: 1.2rem;
+    padding-bottom: 1.25rem;
   }
 
   .site-nav__brand {
