@@ -14,6 +14,7 @@ const navLinks = rawLinks.map((link) => ({
 <nav class="site-nav" aria-label="Primary">
   <div class="site-nav__shell">
     <a class="site-nav__brand" href="/">{siteTitle}</a>
+    <div class="site-nav__spacer" aria-hidden="true"></div>
     <div class="site-nav__links">
       {navLinks.map((link) => (
         <a href={link.href}>{link.label}</a>
