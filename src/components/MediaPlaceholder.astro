@@ -1,0 +1,7 @@
+---
+interface Props { image?: string; alt?: string; label?: string }
+const { image, alt = '', label = 'Preview' } = Astro.props;
+---
+<div class="panel media-placeholder">
+  {image ? <img src={image} alt={alt} loading="lazy" /> : <div class="media-fallback">{label}</div>}
+</div>

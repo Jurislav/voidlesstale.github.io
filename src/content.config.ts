@@ -8,6 +8,7 @@ const devlog = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     draft: z.boolean().default(false),
+    tags: z.array(z.string()).optional(),
   }),
 });
 
@@ -20,6 +21,7 @@ const pages = defineCollection({
     eyebrow: z.string().optional(),
     template: z.enum(['default', 'feature', 'narrow']).default('default'),
     draft: z.boolean().default(false),
+    tags: z.array(z.string()).optional(),
   }),
 });
 

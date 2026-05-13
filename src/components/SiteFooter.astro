@@ -1,0 +1,9 @@
+---
+import { getEntry } from 'astro:content';
+const settings = await getEntry('settings', 'settings');
+---
+<footer class="site-footer">
+  <div class="shell">
+    <p>{settings?.data.footer_text ?? 'Voidless Tale'}</p>
+  </div>
+</footer>

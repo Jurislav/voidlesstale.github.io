@@ -1,0 +1,11 @@
+---
+import TagPill from './TagPill.astro';
+interface Props { href: string; title: string; date: Date; excerpt: string; tags?: string[] }
+const { href, title, date, excerpt, tags = [] } = Astro.props;
+---
+<a class="panel devlog-card" href={href}>
+  <time datetime={date.toISOString()}>{date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+  <h3>{title}</h3>
+  <p>{excerpt}</p>
+  {tags.length > 0 ? <div class="tag-row">{tags.map((tag) => <TagPill label={tag} />)}</div> : null}
+</a>

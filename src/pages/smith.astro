@@ -1,10 +1,28 @@
 ---
+import CTAButton from '../components/CTAButton.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import InfoSidebar from '../components/InfoSidebar.astro';
+import MediaPlaceholder from '../components/MediaPlaceholder.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const sidebarItems = [
+  { label: 'Current version', value: 'Free v1' },
+  { label: 'SDK version', value: 'TBA' },
+  { label: 'Platform', value: 'Windows' },
+  { label: 'Type', value: 'Pixel weapon generator/editor' },
+];
 ---
 <BaseLayout title="Voidless Smith">
-  <section class="section">
-    <h1>Voidless Smith</h1>
-    <p>Voidless Smith is the companion toolset for generating pixel weapons and preparing game-ready assets.</p>
-    <p>Current targets include PNG + JSON export, with future support for item/object definitions, recipes, SDK workflows, and modding pipelines.</p>
+  <section class="split-layout">
+    <div>
+      <section class="panel"><h1>Voidless Smith</h1><p>Companion tool for building pixel weapon assets quickly with export-ready outputs.</p><CTAButton href="https://voidlesstale.itch.io/voidless-smith">View on itch.io</CTAButton></section>
+      <MediaPlaceholder label="Tool Preview" />
+      <section class="feature-grid">
+        <FeatureCard title="Fast iteration" text="Tune weapon visuals with a focused editor workflow." />
+        <FeatureCard title="Pipeline ready" text="Prepare assets for RPG systems and future modding support." />
+        <FeatureCard title="Free starter release" text="Accessible v1 for creators and players." />
+      </section>
+    </div>
+    <InfoSidebar items={sidebarItems} title="Tool Info" />
   </section>
 </BaseLayout>
