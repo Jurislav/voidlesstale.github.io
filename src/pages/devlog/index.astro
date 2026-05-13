@@ -1,32 +1,17 @@
 ---
 import { getCollection } from 'astro:content';
+import DevlogCard from '../../components/DevlogCard.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const posts = (await getCollection('devlog', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = (await getCollection('devlog', ({ data }) => !data.draft)).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
-
 <BaseLayout title="Devlog | Voidless Tale" description="Development updates for Voidless Tale.">
-  <section class="page-section">
-    <span class="eyebrow">Development updates</span>
+  <section class="panel">
+    <p class="kicker">Development updates</p>
     <h1>Devlog</h1>
-    <p>Write Markdown posts through Sveltia CMS and Astro will turn them into clean static pages.</p>
+    <p>Progress notes, feature breakdowns, and production updates.</p>
   </section>
-
-  <section class="page-section card-grid">
-    {posts.map((post) => (
-      <a class="card" href={`/devlog/${post.id}/`}>
-        <time datetime={post.data.pubDate.toISOString()}>
-          {post.data.pubDate.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
-        </time>
-        <h2>{post.data.title}</h2>
-        <p>{post.data.description}</p>
-      </a>
-    ))}
+  <section class="devlog-grid">
+    {posts.map((post) => <DevlogCard href={`/devlog/${post.id}/`} title={post.data.title} date={post.data.pubDate} excerpt={post.data.description} tags={post.data.tags ?? []} />)}
   </section>
 </BaseLayout>

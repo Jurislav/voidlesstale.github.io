@@ -1,10 +1,29 @@
 ---
+import CTAButton from '../components/CTAButton.astro';
+import InfoSidebar from '../components/InfoSidebar.astro';
+import MediaPlaceholder from '../components/MediaPlaceholder.astro';
+import SectionPanel from '../components/SectionPanel.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const sidebarItems = [
+  { label: 'Status', value: 'In Development' },
+  { label: 'Engine', value: 'Godot / C#' },
+  { label: 'Genre', value: '2D Pixel RPG' },
+  { label: 'Developer', value: 'Juris / srcgames' },
+  { label: 'Website', value: 'voidlesstale.com' },
+];
+const tags = ['Pixel Art', 'RPG', 'Soulslike', 'Platformer', 'Heaven & Hell', 'Seven Deadly Sins', 'Solo Dev'];
 ---
-<BaseLayout title="Voidless Tale">
-  <section class="section">
-    <h1>Voidless Tale</h1>
-    <p>Voidless Tale is a 2D pixel RPG where the journey begins in Purgatory and branches into Heaven and Hell.</p>
-    <p>Players recover memories, challenge bosses tied to sin and salvation, and shape progression through combat, exploration, and choices.</p>
+<BaseLayout title="Voidless Tale | Game Page">
+  <section class="split-layout">
+    <div>
+      <MediaPlaceholder image="/uploads/hero_img.png" alt="Voidless Tale banner" label="Game Banner" />
+      <SectionPanel><h2>Description</h2><p>A dark fantasy adventure through Purgatory into Heaven and Hell, blending precision combat with exploration.</p></SectionPanel>
+      <SectionPanel><h2>Features</h2><ul><li>Pixel-art action RPG progression</li><li>Soulslike boss encounters</li><li>Platforming traversal and world secrets</li></ul></SectionPanel>
+      <SectionPanel><h2>Story & World</h2><p>Recover fragments of memory while uncovering the forces shaping sin, sacrifice, and salvation.</p></SectionPanel>
+      <SectionPanel><h2>Systems</h2><p>Gear growth, build experimentation, and layered zone progression are core to replayability.</p></SectionPanel>
+      <SectionPanel><h2>Devlog</h2><p>See the latest development updates and milestones.</p><CTAButton href="/devlog/">Read Devlog</CTAButton></SectionPanel>
+    </div>
+    <InfoSidebar items={sidebarItems} tags={tags} title="Project Status" />
   </section>
 </BaseLayout>

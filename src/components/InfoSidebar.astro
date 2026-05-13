@@ -1,0 +1,14 @@
+---
+import TagPill from './TagPill.astro';
+interface Props { title?: string; items: { label: string; value: string }[]; tags?: string[] }
+const { title = 'Project Info', items, tags = [] } = Astro.props;
+---
+<aside class="panel info-sidebar">
+  <h3>{title}</h3>
+  <ul>
+    {items.map((item) => (
+      <li><strong>{item.label}:</strong> {item.value}</li>
+    ))}
+  </ul>
+  {tags.length > 0 ? <div class="tag-row">{tags.map((tag) => <TagPill label={tag} />)}</div> : null}
+</aside>

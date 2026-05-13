@@ -1,0 +1,23 @@
+---
+import { getEntry } from 'astro:content';
+
+const settings = await getEntry('settings', 'settings');
+const siteTitle = settings?.data.site_title ?? 'Voidless Tale';
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Voidless Tale', href: '/voidless-tale/' },
+  { label: 'Voidless Smith', href: '/smith/' },
+  { label: 'Devlog', href: '/devlog/' },
+  { label: 'About', href: '/about/' },
+];
+---
+<header class="site-header">
+  <div class="shell nav-wrap">
+    <a class="brand" href="/">{siteTitle}</a>
+    <nav class="nav-links" aria-label="Primary">
+      {navLinks.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>

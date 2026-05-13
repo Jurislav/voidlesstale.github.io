@@ -1,38 +1,11 @@
 ---
-import { getEntry } from 'astro:content';
-import Footer from '../components/Footer.astro';
-import Nav from '../components/Nav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import '../styles/global.css';
 
-interface Props {
-  title: string;
-  description?: string;
-}
-
+interface Props { title: string; description?: string }
 const { title, description = 'Voidless Tale official site and devlog.' } = Astro.props;
-const settings = await getEntry('settings', 'settings');
-const design = settings?.data.design;
-const themeVars = design
-  ? [
-      `--text:${design.text}`,
-      `--muted:${design.muted}`,
-      `--accent:${design.accent}`,
-      `--accent-2:${design.accent_soft}`,
-      `--bg-elevated:${design.panel_bg}`,
-      `--panel:${design.panel_strong_bg}`,
-      `--line:${design.border}`,
-      `--page-bg-start:${design.page_bg_start}`,
-      `--page-bg-end:${design.page_bg_end}`,
-      `--glow-left:${design.glow_left}`,
-      `--glow-right:${design.glow_right}`,
-      `--max-width:${design.max_width}`,
-      `--card-radius:${design.card_radius}`,
-      `--card-padding:${design.card_padding}`,
-      `--panel-padding:${design.panel_padding}`,
-    ].join(';')
-  : undefined;
 ---
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -41,18 +14,11 @@ const themeVars = design
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
     <title>{title}</title>
   </head>
   <body>
-    <div class="page-shell" style={themeVars}>
-      <div class="page-glow page-glow--left"></div>
-      <div class="page-glow page-glow--right"></div>
-      <Nav />
-      <main class="page-main">
-        <slot />
-      </main>
-      <Footer />
-    </div>
+    <SiteHeader />
+    <main class="shell main-content"><slot /></main>
+    <SiteFooter />
   </body>
 </html>

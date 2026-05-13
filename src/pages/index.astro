@@ -1,114 +1,34 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import CTAButton from '../components/CTAButton.astro';
+import DevlogCard from '../components/DevlogCard.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import MediaPlaceholder from '../components/MediaPlaceholder.astro';
+import SectionPanel from '../components/SectionPanel.astro';
+import TagPill from '../components/TagPill.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const home = await getEntry('home', 'home');
-const latestPosts = (await getCollection('devlog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
-
-const homeStyle = home
-  ? [
-      `--hero-columns:${home.data.layout.hero_columns}`,
-      `--feature-columns:${home.data.layout.feature_columns}`,
-      `--latest-columns:${home.data.layout.latest_columns}`,
-      `--card-min-height:${home.data.layout.card_min_height}`,
-      `--hero-section-bg:${home.data.backgrounds.hero_section}`,
-      `--features-section-bg:${home.data.backgrounds.features_section}`,
-      `--latest-section-bg:${home.data.backgrounds.latest_section}`,
-      `--feature-card-bg:${home.data.backgrounds.feature_cards}`,
-    ].join(';')
-  : undefined;
-
-const sectionOrder = home?.data.section_order ?? ['hero', 'features', 'latest'];
-const featuredPost = latestPosts[0];
-const remainingPosts = latestPosts.slice(1);
+const latestPosts = (await getCollection('devlog', ({ data }) => !data.draft)).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 3);
 ---
-
-<BaseLayout
-  title={home?.data.seo_title ?? 'Voidless Tale'}
-  description={home?.data.description ?? 'Official site and devlog for Voidless Tale.'}
->
-  <div style={homeStyle}>
-    {sectionOrder.map((section, index) => (
-      <>
-        {index > 0 ? (
-          <div class="page-section section-break" aria-hidden="true">
-            <div class="section-break__divider"></div>
-            <div class="section-break__gap"></div>
-            <div class="section-break__divider"></div>
-          </div>
-        ) : null}
-        {section === 'hero' ? (
-          <section class="page-section hero hero--framed">
-            <div class="hero__media">
-              <div class="hero__media-frame" aria-hidden="true"></div>
-              <div class="hero__media-image" aria-hidden="true"></div>
-            </div>
-            <div class="hero__panel hero__panel--main">
-              <span class="eyebrow">{home?.data.eyebrow}</span>
-              <h1>{home?.data.headline}</h1>
-              <p>{home?.data.intro}</p>
-              <div class="hero__actions">
-                <a class="button-link button-link--primary" href={home?.data.primary_cta_href}>
-                  {home?.data.primary_cta_label}
-                </a>
-                <a class="button-link" href={home?.data.secondary_cta_href}>
-                  {home?.data.secondary_cta_label}
-                </a>
-              </div>
-            </div>
-          </section>
-        ) : section === 'features' ? (
-          <section class="page-section section-surface section-surface--features ornate-panel">
-            <span class="eyebrow">{home?.data.feature_section_eyebrow}</span>
-            <h2>{home?.data.feature_section_title}</h2>
-            <div class="stats-grid">
-              {home?.data.feature_cards.map((card) => (
-                <article class="card feature-card ornate-corners">
-                  <h3>{card.title}</h3>
-                  <p>{card.text}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-        ) : (
-          <section class="page-section section-surface ornate-panel">
-            <span class="eyebrow">{home?.data.latest_section_eyebrow}</span>
-            <h2>{home?.data.latest_section_title}</h2>
-            {featuredPost ? (
-              <a class="feature-post ornate-corners" href={`/devlog/${featuredPost.id}/`}>
-                <time datetime={featuredPost.data.pubDate.toISOString()}>
-                  {featuredPost.data.pubDate.toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </time>
-                <h3>{featuredPost.data.title}</h3>
-                <p>{featuredPost.data.description}</p>
-              </a>
-            ) : null}
-            {remainingPosts.length > 0 ? (
-              <div class="card-grid card-grid--secondary">
-                {remainingPosts.map((post) => (
-                  <a class="card ornate-corners" href={`/devlog/${post.id}/`}>
-                    <time datetime={post.data.pubDate.toISOString()}>
-                      {post.data.pubDate.toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </time>
-                    <h3>{post.data.title}</h3>
-                    <p>{post.data.description}</p>
-                  </a>
-                ))}
-              </div>
-            ) : null}
-          </section>
-        )}
-      </>
-    ))}
-  </div>
+<BaseLayout title="Voidless Tale" description="Voidless Tale dark fantasy RPG and development updates.">
+  <section class="hero-grid panel">
+    <div>
+      <p class="kicker">Dark fantasy pixel RPG</p>
+      <h1>Voidless Tale</h1>
+      <p>A clean, focused indie game page for following development through Heaven, Hell, and everything in between.</p>
+      <div class="tag-row"><TagPill label="Pixel RPG" /><TagPill label="Godot" /><TagPill label="C#" /><TagPill label="Solo Dev" /><TagPill label="In Development" /></div>
+      <div class="cta-row"><CTAButton href="/devlog/">Read Devlog</CTAButton><CTAButton href="/smith/" variant="ghost">View Voidless Smith</CTAButton><CTAButton href="/devlog/" variant="ghost">Follow Development</CTAButton></div>
+    </div>
+    <MediaPlaceholder image="/uploads/hero_img.png" alt="Voidless Tale preview" label="Voidless Tale" />
+  </section>
+  <SectionPanel><h2>About Voidless Tale</h2><p>Voidless Tale is a 2D pixel RPG with soulslike pressure, platforming movement, and a world split between Heaven and Hell.</p></SectionPanel>
+  <section class="feature-grid"> 
+    <FeatureCard title="Branching world" text="Explore layered zones tied to sin, memory, and redemption." />
+    <FeatureCard title="Tight combat" text="Fast reads, punishing bosses, and skill-first progression." />
+    <FeatureCard title="Solo built" text="Designed and developed by Juris / srcgames in Godot + C#." />
+  </section>
+  <SectionPanel><h2>Screenshot Preview</h2><MediaPlaceholder image="/uploads/hero_img.png" alt="Screenshot preview" /></SectionPanel>
+  <section><h2>Latest Devlog</h2><div class="devlog-grid">{latestPosts.map((p)=><DevlogCard href={`/devlog/${p.id}/`} title={p.data.title} date={p.data.pubDate} excerpt={p.data.description} tags={p.data.tags ?? []} />)}</div></section>
+  <SectionPanel><h2>Voidless Smith</h2><p>Generate and edit pixel weapons for rapid prototyping and modding workflows.</p><CTAButton href="/smith/">Open Voidless Smith Page</CTAButton></SectionPanel>
+  <SectionPanel><h2>Follow Development</h2><p>Track progress through regular devlog updates and milestone posts.</p><CTAButton href="/devlog/">Go to Devlog</CTAButton></SectionPanel>
 </BaseLayout>
