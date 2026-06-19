@@ -109,12 +109,6 @@ const site = defineCollection({
     primary_cta_label: z.string(),
     primary_cta_href: z.string(),
     media_label: z.string(),
-    sidebar_items: z.array(
-      z.object({
-        label: z.string(),
-        value: z.string(),
-      }),
-    ),
     feature_cards: z.array(
       z.object({
         title: z.string(),
@@ -124,4 +118,13 @@ const site = defineCollection({
   }),
 });
 
-export const collections = { devlog, pages, settings, home, site };
+const smithSidebar = defineCollection({
+  loader: glob({ base: './src/content/smith-sidebar', pattern: '**/*.md' }),
+  schema: z.object({
+    title: z.string(),
+    order: z.number().int().default(0),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { devlog, pages, settings, home, site, smithSidebar };
