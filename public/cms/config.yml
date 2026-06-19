@@ -60,6 +60,8 @@ collections:
         fields:
           - { label: SEO Title, name: seo_title, widget: string }
           - { label: Description, name: description, widget: text }
+          - { label: About Panel Title, name: about_title, widget: string }
+          - { label: About Panel Text, name: about_text, widget: text }
           - label: Section Order
             name: section_order
             widget: list
@@ -86,8 +88,11 @@ collections:
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Text, name: text, widget: text }
+          - { label: Media Panel Title, name: media_title, widget: string }
           - { label: Latest Section Eyebrow, name: latest_section_eyebrow, widget: string }
           - { label: Latest Section Title, name: latest_section_title, widget: string }
+          - { label: CTA Panel Title, name: cta_panel_title, widget: string }
+          - { label: CTA Panel Text, name: cta_panel_text, widget: text }
           - label: Layout
             name: layout
             widget: object
