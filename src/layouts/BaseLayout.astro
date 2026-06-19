@@ -1,10 +1,31 @@
 ---
+import { getEntry } from 'astro:content';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import '../styles/global.css';
 
 interface Props { title: string; description?: string }
 const { title, description = 'Voidless Tale official site and devlog.' } = Astro.props;
+const settings = await getEntry('settings', 'settings');
+const design = settings?.data.design;
+const themeVars = design
+  ? [
+      `--bg:${design.page_bg_end}`,
+      `--bg-soft:${design.panel_bg}`,
+      `--panel:${design.panel_bg}`,
+      `--panel-2:${design.panel_strong_bg}`,
+      `--border:${design.border}`,
+      `--text:${design.text}`,
+      `--muted:${design.muted}`,
+      `--accent:${design.accent}`,
+      `--accent-2:${design.accent_soft}`,
+      `--gold:${design.accent_soft}`,
+      `--max-width:${design.max_width}`,
+      `--card-radius:${design.card_radius}`,
+      `--card-padding:${design.card_padding}`,
+      `--panel-padding:${design.panel_padding}`,
+    ].join(';')
+  : undefined;
 ---
 <!doctype html>
 <html lang="en">
@@ -16,7 +37,7 @@ const { title, description = 'Voidless Tale official site and devlog.' } = Astro
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
-  <body>
+  <body style={themeVars}>
     <SiteHeader />
     <main class="shell main-content"><slot /></main>
     <SiteFooter />
