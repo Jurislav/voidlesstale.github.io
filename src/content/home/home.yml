@@ -1,19 +1,14 @@
 seo_title: Voidless Tale
 description: Official site and devlog for Voidless Tale.
 about_title: About Voidless Tale
-about_text: >-
-  Voidless Tale is a 2D pixel RPG with soulslike pressure, platforming
-  movement, and a world split between Heaven and Hell.
+about_text: Voidless Tale is a 2D pixel RPG with soulslike pressure, platforming movement, and a world split between Heaven and Hell. Inspired by  anime and games like maplestory, overlord, etc.
 section_order:
   - hero
   - features
   - latest
 eyebrow: Dark fantasy action RPG
-headline: Voidless Tale now has a clean Astro foundation.
-intro: >-
-  This rebuild gives you a static site that is easy to ship on Cloudflare Pages
-  and easy to update through a Git-backed workflow without dragging a custom
-  backend into the project.
+headline: Voidless Tale
+intro: Voidless Tale is still in development.
 primary_cta_label: Read the devlog
 primary_cta_href: /devlog/
 secondary_cta_label: About the project
@@ -22,23 +17,19 @@ feature_section_eyebrow: What is included
 feature_section_title: Core strengths
 feature_cards:
   - title: Branching world
-    text: Explore layered zones tied to sin, memory, and redemption.
-  - title: Tight combat
-    text: Fast reads, punishing bosses, and skill-first progression.
-  - title: Solo built
-    text: Designed and developed by Juris / srcgames in Godot + C#.
+    text: Explore  zones tied to sin, memory, and redemption.
 media_title: Screenshot Preview
 latest_section_eyebrow: Latest Devlog
 latest_section_title: Recent devlog posts
 cta_panel_title: Follow Development
 cta_panel_text: Track progress through regular devlog updates and milestone posts.
 layout:
-  hero_columns: '1fr'
+  hero_columns: 1fr
   feature_columns: 3
   latest_columns: 2
-  card_min_height: '15rem'
+  card_min_height: 15rem
 backgrounds:
-  hero_section: 'rgba(255, 255, 255, 0.01)'
-  features_section: 'rgba(255, 255, 255, 0.02)'
-  latest_section: 'transparent'
-  feature_cards: 'rgba(35, 17, 24, 0.78)'
+  hero_section: rgba(255, 255, 255, 0.01)
+  features_section: rgba(255, 255, 255, 0.02)
+  latest_section: transparent
+  feature_cards: rgba(35, 17, 24, 0.78)
