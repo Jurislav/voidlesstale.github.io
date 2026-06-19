@@ -1,5 +1,9 @@
 seo_title: Voidless Tale
-description: Official site and devlog for Voidless Tale, rebuilt with Astro and Sveltia CMS.
+description: Official site and devlog for Voidless Tale.
+about_title: About Voidless Tale
+about_text: >-
+  Voidless Tale is a 2D pixel RPG with soulslike pressure, platforming
+  movement, and a world split between Heaven and Hell.
 section_order:
   - hero
   - features
@@ -17,18 +21,21 @@ secondary_cta_href: /about/
 feature_section_eyebrow: What is included
 feature_section_title: Core strengths
 feature_cards:
-  - title: Static-first
-    text: Astro builds plain HTML output that Cloudflare Pages can host directly.
-  - title: Git-backed content
-    text: Updates live in your repository as Markdown, which keeps the content workflow portable.
-  - title: Fast deploys
-    text: Publishing stays lightweight because the site rebuilds straight from the repo on push.
-latest_section_eyebrow: Latest updates
+  - title: Branching world
+    text: Explore layered zones tied to sin, memory, and redemption.
+  - title: Tight combat
+    text: Fast reads, punishing bosses, and skill-first progression.
+  - title: Solo built
+    text: Designed and developed by Juris / srcgames in Godot + C#.
+media_title: Screenshot Preview
+latest_section_eyebrow: Latest Devlog
 latest_section_title: Recent devlog posts
+cta_panel_title: Follow Development
+cta_panel_text: Track progress through regular devlog updates and milestone posts.
 layout:
-  hero_columns: '1.4fr 1fr'
+  hero_columns: '1fr'
   feature_columns: 3
-  latest_columns: 3
+  latest_columns: 2
   card_min_height: '15rem'
 backgrounds:
   hero_section: 'rgba(255, 255, 255, 0.01)'
