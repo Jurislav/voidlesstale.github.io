@@ -118,13 +118,6 @@ collections:
           - { label: Primary CTA Label, name: primary_cta_label, widget: string }
           - { label: Primary CTA Link, name: primary_cta_href, widget: string }
           - { label: Media Label, name: media_label, widget: string }
-          - label: Sidebar Items
-            name: sidebar_items
-            widget: list
-            summary: "{{fields.label}}"
-            fields:
-              - { label: Label, name: label, widget: string }
-              - { label: Value, name: value, widget: string }
           - label: Feature Cards
             name: feature_cards
             widget: list
@@ -132,6 +125,21 @@ collections:
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Text, name: text, widget: text }
+
+  - name: smith_sidebar
+    label: Voidless Smith Sidebar Panels
+    label_singular: Sidebar Panel
+    folder: src/content/smith-sidebar
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    summary: "{{title}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Order, name: order, widget: number, value_type: int, default: 0 }
+      - { label: Draft, name: draft, widget: boolean, default: false }
+      - { label: Body, name: body, widget: markdown }
 
   - name: pages
     label: Pages
