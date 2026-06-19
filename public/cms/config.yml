@@ -109,6 +109,29 @@ collections:
               - { label: Features Section Background, name: features_section, widget: string }
               - { label: Latest Section Background, name: latest_section, widget: string }
               - { label: Feature Card Background, name: feature_cards, widget: string }
+      - name: smith
+        label: Voidless Smith
+        file: src/content/site/smith.yml
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Intro, name: intro, widget: text }
+          - { label: Primary CTA Label, name: primary_cta_label, widget: string }
+          - { label: Primary CTA Link, name: primary_cta_href, widget: string }
+          - { label: Media Label, name: media_label, widget: string }
+          - label: Sidebar Items
+            name: sidebar_items
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Value, name: value, widget: string }
+          - label: Feature Cards
+            name: feature_cards
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Text, name: text, widget: text }
 
   - name: pages
     label: Pages
