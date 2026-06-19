@@ -5,7 +5,7 @@ navigation:
   - label: Home
     href: /
   - label: Voidless Tale
-    href: /voidless-tale/
+    page: voidless-tale
   - label: Voidless Smith
     href: /smith/
   - label: Devlog
