@@ -63,6 +63,8 @@ const home = defineCollection({
   schema: z.object({
     seo_title: z.string(),
     description: z.string(),
+    about_title: z.string().optional(),
+    about_text: z.string().optional(),
     section_order: z.array(z.enum(['hero', 'features', 'latest'])).default(['hero', 'features', 'latest']),
     eyebrow: z.string(),
     headline: z.string(),
@@ -79,8 +81,11 @@ const home = defineCollection({
         text: z.string(),
       }),
     ),
+    media_title: z.string().optional(),
     latest_section_eyebrow: z.string(),
     latest_section_title: z.string(),
+    cta_panel_title: z.string().optional(),
+    cta_panel_text: z.string().optional(),
     layout: z.object({
       hero_columns: z.string(),
       feature_columns: z.number().int().min(1).max(4),
@@ -96,4 +101,27 @@ const home = defineCollection({
   }),
 });
 
-export const collections = { devlog, pages, settings, home };
+const site = defineCollection({
+  loader: glob({ base: './src/content/site', pattern: '**/*.yml' }),
+  schema: z.object({
+    title: z.string(),
+    intro: z.string(),
+    primary_cta_label: z.string(),
+    primary_cta_href: z.string(),
+    media_label: z.string(),
+    sidebar_items: z.array(
+      z.object({
+        label: z.string(),
+        value: z.string(),
+      }),
+    ),
+    feature_cards: z.array(
+      z.object({
+        title: z.string(),
+        text: z.string(),
+      }),
+    ),
+  }),
+});
+
+export const collections = { devlog, pages, settings, home, site };
