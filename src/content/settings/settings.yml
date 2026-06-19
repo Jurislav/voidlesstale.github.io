@@ -4,6 +4,10 @@ footer_text: Built with Astro, edited through Sveltia CMS, and ready for Cloudfl
 navigation:
   - label: Home
     href: /
+  - label: Voidless Tale
+    href: /voidless-tale/
+  - label: Voidless Smith
+    href: /smith/
   - label: Devlog
     href: /devlog/
   - label: About
@@ -20,7 +24,7 @@ design:
   border: 'rgba(255, 190, 154, 0.16)'
   glow_left: 'rgba(255, 138, 91, 0.5)'
   glow_right: 'rgba(240, 203, 119, 0.22)'
-  max_width: '1120px'
-  card_radius: '28px'
+  max_width: '960px'
+  card_radius: '20px'
   card_padding: '1.35rem'
   panel_padding: '2rem'
