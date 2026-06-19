@@ -75,9 +75,22 @@ img { max-width: 100%; display: block; image-rendering: pixelated; image-renderi
 .section-panel h2,
 .section-panel h3,
 .feature-card h3,
-.devlog-card h3 { margin: 0 0 0.75rem; }
-.hero-grid, .split-layout, .stack-compact { display: grid; gap: var(--inner-gap); }
+.devlog-card h3,
+.sidebar-panel h3 { margin: 0 0 0.75rem; }
+.hero-grid, .split-layout, .stack-compact, .smith-sidebar-stack { display: grid; gap: var(--inner-gap); }
 .split-layout--compact { align-items: start; }
+.smith-layout { align-items: start; }
+.smith-sidebar-stack { align-content: start; padding-top: 36px; }
+.sidebar-panel { padding: 1rem 1rem 0.95rem; }
+.sidebar-panel :global(p),
+.sidebar-panel :global(ul),
+.sidebar-panel :global(ol) { margin: 0; color: var(--text); }
+.sidebar-panel :global(ul),
+.sidebar-panel :global(ol) { padding-left: 1.1rem; }
+.sidebar-panel :global(p + p),
+.sidebar-panel :global(p + ul),
+.sidebar-panel :global(ul + p),
+.sidebar-panel :global(ul + ul) { margin-top: 0.45rem; }
 .kicker {
   color: var(--gold);
   font-size: 0.85rem;
@@ -116,7 +129,6 @@ img { max-width: 100%; display: block; image-rendering: pixelated; image-renderi
 .devlog-card p { color: var(--text); }
 .devlog-card h3 { margin: 0.25rem 0; }
 .devlog-card time { color: var(--muted); font-size: 0.9rem; }
-.info-sidebar ul { padding-left: 1rem; margin: 0.5rem 0 1rem; }
 .media-placeholder img,
 .media-fallback {
   border-radius: 8px;
@@ -136,7 +148,7 @@ img { max-width: 100%; display: block; image-rendering: pixelated; image-renderi
 @media (min-width: 860px) {
   .feature-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .devlog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .split-layout { grid-template-columns: minmax(0, 1fr) 280px; }
+  .split-layout { grid-template-columns: minmax(0, 1fr) 250px; }
 }
 
 @media (max-width: 640px) {
@@ -147,7 +159,9 @@ img { max-width: 100%; display: block; image-rendering: pixelated; image-renderi
   .devlog-grid,
   .hero-grid,
   .split-layout,
-  .stack-compact { gap: 4px; }
+  .stack-compact,
+  .smith-sidebar-stack { gap: 4px; }
   .panel { padding: 1rem; }
+  .smith-sidebar-stack { padding-top: 0; }
   .site-footer { padding: 8px 0; }
 }
