@@ -1,0 +1,21 @@
+title: Voidless Smith
+intro: Companion tool for building pixel weapon assets quickly with export-ready outputs.
+primary_cta_label: View on itch.io
+primary_cta_href: https://voidlesstale.itch.io/voidless-smith
+media_label: Tool Preview
+sidebar_items:
+  - label: Current version
+    value: Free v1
+  - label: SDK version
+    value: TBA
+  - label: Platform
+    value: Windows
+  - label: Type
+    value: Pixel weapon generator/editor
+feature_cards:
+  - title: Fast iteration
+    text: Tune weapon visuals with a focused editor workflow.
+  - title: Pipeline ready
+    text: Prepare assets for RPG systems and future modding support.
+  - title: Free starter release
+    text: Accessible v1 for creators and players.
