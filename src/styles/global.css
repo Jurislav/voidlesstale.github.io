@@ -76,7 +76,8 @@ img { max-width: 100%; display: block; image-rendering: pixelated; image-renderi
 .section-panel h3,
 .feature-card h3,
 .devlog-card h3 { margin: 0 0 0.75rem; }
-.hero-grid, .split-layout { display: grid; gap: var(--inner-gap); }
+.hero-grid, .split-layout, .stack-compact { display: grid; gap: var(--inner-gap); }
+.split-layout--compact { align-items: start; }
 .kicker {
   color: var(--gold);
   font-size: 0.85rem;
@@ -135,6 +136,7 @@ img { max-width: 100%; display: block; image-rendering: pixelated; image-renderi
 @media (min-width: 860px) {
   .feature-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .devlog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .split-layout { grid-template-columns: minmax(0, 1fr) 280px; }
 }
 
 @media (max-width: 640px) {
@@ -144,7 +146,8 @@ img { max-width: 100%; display: block; image-rendering: pixelated; image-renderi
   .feature-grid,
   .devlog-grid,
   .hero-grid,
-  .split-layout { gap: 4px; }
+  .split-layout,
+  .stack-compact { gap: 4px; }
   .panel { padding: 1rem; }
   .site-footer { padding: 8px 0; }
 }
