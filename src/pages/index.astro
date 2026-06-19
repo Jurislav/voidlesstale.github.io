@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import CTAButton from '../components/CTAButton.astro';
 import DevlogCard from '../components/DevlogCard.astro';
 import FeatureCard from '../components/FeatureCard.astro';
@@ -8,27 +8,60 @@ import SectionPanel from '../components/SectionPanel.astro';
 import TagPill from '../components/TagPill.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const latestPosts = (await getCollection('devlog', ({ data }) => !data.draft)).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 3);
+const home = await getEntry('home', 'home');
+const latestPosts = (await getCollection('devlog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
-<BaseLayout title="Voidless Tale" description="Voidless Tale dark fantasy RPG and development updates.">
-  <section class="hero-grid panel">
-    <div>
-      <p class="kicker">Dark fantasy pixel RPG</p>
-      <h1>Voidless Tale</h1>
-      <p>A clean, focused indie game page for following development through Heaven, Hell, and everything in between.</p>
-      <div class="tag-row"><TagPill label="Pixel RPG" /><TagPill label="Godot" /><TagPill label="C#" /><TagPill label="Solo Dev" /><TagPill label="In Development" /></div>
-      <div class="cta-row"><CTAButton href="/devlog/">Read Devlog</CTAButton><CTAButton href="/smith/" variant="ghost">View Voidless Smith</CTAButton><CTAButton href="/devlog/" variant="ghost">Follow Development</CTAButton></div>
-    </div>
+<BaseLayout
+  title={home?.data.seo_title ?? 'Voidless Tale'}
+  description={home?.data.description ?? 'Voidless Tale dark fantasy RPG and development updates.'}
+>
+  <SectionPanel>
+    <h1>{home?.data.about_title ?? 'About Voidless Tale'}</h1>
+    <p>{home?.data.about_text ?? home?.data.intro}</p>
+  </SectionPanel>
+
+  <section class="feature-grid">
+    {(home?.data.feature_cards ?? []).map((card) => (
+      <FeatureCard title={card.title} text={card.text} />
+    ))}
+  </section>
+
+  <SectionPanel>
+    <h2>{home?.data.media_title ?? 'Screenshot Preview'}</h2>
     <MediaPlaceholder image="/uploads/hero_img.png" alt="Voidless Tale preview" label="Voidless Tale" />
-  </section>
-  <SectionPanel><h2>About Voidless Tale</h2><p>Voidless Tale is a 2D pixel RPG with soulslike pressure, platforming movement, and a world split between Heaven and Hell.</p></SectionPanel>
-  <section class="feature-grid"> 
-    <FeatureCard title="Branching world" text="Explore layered zones tied to sin, memory, and redemption." />
-    <FeatureCard title="Tight combat" text="Fast reads, punishing bosses, and skill-first progression." />
-    <FeatureCard title="Solo built" text="Designed and developed by Juris / srcgames in Godot + C#." />
-  </section>
-  <SectionPanel><h2>Screenshot Preview</h2><MediaPlaceholder image="/uploads/hero_img.png" alt="Screenshot preview" /></SectionPanel>
-  <section><h2>Latest Devlog</h2><div class="devlog-grid">{latestPosts.map((p)=><DevlogCard href={`/devlog/${p.id}/`} title={p.data.title} date={p.data.pubDate} excerpt={p.data.description} tags={p.data.tags ?? []} />)}</div></section>
-  <SectionPanel><h2>Voidless Smith</h2><p>Generate and edit pixel weapons for rapid prototyping and modding workflows.</p><CTAButton href="/smith/">Open Voidless Smith Page</CTAButton></SectionPanel>
-  <SectionPanel><h2>Follow Development</h2><p>Track progress through regular devlog updates and milestone posts.</p><CTAButton href="/devlog/">Go to Devlog</CTAButton></SectionPanel>
+  </SectionPanel>
+
+  <SectionPanel>
+    <p class="kicker">{home?.data.latest_section_eyebrow ?? 'Latest Devlog'}</p>
+    <h2>{home?.data.latest_section_title ?? 'Recent devlog posts'}</h2>
+    <div class="devlog-grid">
+      {latestPosts.map((post) => (
+        <DevlogCard
+          href={`/devlog/${post.id}/`}
+          title={post.data.title}
+          date={post.data.pubDate}
+          excerpt={post.data.description}
+          tags={post.data.tags ?? []}
+        />
+      ))}
+    </div>
+  </SectionPanel>
+
+  <SectionPanel>
+    <h2>{home?.data.cta_panel_title ?? 'Follow Development'}</h2>
+    <p>{home?.data.cta_panel_text ?? 'Track progress through regular devlog updates and milestone posts.'}</p>
+    <div class="tag-row">
+      <TagPill label="Pixel RPG" />
+      <TagPill label="Godot" />
+      <TagPill label="C#" />
+      <TagPill label="Solo Dev" />
+      <TagPill label="In Development" />
+    </div>
+    <div class="cta-row">
+      <CTAButton href={home?.data.primary_cta_href ?? '/devlog/'}>{home?.data.primary_cta_label ?? 'Read Devlog'}</CTAButton>
+      <CTAButton href={home?.data.secondary_cta_href ?? '/about/'} variant="ghost">{home?.data.secondary_cta_label ?? 'About the project'}</CTAButton>
+    </div>
+  </SectionPanel>
 </BaseLayout>
