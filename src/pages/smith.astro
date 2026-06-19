@@ -1,26 +1,29 @@
 ---
+import { getEntry } from 'astro:content';
 import CTAButton from '../components/CTAButton.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import InfoSidebar from '../components/InfoSidebar.astro';
 import MediaPlaceholder from '../components/MediaPlaceholder.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const sidebarItems = [
-  { label: 'Current version', value: 'Free v1' },
-  { label: 'SDK version', value: 'TBA' },
-  { label: 'Platform', value: 'Windows' },
-  { label: 'Type', value: 'Pixel weapon generator/editor' },
-];
+const smith = await getEntry('site', 'smith');
+const sidebarItems = smith?.data.sidebar_items ?? [];
 ---
-<BaseLayout title="Voidless Smith">
-  <section class="split-layout">
-    <div>
-      <section class="panel"><h1>Voidless Smith</h1><p>Companion tool for building pixel weapon assets quickly with export-ready outputs.</p><CTAButton href="https://voidlesstale.itch.io/voidless-smith">View on itch.io</CTAButton></section>
-      <MediaPlaceholder label="Tool Preview" />
+<BaseLayout title={smith?.data.title ?? 'Voidless Smith'}>
+  <section class="split-layout split-layout--compact">
+    <div class="stack-compact">
+      <section class="panel">
+        <h1>{smith?.data.title ?? 'Voidless Smith'}</h1>
+        <p>{smith?.data.intro}</p>
+        <CTAButton href={smith?.data.primary_cta_href ?? 'https://voidlesstale.itch.io/voidless-smith'}>
+          {smith?.data.primary_cta_label ?? 'View on itch.io'}
+        </CTAButton>
+      </section>
+      <MediaPlaceholder label={smith?.data.media_label ?? 'Tool Preview'} />
       <section class="feature-grid">
-        <FeatureCard title="Fast iteration" text="Tune weapon visuals with a focused editor workflow." />
-        <FeatureCard title="Pipeline ready" text="Prepare assets for RPG systems and future modding support." />
-        <FeatureCard title="Free starter release" text="Accessible v1 for creators and players." />
+        {(smith?.data.feature_cards ?? []).map((card) => (
+          <FeatureCard title={card.title} text={card.text} />
+        ))}
       </section>
     </div>
     <InfoSidebar items={sidebarItems} title="Tool Info" />
