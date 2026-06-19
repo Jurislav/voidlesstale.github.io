@@ -4,7 +4,6 @@ about_title: About Voidless Tale
 about_text: Voidless Tale is a 2D pixel RPG with soulslike pressure, platforming movement, and a world split between Heaven and Hell. Inspired by  anime and games like maplestory, overlord, etc.
 section_order:
   - hero
-  - features
   - latest
 eyebrow: Dark fantasy action RPG
 headline: Voidless Tale
@@ -16,8 +15,8 @@ secondary_cta_href: /about/
 feature_section_eyebrow: What is included
 feature_section_title: Core strengths
 feature_cards:
-  - title: Branching world
-    text: Explore  zones tied to sin, memory, and redemption.
+  - title: Some feature
+    text: TEst
 media_title: Screenshot Preview
 latest_section_eyebrow: Latest Devlog
 latest_section_title: Recent devlog posts
