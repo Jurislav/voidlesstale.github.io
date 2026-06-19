@@ -80,7 +80,7 @@ img { max-width: 100%; display: block; image-rendering: pixelated; image-renderi
 .hero-grid, .split-layout, .stack-compact, .smith-sidebar-stack { display: grid; gap: var(--inner-gap); }
 .split-layout--compact { align-items: start; }
 .smith-layout { align-items: start; }
-.smith-sidebar-stack { align-content: start; padding-top: 36px; }
+.smith-sidebar-stack { align-content: start; }
 .sidebar-panel { padding: 1rem 1rem 0.95rem; }
 .sidebar-panel :global(p),
 .sidebar-panel :global(ul),
@@ -162,6 +162,5 @@ img { max-width: 100%; display: block; image-rendering: pixelated; image-renderi
   .stack-compact,
   .smith-sidebar-stack { gap: 4px; }
   .panel { padding: 1rem; }
-  .smith-sidebar-stack { padding-top: 0; }
   .site-footer { padding: 8px 0; }
 }
