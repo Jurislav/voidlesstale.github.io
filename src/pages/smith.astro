@@ -1,16 +1,23 @@
 ---
-import { getEntry } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import CTAButton from '../components/CTAButton.astro';
 import FeatureCard from '../components/FeatureCard.astro';
-import InfoSidebar from '../components/InfoSidebar.astro';
 import MediaPlaceholder from '../components/MediaPlaceholder.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const smith = await getEntry('site', 'smith');
-const sidebarItems = smith?.data.sidebar_items ?? [];
+const sidebarPanels = (await getCollection('smithSidebar', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const renderedSidebarPanels = await Promise.all(
+  sidebarPanels.map(async (panel) => ({
+    panel,
+    rendered: await render(panel),
+  })),
+);
 ---
 <BaseLayout title={smith?.data.title ?? 'Voidless Smith'}>
-  <section class="split-layout split-layout--compact">
+  <section class="split-layout split-layout--compact smith-layout">
     <div class="stack-compact">
       <section class="panel">
         <h1>{smith?.data.title ?? 'Voidless Smith'}</h1>
@@ -26,6 +33,16 @@ const sidebarItems = smith?.data.sidebar_items ?? [];
         ))}
       </section>
     </div>
-    <InfoSidebar items={sidebarItems} title="Tool Info" />
+    <aside class="smith-sidebar-stack">
+      {renderedSidebarPanels.map(({ panel, rendered }) => {
+        const { Content } = rendered;
+        return (
+          <section class="panel sidebar-panel">
+            <h3>{panel.data.title}</h3>
+            <Content />
+          </section>
+        );
+      })}
+    </aside>
   </section>
 </BaseLayout>
