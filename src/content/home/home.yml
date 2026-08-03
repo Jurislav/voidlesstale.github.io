@@ -2,30 +2,11 @@ seo_title: Voidless Tale
 description: Official site and devlog for Voidless Tale.
 panels:
   - type: content
+    eyebrow: ''
     title: About Voidless Tale
     text: Voidless Tale is a dark fantasy 2D action RPG where every monster matters. Hunt creatures for their materials OR absorb their abilities(Unique mechanik), and forge your own legendary builds.
-  - type: features
-    eyebrow: What is included
-    title: Core strengths
-    columns: 3
-    cards:
-      - title: Story about sins!
-        text: Voidless Tale is Inspired by the Seven Deadly Sins and Dante Alighieri's Divine Comedy, Voidless Tale follows a soul awakening in Limbo with no memory of its past. Explore a dark fantasy world, uncover forgotten memories, confront the embodiment of each deadly sin, and shape your own fate.
-      - title: Every Monster Matters!
-        text: Defeat monsters and choose your reward. Absorb powerful skills to expand your build, or loot valuable materials and equipment for crafting and upgrades.
-      - title: Forge Your Own Build
-        text: Customize your weapons with Veinshards, elements, and unique effects. Experiment with countless combinations to create a legendary build that is uniquely yours.
-  - type: media
-    title: Screenshot Preview
-    image: /uploads/hero_img.png
-    alt: Voidless Tale preview
-    label: Voidless Tale
-  - type: devlog
-    eyebrow: Latest Devlog
-    title: Recent devlog posts
-    post_count: 3
-    columns: 2
   - type: cta
+    eyebrow: ''
     title: Follow Development
     text: Track progress through regular devlog updates and milestone posts.
     tags:
@@ -41,3 +22,24 @@ panels:
       - label: About the project
         href: /about/
         variant: ghost
+  - type: features
+    eyebrow: What is included
+    title: Core strengths
+    columns: 3
+    cards:
+      - title: Story about sins!
+        text: Voidless Tale is Inspired by the Seven Deadly Sins and Dante Alighieri's Divine Comedy, Voidless Tale follows a soul awakening in Limbo with no memory of its past. Explore a dark fantasy world, uncover forgotten memories, confront the embodiment of each deadly sin, and shape your own fate.
+      - title: Every Monster Matters!
+        text: Defeat monsters and choose your reward. Absorb powerful skills to expand your build, or loot valuable materials and equipment for crafting and upgrades.
+      - title: Forge Your Own Build
+        text: Customize your weapons with Veinshards, elements, and unique effects. Experiment with countless combinations to create a legendary build that is uniquely yours.
+  - type: devlog
+    eyebrow: Latest Devlog
+    title: Recent devlog posts
+    columns: 2
+    post_count: 3
+  - type: media
+    title: Screenshot Preview
+    image: /uploads/hero_img.png
+    alt: Voidless Tale preview
+    label: Voidless Tale
