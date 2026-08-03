@@ -34,10 +34,15 @@ panels:
       - title: Forge Your Own Build
         text: Customize your weapons with Veinshards, elements, and unique effects. Experiment with countless combinations to create a legendary build that is uniquely yours.
   - type: media
-    title: Screenshot Preview
-    image: /uploads/hero_img.png
+    title: Voidless Tale Alpha preview
+    image: /uploads/image_2026-08-03_214048727.png
     alt: Voidless Tale preview
     label: Voidless Tale
+  - type: media
+    title: Voidless Tale - Equiped with admin commands!
+    image: /uploads/pasted-image-1781896199074.png
+    alt: ''
+    label: ''
   - type: devlog
     eyebrow: Latest Devlog
     title: Recent devlog posts
