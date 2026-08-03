@@ -1,7 +1,7 @@
 seo_title: Voidless Tale
 description: Official site and devlog for Voidless Tale.
 about_title: About Voidless Tale
-about_text: Voidless Tale is a 2D pixel RPG with soulslike pressure, platforming movement, and a world split between Heaven and Hell. Inspired by  anime and games like maplestory, overlord, etc.
+about_text: Voidless Tale is a dark fantasy 2D action RPG where every monster matters. Hunt creatures for their materials OR absorb their abilities(Unique mechanik), and forge your own legendary builds.
 section_order:
   - hero
   - latest
@@ -15,8 +15,12 @@ secondary_cta_href: /about/
 feature_section_eyebrow: What is included
 feature_section_title: Core strengths
 feature_cards:
-  - title: Some feature
-    text: TEst
+  - title: Story about sins!
+    text: Voidless Tale is Inspired by the Seven Deadly Sins and Dante Alighieri's Divine Comedy, Voidless Tale follows a soul awakening in Limbo with no memory of its past. Explore a dark fantasy world, uncover forgotten memories, confront the embodiment of each deadly sin, and shape your own fate.
+  - title: Every Monster Matters!
+    text: Defeat monsters and choose your reward. Absorb powerful skills to expand your build, or loot valuable materials and equipment for crafting and upgrades.
+  - title: Forge Your Own Build
+    text: Customize your weapons with Veinshards, elements, and unique effects. Experiment with countless combinations to create a legendary build that is uniquely yours.
 media_title: Screenshot Preview
 latest_section_eyebrow: Latest Devlog
 latest_section_title: Recent devlog posts
