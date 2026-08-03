@@ -60,55 +60,106 @@ collections:
         fields:
           - { label: SEO Title, name: seo_title, widget: string }
           - { label: Description, name: description, widget: text }
-          - { label: About Panel Title, name: about_title, widget: string }
-          - { label: About Panel Text, name: about_text, widget: text }
-          - label: Section Order
-            name: section_order
+          - label: Homepage Panels
+            label_singular: Panel
+            name: panels
             widget: list
-            allow_add: false
-            summary: "{{fields.section}}"
-            field:
-              label: Section
-              name: section
-              widget: select
-              options: [hero, features, latest]
-          - { label: Eyebrow, name: eyebrow, widget: string }
-          - { label: Headline, name: headline, widget: string }
-          - { label: Intro, name: intro, widget: text }
-          - { label: Primary CTA Label, name: primary_cta_label, widget: string }
-          - { label: Primary CTA Link, name: primary_cta_href, widget: string }
-          - { label: Secondary CTA Label, name: secondary_cta_label, widget: string }
-          - { label: Secondary CTA Link, name: secondary_cta_href, widget: string }
-          - { label: Feature Section Eyebrow, name: feature_section_eyebrow, widget: string }
-          - { label: Feature Section Title, name: feature_section_title, widget: string }
-          - label: Feature Cards
-            name: feature_cards
-            widget: list
-            summary: "{{fields.title}}"
-            fields:
-              - { label: Title, name: title, widget: string }
-              - { label: Text, name: text, widget: text }
-          - { label: Media Panel Title, name: media_title, widget: string }
-          - { label: Latest Section Eyebrow, name: latest_section_eyebrow, widget: string }
-          - { label: Latest Section Title, name: latest_section_title, widget: string }
-          - { label: CTA Panel Title, name: cta_panel_title, widget: string }
-          - { label: CTA Panel Text, name: cta_panel_text, widget: text }
-          - label: Layout
-            name: layout
-            widget: object
-            fields:
-              - { label: Hero Columns, name: hero_columns, widget: string }
-              - { label: Feature Columns, name: feature_columns, widget: number, min: 1, max: 4, value_type: int }
-              - { label: Latest Columns, name: latest_columns, widget: number, min: 1, max: 4, value_type: int }
-              - { label: Card Minimum Height, name: card_min_height, widget: string }
-          - label: Backgrounds
-            name: backgrounds
-            widget: object
-            fields:
-              - { label: Hero Section Background, name: hero_section, widget: string }
-              - { label: Features Section Background, name: features_section, widget: string }
-              - { label: Latest Section Background, name: latest_section, widget: string }
-              - { label: Feature Card Background, name: feature_cards, widget: string }
+            summary: auto
+            allow_add: true
+            allow_remove: true
+            allow_duplicate: true
+            allow_reorder: true
+            hint: Add panels, then use the reorder handle to control their order on the homepage.
+            types:
+              - name: hero
+                label: Hero Panel
+                fields:
+                  - { label: Eyebrow, name: eyebrow, widget: string, required: false }
+                  - { label: Headline, name: title, widget: string }
+                  - { label: Intro, name: text, widget: text }
+                  - label: Tags
+                    name: tags
+                    widget: list
+                    required: false
+                    field: { label: Tag, name: tag, widget: string }
+                  - label: Buttons
+                    name: buttons
+                    widget: list
+                    required: false
+                    summary: "{{fields.label}}"
+                    fields:
+                      - { label: Label, name: label, widget: string }
+                      - { label: Link, name: href, widget: string }
+                      - { label: Style, name: variant, widget: select, default: primary, options: [primary, ghost] }
+              - name: content
+                label: Content Panel
+                fields:
+                  - { label: Eyebrow, name: eyebrow, widget: string, required: false }
+                  - { label: Title, name: title, widget: string }
+                  - { label: Text, name: text, widget: text }
+                  - label: Tags
+                    name: tags
+                    widget: list
+                    required: false
+                    field: { label: Tag, name: tag, widget: string }
+                  - label: Buttons
+                    name: buttons
+                    widget: list
+                    required: false
+                    summary: "{{fields.label}}"
+                    fields:
+                      - { label: Label, name: label, widget: string }
+                      - { label: Link, name: href, widget: string }
+                      - { label: Style, name: variant, widget: select, default: primary, options: [primary, ghost] }
+              - name: features
+                label: Feature Cards
+                fields:
+                  - { label: Eyebrow, name: eyebrow, widget: string, required: false }
+                  - { label: Title, name: title, widget: string, required: false }
+                  - { label: Columns, name: columns, widget: number, value_type: int, min: 1, max: 4, default: 3 }
+                  - label: Cards
+                    label_singular: Card
+                    name: cards
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Text, name: text, widget: text }
+              - name: media
+                label: Media Panel
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Image, name: image, widget: image, required: false }
+                  - { label: Alternative Text, name: alt, widget: string, required: false }
+                  - { label: Placeholder Label, name: label, widget: string, required: false }
+              - name: devlog
+                label: Latest Devlog Panel
+                fields:
+                  - { label: Eyebrow, name: eyebrow, widget: string, required: false }
+                  - { label: Title, name: title, widget: string }
+                  - { label: Number of Posts, name: post_count, widget: number, value_type: int, min: 1, max: 12, default: 3 }
+                  - { label: Columns, name: columns, widget: number, value_type: int, min: 1, max: 4, default: 2 }
+              - name: cta
+                label: CTA Panel
+                fields:
+                  - { label: Eyebrow, name: eyebrow, widget: string, required: false }
+                  - { label: Title, name: title, widget: string }
+                  - { label: Text, name: text, widget: text }
+                  - label: Tags
+                    name: tags
+                    widget: list
+                    required: false
+                    field: { label: Tag, name: tag, widget: string }
+                  - label: Buttons
+                    label_singular: Button
+                    name: buttons
+                    widget: list
+                    required: false
+                    summary: "{{fields.label}}"
+                    fields:
+                      - { label: Label, name: label, widget: string }
+                      - { label: Link, name: href, widget: string }
+                      - { label: Style, name: variant, widget: select, default: primary, options: [primary, ghost] }
       - name: smith
         label: Voidless Smith
         file: src/content/site/smith.yml

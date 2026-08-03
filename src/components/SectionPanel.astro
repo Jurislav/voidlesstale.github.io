@@ -1,3 +1,7 @@
-<section class="panel section-panel">
+---
+interface Props { variant?: 'default' | 'cta' }
+const { variant = 'default' } = Astro.props;
+---
+<section class={`panel section-panel section-panel--${variant}`}>
   <slot />
 </section>

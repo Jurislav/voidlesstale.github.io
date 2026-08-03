@@ -99,6 +99,8 @@ img { max-width: 100%; display: block; image-rendering: pixelated; image-renderi
 }
 .muted { color: var(--muted); }
 .tag-row { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.75rem; }
+.section-panel--cta { background: var(--panel-2); }
+.panel-grid { display: grid; grid-template-columns: 1fr; gap: var(--inner-gap); }
 .tag-pill {
   font-size: 0.78rem;
   padding: 0.22rem 0.55rem;
@@ -148,6 +150,7 @@ img { max-width: 100%; display: block; image-rendering: pixelated; image-renderi
 @media (min-width: 860px) {
   .feature-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .devlog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .panel-grid { grid-template-columns: repeat(var(--panel-columns, 2), minmax(0, 1fr)); }
   .split-layout { grid-template-columns: minmax(0, 1fr) 250px; }
 }
 

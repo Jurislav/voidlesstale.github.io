@@ -9,59 +9,72 @@ import TagPill from '../components/TagPill.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const home = await getEntry('home', 'home');
-const latestPosts = (await getCollection('devlog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+const posts = (await getCollection('devlog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const panels = home?.data.panels ?? [];
 ---
 <BaseLayout
   title={home?.data.seo_title ?? 'Voidless Tale'}
   description={home?.data.description ?? 'Voidless Tale dark fantasy RPG and development updates.'}
 >
-  <SectionPanel>
-    <h1>{home?.data.about_title ?? 'About Voidless Tale'}</h1>
-    <p>{home?.data.about_text ?? home?.data.intro}</p>
-  </SectionPanel>
+  {panels.map((panel) => {
+    if (panel.type === 'features') {
+      return (
+        <section>
+          {panel.eyebrow && <p class="kicker">{panel.eyebrow}</p>}
+          {panel.title && <h2>{panel.title}</h2>}
+          <div class="panel-grid" style={`--panel-columns: ${panel.columns}`}>
+            {panel.cards.map((card) => <FeatureCard title={card.title} text={card.text} />)}
+          </div>
+        </section>
+      );
+    }
 
-  <section class="feature-grid">
-    {(home?.data.feature_cards ?? []).map((card) => (
-      <FeatureCard title={card.title} text={card.text} />
-    ))}
-  </section>
+    if (panel.type === 'media') {
+      return (
+        <SectionPanel>
+          <h2>{panel.title}</h2>
+          <MediaPlaceholder image={panel.image} alt={panel.alt ?? ''} label={panel.label ?? 'Preview'} />
+        </SectionPanel>
+      );
+    }
 
-  <SectionPanel>
-    <h2>{home?.data.media_title ?? 'Screenshot Preview'}</h2>
-    <MediaPlaceholder image="/uploads/hero_img.png" alt="Voidless Tale preview" label="Voidless Tale" />
-  </SectionPanel>
+    if (panel.type === 'devlog') {
+      return (
+        <SectionPanel>
+          {panel.eyebrow && <p class="kicker">{panel.eyebrow}</p>}
+          <h2>{panel.title}</h2>
+          <div class="panel-grid" style={`--panel-columns: ${panel.columns}`}>
+            {posts.slice(0, panel.post_count).map((post) => (
+              <DevlogCard
+                href={`/devlog/${post.id}/`}
+                title={post.data.title}
+                date={post.data.pubDate}
+                excerpt={post.data.description}
+                tags={post.data.tags ?? []}
+              />
+            ))}
+          </div>
+        </SectionPanel>
+      );
+    }
 
-  <SectionPanel>
-    <p class="kicker">{home?.data.latest_section_eyebrow ?? 'Latest Devlog'}</p>
-    <h2>{home?.data.latest_section_title ?? 'Recent devlog posts'}</h2>
-    <div class="devlog-grid">
-      {latestPosts.map((post) => (
-        <DevlogCard
-          href={`/devlog/${post.id}/`}
-          title={post.data.title}
-          date={post.data.pubDate}
-          excerpt={post.data.description}
-          tags={post.data.tags ?? []}
-        />
-      ))}
-    </div>
-  </SectionPanel>
-
-  <SectionPanel>
-    <h2>{home?.data.cta_panel_title ?? 'Follow Development'}</h2>
-    <p>{home?.data.cta_panel_text ?? 'Track progress through regular devlog updates and milestone posts.'}</p>
-    <div class="tag-row">
-      <TagPill label="Pixel RPG" />
-      <TagPill label="Godot" />
-      <TagPill label="C#" />
-      <TagPill label="Solo Dev" />
-      <TagPill label="In Development" />
-    </div>
-    <div class="cta-row">
-      <CTAButton href={home?.data.primary_cta_href ?? '/devlog/'}>{home?.data.primary_cta_label ?? 'Read Devlog'}</CTAButton>
-      <CTAButton href={home?.data.secondary_cta_href ?? '/about/'} variant="ghost">{home?.data.secondary_cta_label ?? 'About the project'}</CTAButton>
-    </div>
-  </SectionPanel>
+    return (
+      <SectionPanel variant={panel.type === 'cta' ? 'cta' : 'default'}>
+        {panel.eyebrow && <p class="kicker">{panel.eyebrow}</p>}
+        {panel.type === 'hero' ? <h1>{panel.title}</h1> : <h2>{panel.title}</h2>}
+        <p>{panel.text}</p>
+        {(panel.tags?.length ?? 0) > 0 && (
+          <div class="tag-row">{panel.tags?.map((tag) => <TagPill label={tag} />)}</div>
+        )}
+        {(panel.buttons?.length ?? 0) > 0 && (
+          <div class="cta-row">
+            {panel.buttons?.map((button) => (
+              <CTAButton href={button.href} variant={button.variant}>{button.label}</CTAButton>
+            ))}
+          </div>
+        )}
+      </SectionPanel>
+    );
+  })}
 </BaseLayout>
